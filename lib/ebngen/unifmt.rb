@@ -1,4 +1,5 @@
 
+require "deep_merge" 
 #this is for contraucture a uniformat input hierarchy hash
 require_relative 'settings/tool_chains'
 require_relative 'settings/target_types'
@@ -71,6 +72,8 @@ class Unifmt < UfBaseClass
 	attr_accessor :sources
 	#template
 	attr_accessor :templates
+	#project_name
+	attr_accessor :project_name
 
     #the keys that used in the uniformat
 	@@UNIFY_KEYS = ["meta_components", 
@@ -146,14 +149,17 @@ class Unifmt < UfBaseClass
 	validate_hash :sources
 
 	validate_array :templates
+
+	validate_string :project_name
 	
 	def initialize(options)
 		@options_default = {
 		:config => "debug",
 		:tool_chain => "iar",
-		:type => "application" ,
+		:type => "application",
 		:outdir => ".",
-		:board => "dummy_board"
+		:board => "dummy_board",
+		:project_name => "dummy_project"
 		}
 
 		if options.class.to_s != "Hash" and not options.nil?
@@ -191,6 +197,7 @@ class Unifmt < UfBaseClass
 		@projects_hash["document"]["board"] = @options_default[:board]
 		@projects_hash["type"] = @options_default[:type]
 		@projects_hash["outdir"] = @options_default[:outdir]
+		@projects_hash["document"]["project_name"] = @options_default[:project_name]
 		tc = @options_default[:tool_chain]
 		@projects_hash[tc] = Hash.new
 		@projects_hash[tc]["targets"] = Hash.new
@@ -205,10 +212,15 @@ class Unifmt < UfBaseClass
     		  @projects_hash[tc]["targets"][config][item.to_s] = instance_variable_get("@#{item}")
     	    end
     	end
+    	@projects_hash[tc]["source"] = instance_variable_get("@sources")
 	end
 	
 	def output_info
 		@projects_hash
+	end
+
+	def merge_target(project_data)
+		@projects_hash.deep_merge(project_data)
 	end
 
 	def help
