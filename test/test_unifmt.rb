@@ -4,8 +4,19 @@ require 'yaml'
 
 require 'lib/ebngen/unifmt'
 require 'awesome_print'
+require 'lib/ebngen/yml_helper'
 
-myunifmt = Unifmt.new({})
+options = {
+    :config => "debug",
+    :tool_chain => "iar",
+    :type => "application",
+    :board => "demo_board",
+    :project_name => "demo_project",
+    :project_root_dir => "default_root_dir"
+}
+
+myunifmt = Unifmt.new(options)
+myunifmt.outdir =  "build"
 myunifmt.cp_defines = {"MK64FN1M0xxx12" =>  "Freescale MK64FN1M0xxx12"}
 myunifmt.cc_defines = {  
           "CPU_MK64FN1M0VMD12" => nil, 
@@ -52,7 +63,14 @@ myunifmt.sources = [
 	},	
 ]
 myunifmt.update
-myunifmt2 = Unifmt.new({:config => "release"})
+options = {
+    :config => "release",
+    :tool_chain => "iar",
+    :type => "application",
+    :board => "demo_board",
+    :project_name => "demo_project"
+}
+myunifmt2 = Unifmt.new(options)
 myunifmt2.cp_defines = {"MK64FN1M0xxx12" =>  "Freescale MK64FN1M0xxx12"}
 myunifmt2.cc_defines = {
           "NODEBUG" => nil,
@@ -81,7 +99,13 @@ myunifmt2.as_flags = [ "--cpu=cortex-m4",
 myunifmt2.linker_file = {
           "path" => "devices/MK64F12/iar/MK64FN1M0xxx12_flash.icf"         
 }
+myunifmt2.outdir = "build"
 myunifmt2.update
-myunifmt.merge_target(myunifmt2.output_info)
-File.write('./unified_data.yml', YAML.dump(myunifmt.output_info))
+myunifmt << myunifmt2
+myunifile = UNI_File.new(myunifmt.output_info)
+puts myunifile.get_output_dir(myunifmt.output_info['demo_project'], 'iar', )
+
+puts myunifile.get_output_dir("iar", "demo_project",{:default_root_dir => "c:/temp"} , {:dir => "c:/"})
+
+File.write('./unified_data.yml', YAML.dump(myunifmt3.output_info))
 

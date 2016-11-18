@@ -1,4 +1,6 @@
 
+
+require 'pathname'
 require "deep_merge" 
 #this is for contraucture a uniformat input hierarchy hash
 require_relative 'settings/tool_chains'
@@ -74,6 +76,8 @@ class Unifmt < UfBaseClass
 	attr_accessor :templates
 	#project_name
 	attr_accessor :project_name
+	#project_name
+	attr_accessor :outdir
 
     #the keys that used in the uniformat
 	@@UNIFY_KEYS = ["meta_components", 
@@ -112,7 +116,7 @@ class Unifmt < UfBaseClass
 	:cxx_include,
 	:ld_flags,
 	:linker_file,
-	:libraries,
+	:outdir,
     :binary_file
 	]
 
@@ -151,15 +155,16 @@ class Unifmt < UfBaseClass
 	validate_array :templates
 
 	validate_string :project_name
+	validate_string :outdir
 	
 	def initialize(options)
 		@options_default = {
 		:config => "debug",
 		:tool_chain => "iar",
 		:type => "application",
-		:outdir => ".",
 		:board => "dummy_board",
-		:project_name => "dummy_project"
+		:project_name => "dummy_project",
+		:project_root_dir => nil,
 		}
 
 		if options.class.to_s != "Hash" and not options.nil?
@@ -171,6 +176,7 @@ class Unifmt < UfBaseClass
 		end
 
 		@projects_hash = Hash.new
+		@projects_hash[@options_default[:project_name]] = Hash.new
 
 		if not $TARGET_TYPES.include?(@options_default[:type])
 			puts "Error type #{@options_default[:type]} is not in allowable list, should be #{$TARGET_TYPES}"
@@ -192,27 +198,32 @@ class Unifmt < UfBaseClass
 	end
 
 	def update
-		#some mandatory sections 
-		@projects_hash["document"] = Hash.new
-		@projects_hash["document"]["board"] = @options_default[:board]
-		@projects_hash["type"] = @options_default[:type]
-		@projects_hash["outdir"] = @options_default[:outdir]
-		@projects_hash["document"]["project_name"] = @options_default[:project_name]
+		#some mandatory sections
+		@subhash = @projects_hash[@options_default[:project_name]]
+		@subhash["document"] = Hash.new
+		@subhash["document"]["board"] = @options_default[:board]
+		@subhash["document"]["project_name"] = @options_default[:project_name]
+		@subhash["document"]["project_root_dir"] = @options_default[:project_root_dir]
 		tc = @options_default[:tool_chain]
-		@projects_hash[tc] = Hash.new
-		@projects_hash[tc]["targets"] = Hash.new
+		@subhash[tc] = Hash.new
+		@subhash[tc]["targets"] = Hash.new
+		@subhash[tc]["templates"] = instance_variable_get("@templates")
+        @subhash[tc]["type"] = @options_default[:type]
 	    config = @options_default[:config]
     	if not $CONFIG_TYPES.include?(config)
     		puts "the config type #{config} is not supported"
     		return
     	end
-		@projects_hash[tc]["targets"][config] = Hash.new
+		@subhash[tc]["targets"][config] = Hash.new
 		self.attributes.each do |item|
     		if @@CONFIG_SETTINGS.include?(item)
-    		  @projects_hash[tc]["targets"][config][item.to_s] = instance_variable_get("@#{item}")
+    		  @subhash[tc]["targets"][config][item.to_s] = instance_variable_get("@#{item}")
     	    end
     	end
-    	@projects_hash[tc]["source"] = instance_variable_get("@sources")
+    	#other need special process features
+    	@subhash[tc]["source"] = instance_variable_get("@sources")
+    	@subhash[tc]["outdir"] = instance_variable_get("@outdir")
+    	@subhash[tc]["libraries"] = instance_variable_get("@libraries")
 	end
 	
 	def output_info
@@ -223,9 +234,18 @@ class Unifmt < UfBaseClass
 		@projects_hash.deep_merge(project_data)
 	end
 
+    def <<(other)
+    	@projects_hash.deep_merge(other.output_info)
+    end
+
+    def load(project_data)
+    	@projects_hash = project_data
+    end
+
 	def help
 		puts @@UNIFY_KEYS
 	end
+
 
     def as_preincludes_hash
     	return {"path" => "",  "rootdir" => ""}
