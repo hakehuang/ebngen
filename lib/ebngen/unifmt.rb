@@ -1,5 +1,3 @@
-
-
 require 'pathname'
 require "deep_merge" 
 #this is for contraucture a uniformat input hierarchy hash
@@ -278,5 +276,4 @@ class Unifmt < UfBaseClass
     def sources_hash
     	return {"source" => "", "virtual_dir" => "" ,"rootdir" => "", "release_dir" => ""}
     end
-
 end

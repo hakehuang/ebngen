@@ -1,23 +1,23 @@
 
-require_relative 'base'
+require_relative '_base'
+require_relative '_yml_helper'
+require_relative '_path_modifier'
+require_relative 'iar/eww'
+require_relative 'iar/ewp'
+require_relative 'iar/ewd'
+
 #replace me when yml_merger becomes gem
-require_relative '../yml_merger'
-
+require 'yml_merger'
 require 'nokogiri'
-require 'open-uri'
 require 'uri'
-require '_path_modifier'
-require 'eww'
-require 'ewp'
-require 'ewd'
-
+require 'open-uri'
 
 module IAR
 class Project
 	TOOLCHAIN='iar'
-	extend Base
-	extend EWP
-	extend EWD
+	include Base
+	include EWP
+	include EWD
 
 	def initialize(project_data, generator_variable)
 		@paths = PathModifier.new(generator_variable["paths"])
@@ -163,69 +163,80 @@ class Project
 end
 
 class Project_set
-	extend EWW
+	include EWW
+	include UNI_Project
 	TOOLCHAIN='iar'
-	def initialize(project_data, *generator_variable)
-		@project_name = project_data['document']['project_name']
-		@board = project_data['document']['board']
-		@unifmt = Unifmt.new({})
-		@unifmt.load(project_data)
+
+	# initialize EWW class
+    # PARAMS:
+    # - project_data: specific project data format for a application/library
+    # - generator_variable: all dependency in hash
+	def initialize(project_data, generator_variable)
+		set_hash(project_data)
+		@project_name = get_project_name()
+		@board = get_board()
 		@paths = PathModifier.new(generator_variable["paths"])
 		@all_projects_hash = generator_variable["all"]
-		@iar_project_sets = {".eww" => nil}
-		return nil if project_data['templates'].nil?
-		project_data['templates'].each do |template|
+		@iar_project_files = {".eww" => nil}
+		return nil if get_template(Project_set::TOOLCHAIN).nil?
+		get_template(Project_set::TOOLCHAIN).each do |template|
 			ext = File.extname(template)
 			if @iar_project_files.keys.include?(ext)
 				path = @paths.fullpath("default_path",template)
-				file  = open(path){|f| f.read}
+				doc = Nokogiri::XML(open(path))
 				case ext
 					when ".eww"
-						@iar_project_files[ext] = Nokogiri::XML(file) {|x| x.noblanks }
+						@iar_project_files[ext] = doc
 					else
 						puts "#{ext} not processed"
 				end
 			end
 		end
 		#clean the wrkspace in template
-	 	@iar_project_files[ext].css("workspace").each do |node|
+	 	@iar_project_files[".eww"].css("workspace/project").each do |node|
         	node.remove
     	end
+	 	@iar_project_files[".eww"].css("workspace/batchBuild/batchDefinition").each do |node|
+        	node.remove
+    	end  	
 	end
 
-	def generator(project_data)
-		add_project_to_set(project_data)
-		save_set(project_data)
+	def generator()
+		add_project_to_set()
+		save_set()
 	end
 
 
-	def add_project_to_set(project_data)
-		return if @iar_project_files[ext].nil?
+	def add_project_to_set()
+		return if @iar_project_files.nil?
+		return if @iar_project_files['.eww'].nil?
+		ext = ".eww"
 
 		#batch build mode is add
-		project_data[Project_set::TOOLCHAIN]['targets'].each_key do |target|
-			add_batch_project_target(@iar_project_files[ext], "all", project, target)
-			add_batch_project_target(@iar_project_files[ext], target, project, target)
-			project_data[Project_set::TOOLCHAIN]['targets'][target]['libraries'].each do |lib|
+		get_targets(Project_set::TOOLCHAIN).each do |target|	
+			add_batch_project_target(@iar_project_files[ext], "all", @project_name, target)
+			add_batch_project_target(@iar_project_files[ext], target, @project_name, target)
+			next if get_libraries(Project_set::TOOLCHAIN).nil?
+			get_libraries(Project_set::TOOLCHAIN).each do |lib|
 				add_batch_project_target(@iar_project_files[ext], "all", lib, target)
 				add_batch_project_target(@iar_project_files[ext], target, lib, target)				
 			end
 		end
 		#add projects
-		rootdir = @paths[:output_root]
 		file = "#{@project_name}_#{@board}.ewp"
 		path = File.join('$WS_DIR$',file)
 		add_project(@iar_project_files[ext], path)
 		#add library projects here
 		#get from dependency['libraries'][library_name]
 		ustruct = @all_projects_hash
-		project_data[Project_set::TOOLCHAIN]['libraries'].each do |lib|
+		return if get_libraries(Project_set::TOOLCHAIN).nil?
+		get_libraries(Project_set::TOOLCHAIN).each do |lib|
 			if ustruct[lib].nil?
 				puts "#{lib} information is missing in all hash"
 				next
 			end
 			libname = "#{@project_name}.ewp"
-            root = @refer_paths[@ustruct[library][tool_key]['outdir']['root-dir']]
+            root = @paths.rootdir_table[@ustruct[library][tool_key]['outdir']['root-dir']]
             lib_path = File.join(root, @ustruct[library][tool_key]['outdir']['path'], libname)
             if @ustruct[ project_name ][ tool_key ].has_key?('outdir')
                 ewwpath = File.join(@output_rootdir, @ustruct[ project_name ][ tool_key ][ 'outdir' ] )
@@ -238,11 +249,14 @@ class Project_set
 
 	end
 
-	def save_set(project_data, )
-		path = @unifmt.get_output_dir(Project_set::TOOLCHAIN, @project_name, )
-		save(File.join(@paths[:output_root], path, "#{@project_name}_#{@board}.eww"))
+	def save_set()
+		path = get_output_dir(Project_set::TOOLCHAIN, @paths.rootdir_table)
+		puts @paths.rootdir_table['output_root']
+		puts path
+		puts "#{@project_name}_#{@board}.eww"
+		save(@iar_project_files['.eww'], File.join(@paths.rootdir_table['output_root'], path, "#{@project_name}_#{@board}.eww"))
 	end
 
 end
 
-end
+end # end Module IAR

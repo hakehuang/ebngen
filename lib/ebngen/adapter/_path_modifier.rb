@@ -1,4 +1,5 @@
 require 'pathname'
+require_relative '_assert'
 
 
 class PathModifier

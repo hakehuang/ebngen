@@ -1,6 +1,6 @@
 
 
-module ewd
+module EWD
 
 
 end

@@ -2,9 +2,8 @@
 
 require 'yaml'
 
-require 'lib/ebngen/unifmt'
 require 'awesome_print'
-require 'lib/ebngen/yml_helper'
+require 'lib/ebngen'
 
 options = {
     :config => "debug",
@@ -102,10 +101,18 @@ myunifmt2.linker_file = {
 myunifmt2.outdir = "build"
 myunifmt2.update
 myunifmt << myunifmt2
-myunifile = UNI_File.new(myunifmt.output_info)
-puts myunifile.get_output_dir(myunifmt.output_info['demo_project'], 'iar', )
 
-puts myunifile.get_output_dir("iar", "demo_project",{:default_root_dir => "c:/temp"} , {:dir => "c:/"})
+File.write('./unified_data.yml', YAML.dump(myunifmt.output_info))
 
-File.write('./unified_data.yml', YAML.dump(myunifmt3.output_info))
 
+
+options = {
+  "paths" => {
+   "default_path" => Dir.pwd ,
+   "output_root" => Dir.pwd
+  },
+  "all" => myunifmt.output_info
+}
+
+mygenerator = Generator.new(options)
+mygenerator.generate_project_set('iar',myunifmt.output_info['demo_project'])

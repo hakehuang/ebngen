@@ -1,5 +1,6 @@
 
 require 'nokogiri'
+require 'FileUtils'
 
 module EWW
 
@@ -47,14 +48,16 @@ module EWW
         path_node.content = project_path
         project_node << path_node
         # add project into existing lists
-        @projects[ project_path ] = project_node
+        #@projects[ project_path ] = project_node
     end
 
 	def save(xml, path)
 		Core.assert(path.is_a?(String)) do
 		    "param is not a string #{path.class.name}"
 		end
-		File.force_write(path, xml.to_s)
+        puts path
+        FileUtils.mkdir_p File.dirname(path) if ! File.exist?(File.dirname(path))
+		File.write(path, xml.to_xml)
 	end
 
 end
