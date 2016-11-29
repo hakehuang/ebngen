@@ -105,7 +105,6 @@ myunifmt << myunifmt2
 File.write('./unified_data.yml', YAML.dump(myunifmt.output_info))
 
 
-
 options = {
   "paths" => {
    "default_path" => Dir.pwd ,
