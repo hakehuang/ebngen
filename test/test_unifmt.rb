@@ -44,9 +44,9 @@ myunifmt.linker_file = {
 	        "path" => "devices/MK64F12/iar/MK64FN1M0xxx12_flash.icf"         
 }
 
-myunifmt.templates = [ "templates/iar/app_peswd/generic.ewd",
-    "templates/iar/app_peswd/generic.ewp",
-    "templates/iar/app_peswd/generic.dni",
+myunifmt.templates = [ "templates/iar/general.ewd",
+    "templates/iar/general.ewp",
+    "templates/iar/general.dni",
     "templates/iar/general.eww" ]
 
 myunifmt.sources = [

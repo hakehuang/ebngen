@@ -27,16 +27,17 @@ class Project
 			ext = File.extname(template)
 			if @iar_project_files.keys.include?(ext)
 				path = @paths.fullpath("default_path",template)
-				file  = open(path){|f| f.read}
+				
 				case ext
-					when ".eww"
-						@iar_project_files[ext] = Nokogiri::XML(file) {|x| x.noblanks }
 					when ".ewp"
-						@iar_project_files[ext] = Nokogiri::XML(file) {|x| x.noblanks }
+						doc = Nokogiri::XML(open(path))
+						@iar_project_files[ext] = doc
 					when ".ewd"
-						@iar_project_files[ext] = Nokogiri::XML(file) {|x| x.noblanks }
+						doc = Nokogiri::XML(open(path))
+						@iar_project_files[ext] = doc
 					when ".dni"
-						@iar_project_files[ext] = path
+						doc = Nokogiri::XML(open(path))
+						@iar_project_files[ext] = doc
 				end
 			end
 		end
