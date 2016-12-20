@@ -1,0 +1,633 @@
+ExePath:
+  xpath:
+  - "//project/configuration/settings[position() = 1]/data/option[position() = 1]"
+ObjPath:
+  xpath:
+  - "//project/configuration/settings[position() = 1]/data/option[position() = 2]"
+ListPath:
+  xpath:
+  - "//project/configuration/settings[position() = 1]/data/option[position() = 3]"
+GEndianMode:
+  xpath:
+  - "//project/configuration/settings[position() = 1]/data/option[position() = 4]"
+Input variant:
+  xpath:
+  - "//project/configuration/settings[position() = 1]/data/option[position() = 5]"
+Input description:
+  xpath:
+  - "//project/configuration/settings[position() = 1]/data/option[position() = 6]"
+Output variant:
+  xpath:
+  - "//project/configuration/settings[position() = 1]/data/option[position() = 7]"
+Output description:
+  xpath:
+  - "//project/configuration/settings[position() = 1]/data/option[position() = 8]"
+GOutputBinary:
+  xpath:
+  - "//project/configuration/settings[position() = 1]/data/option[position() = 9]"
+OGCoreOrChip:
+  xpath:
+  - "//project/configuration/settings[position() = 1]/data/option[position() = 10]"
+GRuntimeLibSelect:
+  xpath:
+  - "//project/configuration/settings[position() = 1]/data/option[position() = 11]"
+GRuntimeLibSelectSlave:
+  xpath:
+  - "//project/configuration/settings[position() = 1]/data/option[position() = 12]"
+RTDescription:
+  xpath:
+  - "//project/configuration/settings[position() = 1]/data/option[position() = 13]"
+OGProductVersion:
+  xpath:
+  - "//project/configuration/settings[position() = 1]/data/option[position() = 14]"
+OGLastSavedByProductVersion:
+  xpath:
+  - "//project/configuration/settings[position() = 1]/data/option[position() = 15]"
+GeneralEnableMisra:
+  xpath:
+  - "//project/configuration/settings[position() = 1]/data/option[position() = 16]"
+GeneralMisraVerbose:
+  xpath:
+  - "//project/configuration/settings[position() = 1]/data/option[position() = 17]"
+OGChipSelectEditMenu:
+  xpath:
+  - "//project/configuration/settings[position() = 1]/data/option[position() = 18]"
+GenLowLevelInterface:
+  xpath:
+  - "//project/configuration/settings[position() = 1]/data/option[position() = 19]"
+GEndianModeBE:
+  xpath:
+  - "//project/configuration/settings[position() = 1]/data/option[position() = 20]"
+OGBufferedTerminalOutput:
+  xpath:
+  - "//project/configuration/settings[position() = 1]/data/option[position() = 21]"
+GenStdoutInterface:
+  xpath:
+  - "//project/configuration/settings[position() = 1]/data/option[position() = 22]"
+GeneralMisraRules98:
+  xpath:
+  - "//project/configuration/settings[position() = 1]/data/option[position() = 23]"
+GeneralMisraVer:
+  xpath:
+  - "//project/configuration/settings[position() = 1]/data/option[position() = 24]"
+GeneralMisraRules04:
+  xpath:
+  - "//project/configuration/settings[position() = 1]/data/option[position() = 25]"
+RTConfigPath2:
+  xpath:
+  - "//project/configuration/settings[position() = 1]/data/option[position() = 26]"
+GBECoreSlave:
+  xpath:
+  - "//project/configuration/settings[position() = 1]/data/option[position() = 27]"
+OGUseCmsis:
+  xpath:
+  - "//project/configuration/settings[position() = 1]/data/option[position() = 28]"
+OGUseCmsisDspLib:
+  xpath:
+  - "//project/configuration/settings[position() = 1]/data/option[position() = 29]"
+GRuntimeLibThreads:
+  xpath:
+  - "//project/configuration/settings[position() = 1]/data/option[position() = 30]"
+CoreVariant:
+  xpath:
+  - "//project/configuration/settings[position() = 1]/data/option[position() = 31]"
+GFPUDeviceSlave:
+  xpath:
+  - "//project/configuration/settings[position() = 1]/data/option[position() = 32]"
+FPU2:
+  xpath:
+  - "//project/configuration/settings[position() = 1]/data/option[position() = 33]"
+NrRegs:
+  xpath:
+  - "//project/configuration/settings[position() = 1]/data/option[position() = 34]"
+NEON:
+  xpath:
+  - "//project/configuration/settings[position() = 1]/data/option[position() = 35]"
+GFPUCoreSlave2:
+  xpath:
+  - "//project/configuration/settings[position() = 1]/data/option[position() = 36]"
+CCDefines:
+  xpath:
+  - "//project/configuration/settings[position() = 2]/data/option[position() = 1]"
+CCPreprocFile:
+  xpath:
+  - "//project/configuration/settings[position() = 2]/data/option[position() = 2]"
+CCPreprocComments:
+  xpath:
+  - "//project/configuration/settings[position() = 2]/data/option[position() = 3]"
+CCPreprocLine:
+  xpath:
+  - "//project/configuration/settings[position() = 2]/data/option[position() = 4]"
+CCListCFile:
+  xpath:
+  - "//project/configuration/settings[position() = 2]/data/option[position() = 5]"
+CCListCMnemonics:
+  xpath:
+  - "//project/configuration/settings[position() = 2]/data/option[position() = 6]"
+CCListCMessages:
+  xpath:
+  - "//project/configuration/settings[position() = 2]/data/option[position() = 7]"
+CCListAssFile:
+  xpath:
+  - "//project/configuration/settings[position() = 2]/data/option[position() = 8]"
+CCListAssSource:
+  xpath:
+  - "//project/configuration/settings[position() = 2]/data/option[position() = 9]"
+CCEnableRemarks:
+  xpath:
+  - "//project/configuration/settings[position() = 2]/data/option[position() = 10]"
+CCDiagSuppress:
+  xpath:
+  - "//project/configuration/settings[position() = 2]/data/option[position() = 11]"
+CCDiagRemark:
+  xpath:
+  - "//project/configuration/settings[position() = 2]/data/option[position() = 12]"
+CCDiagWarning:
+  xpath:
+  - "//project/configuration/settings[position() = 2]/data/option[position() = 13]"
+CCDiagError:
+  xpath:
+  - "//project/configuration/settings[position() = 2]/data/option[position() = 14]"
+CCObjPrefix:
+  xpath:
+  - "//project/configuration/settings[position() = 2]/data/option[position() = 15]"
+CCAllowList:
+  xpath:
+  - "//project/configuration/settings[position() = 2]/data/option[position() = 16]"
+CCDebugInfo:
+  xpath:
+  - "//project/configuration/settings[position() = 2]/data/option[position() = 17]"
+IEndianMode:
+  xpath:
+  - "//project/configuration/settings[position() = 2]/data/option[position() = 18]"
+IProcessor:
+  xpath:
+  - "//project/configuration/settings[position() = 2]/data/option[position() = 19]"
+IExtraOptionsCheck:
+  xpath:
+  - "//project/configuration/settings[position() = 2]/data/option[position() = 20]"
+IExtraOptions:
+  xpath:
+  - "//project/configuration/settings[position() = 2]/data/option[position() = 21]"
+CCLangConformance:
+  xpath:
+  - "//project/configuration/settings[position() = 2]/data/option[position() = 22]"
+CCSignedPlainChar:
+  xpath:
+  - "//project/configuration/settings[position() = 2]/data/option[position() = 23]"
+CCRequirePrototypes:
+  xpath:
+  - "//project/configuration/settings[position() = 2]/data/option[position() = 24]"
+CCMultibyteSupport:
+  xpath:
+  - "//project/configuration/settings[position() = 2]/data/option[position() = 25]"
+CCDiagWarnAreErr:
+  xpath:
+  - "//project/configuration/settings[position() = 2]/data/option[position() = 26]"
+CCCompilerRuntimeInfo:
+  xpath:
+  - "//project/configuration/settings[position() = 2]/data/option[position() = 27]"
+IFpuProcessor:
+  xpath:
+  - "//project/configuration/settings[position() = 2]/data/option[position() = 28]"
+OutputFile:
+  xpath:
+  - "//project/configuration/settings[position() = 2]/data/option[position() = 29]"
+CCLibConfigHeader:
+  xpath:
+  - "//project/configuration/settings[position() = 2]/data/option[position() = 30]"
+PreInclude:
+  xpath:
+  - "//project/configuration/settings[position() = 2]/data/option[position() = 31]"
+CompilerMisraOverride:
+  xpath:
+  - "//project/configuration/settings[position() = 2]/data/option[position() = 32]"
+CCIncludePath2:
+  xpath:
+  - "//project/configuration/settings[position() = 2]/data/option[position() = 33]"
+CCStdIncCheck:
+  xpath:
+  - "//project/configuration/settings[position() = 2]/data/option[position() = 34]"
+CCCodeSection:
+  xpath:
+  - "//project/configuration/settings[position() = 2]/data/option[position() = 35]"
+IInterwork2:
+  xpath:
+  - "//project/configuration/settings[position() = 2]/data/option[position() = 36]"
+IProcessorMode2:
+  xpath:
+  - "//project/configuration/settings[position() = 2]/data/option[position() = 37]"
+CCOptLevel:
+  xpath:
+  - "//project/configuration/settings[position() = 2]/data/option[position() = 38]"
+CCOptStrategy:
+  xpath:
+  - "//project/configuration/settings[position() = 2]/data/option[position() = 39]"
+CCOptLevelSlave:
+  xpath:
+  - "//project/configuration/settings[position() = 2]/data/option[position() = 40]"
+CompilerMisraRules98:
+  xpath:
+  - "//project/configuration/settings[position() = 2]/data/option[position() = 41]"
+CompilerMisraRules04:
+  xpath:
+  - "//project/configuration/settings[position() = 2]/data/option[position() = 42]"
+CCPosIndRopi:
+  xpath:
+  - "//project/configuration/settings[position() = 2]/data/option[position() = 43]"
+CCPosIndRwpi:
+  xpath:
+  - "//project/configuration/settings[position() = 2]/data/option[position() = 44]"
+CCPosIndNoDynInit:
+  xpath:
+  - "//project/configuration/settings[position() = 2]/data/option[position() = 45]"
+IccLang:
+  xpath:
+  - "//project/configuration/settings[position() = 2]/data/option[position() = 46]"
+IccCDialect:
+  xpath:
+  - "//project/configuration/settings[position() = 2]/data/option[position() = 47]"
+IccAllowVLA:
+  xpath:
+  - "//project/configuration/settings[position() = 2]/data/option[position() = 48]"
+IccCppDialect:
+  xpath:
+  - "//project/configuration/settings[position() = 2]/data/option[position() = 49]"
+IccExceptions:
+  xpath:
+  - "//project/configuration/settings[position() = 2]/data/option[position() = 50]"
+IccRTTI:
+  xpath:
+  - "//project/configuration/settings[position() = 2]/data/option[position() = 51]"
+IccStaticDestr:
+  xpath:
+  - "//project/configuration/settings[position() = 2]/data/option[position() = 52]"
+IccCppInlineSemantics:
+  xpath:
+  - "//project/configuration/settings[position() = 2]/data/option[position() = 53]"
+IccCmsis:
+  xpath:
+  - "//project/configuration/settings[position() = 2]/data/option[position() = 54]"
+IccFloatSemantics:
+  xpath:
+  - "//project/configuration/settings[position() = 2]/data/option[position() = 55]"
+CCOptimizationNoSizeConstraints:
+  xpath:
+  - "//project/configuration/settings[position() = 2]/data/option[position() = 56]"
+CCNoLiteralPool:
+  xpath:
+  - "//project/configuration/settings[position() = 2]/data/option[position() = 57]"
+CCOptStrategySlave:
+  xpath:
+  - "//project/configuration/settings[position() = 2]/data/option[position() = 58]"
+CCGuardCalls:
+  xpath:
+  - "//project/configuration/settings[position() = 2]/data/option[position() = 59]"
+AObjPrefix:
+  xpath:
+  - "//project/configuration/settings[position() = 3]/data/option[position() = 1]"
+AEndian:
+  xpath:
+  - "//project/configuration/settings[position() = 3]/data/option[position() = 2]"
+ACaseSensitivity:
+  xpath:
+  - "//project/configuration/settings[position() = 3]/data/option[position() = 3]"
+MacroChars:
+  xpath:
+  - "//project/configuration/settings[position() = 3]/data/option[position() = 4]"
+AWarnEnable:
+  xpath:
+  - "//project/configuration/settings[position() = 3]/data/option[position() = 5]"
+AWarnWhat:
+  xpath:
+  - "//project/configuration/settings[position() = 3]/data/option[position() = 6]"
+AWarnOne:
+  xpath:
+  - "//project/configuration/settings[position() = 3]/data/option[position() = 7]"
+AWarnRange1:
+  xpath:
+  - "//project/configuration/settings[position() = 3]/data/option[position() = 8]"
+AWarnRange2:
+  xpath:
+  - "//project/configuration/settings[position() = 3]/data/option[position() = 9]"
+ADebug:
+  xpath:
+  - "//project/configuration/settings[position() = 3]/data/option[position() = 10]"
+AltRegisterNames:
+  xpath:
+  - "//project/configuration/settings[position() = 3]/data/option[position() = 11]"
+ADefines:
+  xpath:
+  - "//project/configuration/settings[position() = 3]/data/option[position() = 12]"
+AList:
+  xpath:
+  - "//project/configuration/settings[position() = 3]/data/option[position() = 13]"
+AListHeader:
+  xpath:
+  - "//project/configuration/settings[position() = 3]/data/option[position() = 14]"
+AListing:
+  xpath:
+  - "//project/configuration/settings[position() = 3]/data/option[position() = 15]"
+Includes:
+  xpath:
+  - "//project/configuration/settings[position() = 3]/data/option[position() = 16]"
+MacDefs:
+  xpath:
+  - "//project/configuration/settings[position() = 3]/data/option[position() = 17]"
+MacExps:
+  xpath:
+  - "//project/configuration/settings[position() = 3]/data/option[position() = 18]"
+MacExec:
+  xpath:
+  - "//project/configuration/settings[position() = 3]/data/option[position() = 19]"
+OnlyAssed:
+  xpath:
+  - "//project/configuration/settings[position() = 3]/data/option[position() = 20]"
+MultiLine:
+  xpath:
+  - "//project/configuration/settings[position() = 3]/data/option[position() = 21]"
+PageLengthCheck:
+  xpath:
+  - "//project/configuration/settings[position() = 3]/data/option[position() = 22]"
+PageLength:
+  xpath:
+  - "//project/configuration/settings[position() = 3]/data/option[position() = 23]"
+TabSpacing:
+  xpath:
+  - "//project/configuration/settings[position() = 3]/data/option[position() = 24]"
+AXRef:
+  xpath:
+  - "//project/configuration/settings[position() = 3]/data/option[position() = 25]"
+AXRefDefines:
+  xpath:
+  - "//project/configuration/settings[position() = 3]/data/option[position() = 26]"
+AXRefInternal:
+  xpath:
+  - "//project/configuration/settings[position() = 3]/data/option[position() = 27]"
+AXRefDual:
+  xpath:
+  - "//project/configuration/settings[position() = 3]/data/option[position() = 28]"
+AProcessor:
+  xpath:
+  - "//project/configuration/settings[position() = 3]/data/option[position() = 29]"
+AFpuProcessor:
+  xpath:
+  - "//project/configuration/settings[position() = 3]/data/option[position() = 30]"
+AOutputFile:
+  xpath:
+  - "//project/configuration/settings[position() = 3]/data/option[position() = 31]"
+AMultibyteSupport:
+  xpath:
+  - "//project/configuration/settings[position() = 3]/data/option[position() = 32]"
+ALimitErrorsCheck:
+  xpath:
+  - "//project/configuration/settings[position() = 3]/data/option[position() = 33]"
+ALimitErrorsEdit:
+  xpath:
+  - "//project/configuration/settings[position() = 3]/data/option[position() = 34]"
+AIgnoreStdInclude:
+  xpath:
+  - "//project/configuration/settings[position() = 3]/data/option[position() = 35]"
+AUserIncludes:
+  xpath:
+  - "//project/configuration/settings[position() = 3]/data/option[position() = 36]"
+AExtraOptionsCheckV2:
+  xpath:
+  - "//project/configuration/settings[position() = 3]/data/option[position() = 37]"
+AExtraOptionsV2:
+  xpath:
+  - "//project/configuration/settings[position() = 3]/data/option[position() = 38]"
+AsmNoLiteralPool:
+  xpath:
+  - "//project/configuration/settings[position() = 3]/data/option[position() = 39]"
+OOCOutputFormat:
+  xpath:
+  - "//project/configuration/settings[position() = 4]/data/option[position() = 1]"
+OCOutputOverride:
+  xpath:
+  - "//project/configuration/settings[position() = 4]/data/option[position() = 2]"
+OOCOutputFile:
+  xpath:
+  - "//project/configuration/settings[position() = 4]/data/option[position() = 3]"
+OOCCommandLineProducer:
+  xpath:
+  - "//project/configuration/settings[position() = 4]/data/option[position() = 4]"
+OOCObjCopyEnable:
+  xpath:
+  - "//project/configuration/settings[position() = 4]/data/option[position() = 5]"
+IlinkLibIOConfig:
+  xpath:
+  - "//project/configuration/settings[position() = 8]/data/option[position() = 1]"
+XLinkMisraHandler:
+  xpath:
+  - "//project/configuration/settings[position() = 8]/data/option[position() = 2]"
+IlinkInputFileSlave:
+  xpath:
+  - "//project/configuration/settings[position() = 8]/data/option[position() = 3]"
+IlinkOutputFile:
+  xpath:
+  - "//project/configuration/settings[position() = 8]/data/option[position() = 4]"
+IlinkDebugInfoEnable:
+  xpath:
+  - "//project/configuration/settings[position() = 8]/data/option[position() = 5]"
+IlinkKeepSymbols:
+  xpath:
+  - "//project/configuration/settings[position() = 8]/data/option[position() = 6]"
+IlinkRawBinaryFile:
+  xpath:
+  - "//project/configuration/settings[position() = 8]/data/option[position() = 7]"
+IlinkRawBinarySymbol:
+  xpath:
+  - "//project/configuration/settings[position() = 8]/data/option[position() = 8]"
+IlinkRawBinarySegment:
+  xpath:
+  - "//project/configuration/settings[position() = 8]/data/option[position() = 9]"
+IlinkRawBinaryAlign:
+  xpath:
+  - "//project/configuration/settings[position() = 8]/data/option[position() = 10]"
+IlinkDefines:
+  xpath:
+  - "//project/configuration/settings[position() = 8]/data/option[position() = 11]"
+IlinkConfigDefines:
+  xpath:
+  - "//project/configuration/settings[position() = 8]/data/option[position() = 12]"
+IlinkMapFile:
+  xpath:
+  - "//project/configuration/settings[position() = 8]/data/option[position() = 13]"
+IlinkLogFile:
+  xpath:
+  - "//project/configuration/settings[position() = 8]/data/option[position() = 14]"
+IlinkLogInitialization:
+  xpath:
+  - "//project/configuration/settings[position() = 8]/data/option[position() = 15]"
+IlinkLogModule:
+  xpath:
+  - "//project/configuration/settings[position() = 8]/data/option[position() = 16]"
+IlinkLogSection:
+  xpath:
+  - "//project/configuration/settings[position() = 8]/data/option[position() = 17]"
+IlinkLogVeneer:
+  xpath:
+  - "//project/configuration/settings[position() = 8]/data/option[position() = 18]"
+IlinkIcfOverride:
+  xpath:
+  - "//project/configuration/settings[position() = 8]/data/option[position() = 19]"
+IlinkIcfFile:
+  xpath:
+  - "//project/configuration/settings[position() = 8]/data/option[position() = 20]"
+IlinkIcfFileSlave:
+  xpath:
+  - "//project/configuration/settings[position() = 8]/data/option[position() = 21]"
+IlinkEnableRemarks:
+  xpath:
+  - "//project/configuration/settings[position() = 8]/data/option[position() = 22]"
+IlinkSuppressDiags:
+  xpath:
+  - "//project/configuration/settings[position() = 8]/data/option[position() = 23]"
+IlinkTreatAsRem:
+  xpath:
+  - "//project/configuration/settings[position() = 8]/data/option[position() = 24]"
+IlinkTreatAsWarn:
+  xpath:
+  - "//project/configuration/settings[position() = 8]/data/option[position() = 25]"
+IlinkTreatAsErr:
+  xpath:
+  - "//project/configuration/settings[position() = 8]/data/option[position() = 26]"
+IlinkWarningsAreErrors:
+  xpath:
+  - "//project/configuration/settings[position() = 8]/data/option[position() = 27]"
+IlinkUseExtraOptions:
+  xpath:
+  - "//project/configuration/settings[position() = 8]/data/option[position() = 28]"
+IlinkExtraOptions:
+  xpath:
+  - "//project/configuration/settings[position() = 8]/data/option[position() = 29]"
+IlinkLowLevelInterfaceSlave:
+  xpath:
+  - "//project/configuration/settings[position() = 8]/data/option[position() = 30]"
+IlinkAutoLibEnable:
+  xpath:
+  - "//project/configuration/settings[position() = 8]/data/option[position() = 31]"
+IlinkAdditionalLibs:
+  xpath:
+  - "//project/configuration/settings[position() = 8]/data/option[position() = 32]"
+IlinkOverrideProgramEntryLabel:
+  xpath:
+  - "//project/configuration/settings[position() = 8]/data/option[position() = 33]"
+IlinkProgramEntryLabelSelect:
+  xpath:
+  - "//project/configuration/settings[position() = 8]/data/option[position() = 34]"
+IlinkProgramEntryLabel:
+  xpath:
+  - "//project/configuration/settings[position() = 8]/data/option[position() = 35]"
+DoFill:
+  xpath:
+  - "//project/configuration/settings[position() = 8]/data/option[position() = 36]"
+FillerByte:
+  xpath:
+  - "//project/configuration/settings[position() = 8]/data/option[position() = 37]"
+FillerStart:
+  xpath:
+  - "//project/configuration/settings[position() = 8]/data/option[position() = 38]"
+FillerEnd:
+  xpath:
+  - "//project/configuration/settings[position() = 8]/data/option[position() = 39]"
+CrcSize:
+  xpath:
+  - "//project/configuration/settings[position() = 8]/data/option[position() = 40]"
+CrcAlign:
+  xpath:
+  - "//project/configuration/settings[position() = 8]/data/option[position() = 41]"
+CrcPoly:
+  xpath:
+  - "//project/configuration/settings[position() = 8]/data/option[position() = 42]"
+CrcCompl:
+  xpath:
+  - "//project/configuration/settings[position() = 8]/data/option[position() = 43]"
+CrcBitOrder:
+  xpath:
+  - "//project/configuration/settings[position() = 8]/data/option[position() = 44]"
+CrcInitialValue:
+  xpath:
+  - "//project/configuration/settings[position() = 8]/data/option[position() = 45]"
+DoCrc:
+  xpath:
+  - "//project/configuration/settings[position() = 8]/data/option[position() = 46]"
+IlinkBE8Slave:
+  xpath:
+  - "//project/configuration/settings[position() = 8]/data/option[position() = 47]"
+IlinkBufferedTerminalOutput:
+  xpath:
+  - "//project/configuration/settings[position() = 8]/data/option[position() = 48]"
+IlinkStdoutInterfaceSlave:
+  xpath:
+  - "//project/configuration/settings[position() = 8]/data/option[position() = 49]"
+CrcFullSize:
+  xpath:
+  - "//project/configuration/settings[position() = 8]/data/option[position() = 50]"
+IlinkIElfToolPostProcess:
+  xpath:
+  - "//project/configuration/settings[position() = 8]/data/option[position() = 51]"
+IlinkLogAutoLibSelect:
+  xpath:
+  - "//project/configuration/settings[position() = 8]/data/option[position() = 52]"
+IlinkLogRedirSymbols:
+  xpath:
+  - "//project/configuration/settings[position() = 8]/data/option[position() = 53]"
+IlinkLogUnusedFragments:
+  xpath:
+  - "//project/configuration/settings[position() = 8]/data/option[position() = 54]"
+IlinkCrcReverseByteOrder:
+  xpath:
+  - "//project/configuration/settings[position() = 8]/data/option[position() = 55]"
+IlinkCrcUseAsInput:
+  xpath:
+  - "//project/configuration/settings[position() = 8]/data/option[position() = 56]"
+IlinkOptInline:
+  xpath:
+  - "//project/configuration/settings[position() = 8]/data/option[position() = 57]"
+IlinkOptExceptionsAllow:
+  xpath:
+  - "//project/configuration/settings[position() = 8]/data/option[position() = 58]"
+IlinkOptExceptionsForce:
+  xpath:
+  - "//project/configuration/settings[position() = 8]/data/option[position() = 59]"
+IlinkCmsis:
+  xpath:
+  - "//project/configuration/settings[position() = 8]/data/option[position() = 60]"
+IlinkOptMergeDuplSections:
+  xpath:
+  - "//project/configuration/settings[position() = 8]/data/option[position() = 61]"
+IlinkOptUseVfe:
+  xpath:
+  - "//project/configuration/settings[position() = 8]/data/option[position() = 62]"
+IlinkOptForceVfe:
+  xpath:
+  - "//project/configuration/settings[position() = 8]/data/option[position() = 63]"
+IlinkStackAnalysisEnable:
+  xpath:
+  - "//project/configuration/settings[position() = 8]/data/option[position() = 64]"
+IlinkStackControlFile:
+  xpath:
+  - "//project/configuration/settings[position() = 8]/data/option[position() = 65]"
+IlinkStackCallGraphFile:
+  xpath:
+  - "//project/configuration/settings[position() = 8]/data/option[position() = 66]"
+CrcAlgorithm:
+  xpath:
+  - "//project/configuration/settings[position() = 8]/data/option[position() = 67]"
+CrcUnitSize:
+  xpath:
+  - "//project/configuration/settings[position() = 8]/data/option[position() = 68]"
+IlinkThreadsSlave:
+  xpath:
+  - "//project/configuration/settings[position() = 8]/data/option[position() = 69]"
+IarchiveInputs:
+  xpath:
+  - "//project/configuration/settings[position() = 9]/data/option[position() = 1]"
+IarchiveOverride:
+  xpath:
+  - "//project/configuration/settings[position() = 9]/data/option[position() = 2]"
+IarchiveOutput:
+  xpath:
+  - "//project/configuration/settings[position() = 9]/data/option[position() = 3]"

@@ -19,7 +19,7 @@ class Generator
   def generate_projects(tool_chain, filter, project_data)
     case tool_chain.downcase
     when 'iar'
-    	IAR::Project.new(project_data).generator(filter, project_data, @generator_variable)
+    	IAR::Project.new(project_data, @generator_variable).generator(filter, project_data)
     when 'mdk'
     	puts "mdk"
     when 'armgcc'

@@ -2,6 +2,11 @@
 require 'nokogiri'
 require 'yaml'
 
+if ARGV[0] == '-h'
+	puts "ruby get_iar_xpath.rb iar.ewp"
+	exit
+end
+
 def load_node(doc, xpath)
 	return doc.xpath(xpath)
 end
@@ -18,7 +23,7 @@ end
 	end
   end
 
-@doc = Nokogiri::XML(File.open("./templates/iar/general.ewp"))
+@doc = Nokogiri::XML(File.open(ARGV[0]))
 content = @doc.xpath("/project/configuration")
 puts content.count
 remove_targets(@doc,["debug"])
@@ -34,7 +39,6 @@ options.each do |option|
 	#puts option.css('state').text
 end
 puts hh.to_yaml
-
 
 
 

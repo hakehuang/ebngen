@@ -18,16 +18,18 @@ class Project
 	include Base
 	include EWP
 	include EWD
+	include UNI_Project
 
 	def initialize(project_data, generator_variable)
+		set_hash(project_data)
 		@paths = PathModifier.new(generator_variable["paths"])
-		@iar_project_files = {".ewp" => nil, ".dni" => nil, ".ewd" => nil}
-		return nil if project_data['templates'].nil?
-		project_data['templates'].each do |template|
+		@iar_project_files = {".ewp" => nil, ".dni" => nil, ".ewd" => nil, ".yml" => nil}
+		return nil if get_template(Project_set::TOOLCHAIN).nil?
+		get_template(Project_set::TOOLCHAIN).each do |template|
 			ext = File.extname(template)
 			if @iar_project_files.keys.include?(ext)
 				path = @paths.fullpath("default_path",template)
-				
+			  begin
 				case ext
 					when ".ewp"
 						doc = Nokogiri::XML(open(path))
@@ -38,127 +40,149 @@ class Project
 					when ".dni"
 						doc = Nokogiri::XML(open(path))
 						@iar_project_files[ext] = doc
+					when ".yml"
+						content = open(file.gsub("\\","/")){|f| f.read}
+        				@iar_project_files[ext] = YAML::load(content)
 				end
+			  rescue
+			  	puts "failed to open #{template}"
+			  end
 			end
 		end
 	end
 
-  	def generator(filter, project_data, generator_variable)
-    	create_method( Project::TOOLCHAIN ,project_data, generator_variable)
-    	process(project_data, generator_variable)
+  	def generator(filter, project_data)
+    	create_method( Project::TOOLCHAIN ,project_data)
+    	send(Project::TOOLCHAIN.to_sym, project_data)
   	end
 
-  	def source(project_data, generator_variable)
+  	def source(project_data)
   		#add sources to target
   		return if @iar_project_files['.ewp'].nil?
-
-
   	end
 
-  	def templates(project_data, generator_variable)
+  	def templates(project_data)
   		#load tempaltes
 
   	end
 
-  	def document(project_data, generator_variable)
+  	def document(project_data)
   		#set prototype
 
     end
 
-  	def type(project_data, generator_variable)
+  	def type(project_data)
   		#set project type
   	end
 
-	def targets(project_data, generator_variable)
-		project_data[Project::TOOLCHAIN]['targets'].each_key do |key, value|
-			#add target for ewp
+  	def outdir(project_data)
 
-			#do the target settins
+  	end
+
+	def targets(project_data)
+		get_targets(Project_set::TOOLCHAIN).each do |key, value|
+			return if value.nil?
+			#add target for ewp
+			t = new_target(key, @iar_project_files['.ewp'])
+			if t.nil?
+			  puts "missing default debug configuration in template"
+ 			  return
+			end
+			#do the target settings
 			value.each_key do |subkey|
 				methods = instance_methods(false)
           		if methods.include(subkey.to_sym)
-            		send(subkey.to_sym, value[subkey], generator_variable)
+            		send(subkey.to_sym, t, value[subkey])
           		else
             		puts "#{key} is not processed"
           		end
 			end
 		end
+		remove_targets(@iar_project_files[ext], project_data[Project::TOOLCHAIN]['targets'].keys)
 	end
 
-	def cp_defines(subkey_data, generator_variable)
-
-	end
-
-	def as_predefines(subkey_data, generator_variable)
+	def target_cp_defines(target_node, doc)
 
 	end
 
-	def as_defines(subkey_data, generator_variable)
+	def target_as_predefines(target_node, doc)
 
 	end
 
-	def as_include(subkey_data, generator_variable)
+	def target_as_defines(target_node, doc)
 
 	end
 
-	def as_flags(subkey_data, generator_variable)
+	def target_as_include(target_node, doc)
 
 	end
 
-	def cc_predefines(subkey_data, generator_variable)
+	def target_as_flags(target_node, doc)
 
 	end
 
-	def cc_preincludes(subkey_data, generator_variable)
+	def target_cc_predefines(target_node, doc)
 
 	end
 
-	def cc_defines(subkey_data, generator_variable)
+	def target_cc_preincludes(target_node, doc)
 
 	end
 
-	def cc_include(subkey_data, generator_variable)
+	def target_cc_defines(target_node, doc)
 
 	end
 
-	def cc_flags(subkey_data, generator_variable)
+	def target_cc_include(target_node, doc)
 
 	end
 
-	def cxx_predefines(subkey_data, generator_variable)
+	def target_cc_flags(target_node, doc)
 
 	end
 
-	def cxx_preincludes(subkey_data, generator_variable)
+	def target_cxx_predefines(target_node, doc)
 
 	end
 
-	def cxx_defines(subkey_data, generator_variable)
+	def target_cxx_preincludes(target_node, doc)
 
 	end
 
-	def cxx_include(subkey_data, generator_variable)
+	def target_cxx_defines(target_node, doc)
 
 	end
 
-	def cxx_flags(subkey_data, generator_variable)
+	def target_cxx_include(target_node, doc)
 
 	end
 
-	def ld_flags(subkey_data, generator_variable)
+	def target_cxx_flags(target_node, doc)
 
 	end
 
-	def libraries(subkey_data, generator_variable)
+	def target_ld_flags(target_node, doc)
 
 	end
 
-	def linker_file(subkey_data, generator_variable)
+	def target_libraries(target_node, doc)
 
 	end
 
-	def outdir(subkey_data, generator_variable)
+	def target_linker_file(target_node, doc)
 
+	end
+
+	def target_outdir(target_node, doc)
+
+	end
+
+    # tool_chain_specific attribute for each target
+    # Params:
+    # - target_node: the xml node of given target
+    # - doc: the hash that holds the data
+	def target_tool_chain_specific(target_node, doc)
+		set_specific(target_node, doc, @iar_project_files[ext])
 	end
 
 end

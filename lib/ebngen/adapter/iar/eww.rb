@@ -1,6 +1,6 @@
 
 require 'nokogiri'
-require 'FileUtils'
+
 
 module EWW
 

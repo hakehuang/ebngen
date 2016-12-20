@@ -47,7 +47,14 @@ myunifmt.linker_file = {
 myunifmt.templates = [ "templates/iar/general.ewd",
     "templates/iar/general.ewp",
     "templates/iar/general.dni",
-    "templates/iar/general.eww" ]
+    "templates/iar/general.eww" ,
+    "templates/iar/iar_xpath.yml"]
+
+myunifmt.tool_chain_specific = {
+  'GOutputBinary' => {
+    'state' => '0'
+  }
+}
 
 myunifmt.sources = [
 	{
@@ -115,3 +122,4 @@ options = {
 
 mygenerator = Generator.new(options)
 mygenerator.generate_project_set('iar',myunifmt.output_info['demo_project'])
+mygenerator.generate_projects('iar', '', myunifmt.output_info['demo_project'])
