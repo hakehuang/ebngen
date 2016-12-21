@@ -22,6 +22,8 @@ class Project
 
 	def initialize(project_data, generator_variable)
 		set_hash(project_data)
+		@project_name = get_project_name()
+		@board = get_board()
 		@paths = PathModifier.new(generator_variable["paths"])
 		@iar_project_files = {".ewp" => nil, ".dni" => nil, ".ewd" => nil, ".yml" => nil}
 		return nil if get_template(Project_set::TOOLCHAIN).nil?
@@ -54,11 +56,14 @@ class Project
   	def generator(filter, project_data)
     	create_method( Project::TOOLCHAIN ,project_data)
     	send(Project::TOOLCHAIN.to_sym, project_data)
+    	save_project()
   	end
 
   	def source(project_data)
   		#add sources to target
   		return if @iar_project_files['.ewp'].nil?
+  		remove_sources(@iar_project_files['.ewp'])
+
   	end
 
   	def templates(project_data)
@@ -98,7 +103,7 @@ class Project
           		end
 			end
 		end
-		remove_targets(@iar_project_files[ext], project_data[Project::TOOLCHAIN]['targets'].keys)
+		remove_targets(@iar_project_files['.ewp'], project_data[Project::TOOLCHAIN]['targets'].keys)
 	end
 
 	def target_cp_defines(target_node, doc)
@@ -182,7 +187,12 @@ class Project
     # - target_node: the xml node of given target
     # - doc: the hash that holds the data
 	def target_tool_chain_specific(target_node, doc)
-		set_specific(target_node, doc, @iar_project_files[ext])
+		set_specific(target_node, doc, @iar_project_files['.ewp'])
+	end
+
+	def save_project()
+		path = get_output_dir(Project_set::TOOLCHAIN, @paths.rootdir_table)
+		save(@iar_project_files['.ewp'], File.join(@paths.rootdir_table['output_root'], path, "#{@project_name}_#{@board}.ewp"))
 	end
 
 end

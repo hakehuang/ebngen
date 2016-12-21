@@ -33,9 +33,30 @@ options.each do |option|
 	#hh[option.css('name').text]['state'] = option.css('state').text
 	#puts option.css('state').text
 end
-puts hh.to_yaml
+#puts hh.to_yaml
+puts content.css("/settingss").count
 
+class Hash
+ def to_xml(doc)
+   return if doc.nil?
+   self.each do |key, value|
+     if doc.css("/#{key}").count == 0
+       mynode = Nokogiri::XML::Node.new key, doc
+     else
+       mynode = doc.css("/#{key}")[0]
+     end
+     doc.add_child mynode
+     value.to_xml(mynode) if value.class == Hash
+     mynode.content = value if value.class == String or value.class == Fixnum
+   end
+   return doc
+ end
+end
 
+doc = @doc.xpath("//project/configuration/settings[position() = 1]/data/option[position() = 2]")
+myhash = {'a' => {'b' => "b", 'c' => "c"}}
+myhash.to_xml(doc[0])
+puts doc
 
 
 

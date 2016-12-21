@@ -55,7 +55,6 @@ module EWW
 		Core.assert(path.is_a?(String)) do
 		    "param is not a string #{path.class.name}"
 		end
-        puts path
         FileUtils.mkdir_p File.dirname(path) if ! File.exist?(File.dirname(path))
 		File.write(path, xml.to_xml)
 	end
