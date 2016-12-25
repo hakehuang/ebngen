@@ -1911,4 +1911,4 @@
       <data/>
     </settings>
   </configuration>
-</project>
+<group><name>src</name><file><name>$PROJ_DIR$/../../hello_world.c</name></file></group><group><name>include</name><file><name>$PROJ_DIR$/../../hello_world.h</name></file></group></project>

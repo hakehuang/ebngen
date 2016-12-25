@@ -63,12 +63,15 @@ class Project
   		#add sources to target
   		return if @iar_project_files['.ewp'].nil?
   		remove_sources(@iar_project_files['.ewp'])
-
+  		set_hash(project_data)
+  		sources = get_src_list(Project::TOOLCHAIN)
+  		o_path = get_output_dir(Project_set::TOOLCHAIN, @paths.rootdir_table)
+  		proj_path = File.join(@paths.rootdir_table['output_root'], o_path)
+  		add_sources(@iar_project_files['.ewp'], sources, @paths, proj_path)
   	end
 
   	def templates(project_data)
   		#load tempaltes
-
   	end
 
   	def document(project_data)
@@ -106,7 +109,20 @@ class Project
 		remove_targets(@iar_project_files['.ewp'], project_data[Project::TOOLCHAIN]['targets'].keys)
 	end
 
-	def target_cp_defines(target_node, doc)
+    # tool_chain_specific attribute for each target
+    # Params:
+    # - target_node: the xml node of given target
+    # - doc: the hash that holds the data
+	def target_tool_chain_specific(target_node, doc)
+		set_specific(target_node, doc, @iar_project_files['.ewp'])
+	end
+
+	def save_project()
+		path = get_output_dir(Project_set::TOOLCHAIN, @paths.rootdir_table)
+		save(@iar_project_files['.ewp'], File.join(@paths.rootdir_table['output_root'], path, "#{@project_name}_#{@board}.ewp"))
+	end
+
+		def target_cp_defines(target_node, doc)
 
 	end
 
@@ -180,19 +196,6 @@ class Project
 
 	def target_outdir(target_node, doc)
 
-	end
-
-    # tool_chain_specific attribute for each target
-    # Params:
-    # - target_node: the xml node of given target
-    # - doc: the hash that holds the data
-	def target_tool_chain_specific(target_node, doc)
-		set_specific(target_node, doc, @iar_project_files['.ewp'])
-	end
-
-	def save_project()
-		path = get_output_dir(Project_set::TOOLCHAIN, @paths.rootdir_table)
-		save(@iar_project_files['.ewp'], File.join(@paths.rootdir_table['output_root'], path, "#{@project_name}_#{@board}.ewp"))
 	end
 
 end

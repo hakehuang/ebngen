@@ -1,4 +1,5 @@
 require 'nokogiri'
+require 'pathname'
 #require 'FileUtils'
 
 class Hash
@@ -134,5 +135,47 @@ module EWP
     File.write(path, xml.to_xml)
   end
 
-
+  def add_sources(doc, source_hash, path_mod, proj_path)
+    groups_existing = Array.new
+    files_hash = Hash.new
+    source_hash.each do |src|
+      rootdir = src['rootdir']
+      virtual_dir = src['virtual_dir']
+      path = src['path']
+      if virtual_dir
+        if ! groups_existing.include?(virtual_dir)
+          groups_existing.insert(-1, virtual_dir)
+          node = Nokogiri::XML::Node.new 'group', doc
+          node << "<name>#{virtual_dir}</name>"
+          doc.root << node
+        end
+        files_hash[virtual_dir] = Array.new if files_hash[virtual_dir].nil?
+        files_hash[virtual_dir].insert(-1, {'path' => path, 'rootdir' => rootdir})
+      else
+        files_hash["_"] = Array.new files_hash["_"].nil?
+        files_hash["_"].insert(-1, {'path' => path, 'rootdir' => rootdir})
+      end
+    end #end source_hash
+    doc.css("//group").each do |node|
+      gfiles = Nokogiri::XML::Node.new('file', node)
+      files_hash[node.text].each do |file|
+        sfile = Nokogiri::XML::Node.new('name', gfiles)
+        full_path = path_mod.fullpath(file['rootdir'],file['path'])
+        sfile.content = File.join("$PROJ_DIR$", path_mod.relpath(proj_path, full_path))
+        gfiles << sfile
+      end
+      node << gfiles
+    end
+    return if files_hash["_"].nil?
+    files_hash["_"].each do |file|
+      gfiles = Nokogiri::XML::Node.new('file', doc)
+      files_hash["_"].each do |file|
+        sfile = Nokogiri::XML::Node.new('name', gfiles)
+        full_path = path_mod.fullpath(file['rootdir'],file['path'])
+        sfile.content = File.join("$PROJ_DIR$", path_mod.relpath(proj_path, full_path))
+        gfiles << sfile
+      end
+      doc.root << gfiles          
+    end
+  end
 end

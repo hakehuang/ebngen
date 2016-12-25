@@ -56,7 +56,11 @@ end
 doc = @doc.xpath("//project/configuration/settings[position() = 1]/data/option[position() = 2]")
 myhash = {'a' => {'b' => "b", 'c' => "c"}}
 myhash.to_xml(doc[0])
-puts doc
+#puts doc
+
+puts groups = Array.new
+@doc.css("//group/name").map{|node| groups.insert(-1 , node.text)}
+puts groups
 
 
 
