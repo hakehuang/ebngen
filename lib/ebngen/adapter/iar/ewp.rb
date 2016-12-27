@@ -25,23 +25,23 @@ module EWP
   end
 
   def new_target(target, doc, name = 'debug')
-	nset = load_node(doc, "/project/configuration")
-	#use existing one
-	nset.each do |element|
-		if element.xpath("name").text.downcase == target.downcase
-			return element
-		end
-	end
-	#create new one
-	nset.each do |element|
-		#use the first available configuration
-		t = element.dup
-		t.xpath('name').text = target
-			#doc.xpath("/project") << t
-		element.add_previous_sibling(t)
-		return t
-	end
-	nil
+  	nset = load_node(doc, "/project/configuration")
+  	#use existing one
+  	nset.each do |element|
+  		if element.xpath("name").text.downcase == target.downcase
+  			return element
+  		end
+  	end
+  	#create new one
+  	nset.each do |element|
+  		#use the first available configuration
+  		t = element.dup
+  		t.xpath('name').text = target
+  			#doc.xpath("/project") << t
+  		element.add_previous_sibling(t)
+  		return t
+  	end
+	 nil
   end
   
   # remove_targets remove unused targets
@@ -95,7 +95,7 @@ module EWP
         #can retrieve from talbe directly
         node = target_node.xpath(xpath_table[key]['xpath'][0])
         value.each do |subkey, subvalue|
-          node.css(subkey).text = subvalue
+          node.css(subkey)[0].content = subvalue
         end
         checked = true
         next
@@ -103,7 +103,7 @@ module EWP
   		options.each do |option|
   			if option.css('name').text == key
   				value.each do |subkey, subvalue|
-  					option.css(subkey).text = subvalue
+  					option.css(subkey)[0].content = subvalue
   				end
           #processing done
           checked = true

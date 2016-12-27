@@ -7,7 +7,7 @@ require 'lib/ebngen'
 
 options = {
     :config => "debug",
-    :tool_chain => "iar",
+    :tool_chain => "cmake",
     :type => "application",
     :board => "demo_board",
     :project_name => "demo_project",
@@ -19,7 +19,7 @@ myunifmt.outdir =  "build"
 myunifmt.cp_defines = {"MK64FN1M0xxx12" =>  "Freescale MK64FN1M0xxx12"}
 myunifmt.cc_defines = {  
           "CPU_MK64FN1M0VMD12" => nil, 
-          "PRINTF_FLOAT_ENABLE" => 0, 
+          "DEBUG" => nil, 
           "SCANF_FLOAT_ENABLE" => 0, 
           "PRINTF_ADVANCED_ENABLE" => 0,
           "SCANF_ADVANCED_ENABLE" => 0, 
@@ -33,6 +33,7 @@ myunifmt.cc_flags = [ "--misra2004",
         "-e",
         "--use_c++_inline",
         "--silent"]
+myunifmt.as_defines = ["DEBUG"]
 myunifmt.as_flags = [ "--cpu=cortex-m4",
         "--fpu=vfpv4_sp_d16",
         "-s",
@@ -44,16 +45,15 @@ myunifmt.linker_file = {
 	        "path" => "devices/MK64F12/iar/MK64FN1M0xxx12_flash.icf"         
 }
 
-myunifmt.templates = [ 
-#  "templates/iar/general.ewd",
+myunifmt.templates = [ "templates/iar/general.ewd",
     "templates/iar/general.ewp",
-#    "templates/iar/general.dni",
+    "templates/iar/general.dni",
     "templates/iar/general.eww" ,
     "templates/iar/iar_xpath.yml"]
 
 myunifmt.tool_chain_specific = {
   'GOutputBinary' => {
-    'state' => '1'
+    'state' => '0'
   }
 }
 

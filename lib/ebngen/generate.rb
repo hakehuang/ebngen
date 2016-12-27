@@ -1,5 +1,6 @@
 
 require_relative 'adapter/iar'
+require_relative 'adapter/cmake'
 
 class Generator
   attr_accessor :generator_variable
@@ -22,8 +23,8 @@ class Generator
     	IAR::Project.new(project_data, @generator_variable).generator(filter, project_data)
     when 'mdk'
     	puts "mdk"
-    when 'armgcc'
-    	puts "armgcc"
+    when 'cmake'
+    	CMAKE::Project.new(project_data, @generator_variable).generator(filter, project_data)
 	end
   end
 

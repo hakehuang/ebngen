@@ -25,8 +25,12 @@ module UNI_Project
     return @projects_hash[toolchain]["libraries"]
   end
 
+  def get_target_list(toolchain)
+   return @projects_hash[toolchain]["targets"].keys
+  end
+
   def get_targets(toolchain)
-    return @projects_hash[toolchain]["targets"].keys
+   return @projects_hash[toolchain]["targets"]
   end
 
   def get_project_name()

@@ -28,10 +28,11 @@ class Project
 		@iar_project_files = {".ewp" => nil, ".dni" => nil, ".ewd" => nil, ".yml" => nil}
 		return nil if get_template(Project_set::TOOLCHAIN).nil?
 		get_template(Project_set::TOOLCHAIN).each do |template|
+			puts template
 			ext = File.extname(template)
 			if @iar_project_files.keys.include?(ext)
 				path = @paths.fullpath("default_path",template)
-			  begin
+			  #begin
 				case ext
 					when ".ewp"
 						doc = Nokogiri::XML(open(path))
@@ -43,12 +44,12 @@ class Project
 						doc = Nokogiri::XML(open(path))
 						@iar_project_files[ext] = doc
 					when ".yml"
-						content = open(file.gsub("\\","/")){|f| f.read}
+						content = open(template.gsub("\\","/")){|f| f.read}
         				@iar_project_files[ext] = YAML::load(content)
 				end
-			  rescue
-			  	puts "failed to open #{template}"
-			  end
+			  #rescue
+			  #	puts "failed to open #{template}"
+			  #end
 			end
 		end
 	end
@@ -89,7 +90,7 @@ class Project
 
 	def targets(project_data)
 		get_targets(Project_set::TOOLCHAIN).each do |key, value|
-			return if value.nil?
+			next if value.nil?
 			#add target for ewp
 			t = new_target(key, @iar_project_files['.ewp'])
 			if t.nil?
@@ -98,9 +99,9 @@ class Project
 			end
 			#do the target settings
 			value.each_key do |subkey|
-				methods = instance_methods(false)
-          		if methods.include(subkey.to_sym)
-            		send(subkey.to_sym, t, value[subkey])
+				methods = self.class.instance_methods(false)
+          		if methods.include?("target_#{subkey}".to_sym)
+            		send("target_#{subkey}".to_sym, t, value[subkey])
           		else
             		puts "#{key} is not processed"
           		end
@@ -114,7 +115,7 @@ class Project
     # - target_node: the xml node of given target
     # - doc: the hash that holds the data
 	def target_tool_chain_specific(target_node, doc)
-		set_specific(target_node, doc, @iar_project_files['.ewp'])
+		set_specific(target_node, doc, @iar_project_files['.yml'])
 	end
 
 	def save_project()
@@ -251,7 +252,7 @@ class Project_set
 		ext = ".eww"
 
 		#batch build mode is add
-		get_targets(Project_set::TOOLCHAIN).each do |target|	
+		get_target_list(Project_set::TOOLCHAIN).each do |target|	
 			add_batch_project_target(@iar_project_files[ext], "all", @project_name, target)
 			add_batch_project_target(@iar_project_files[ext], target, @project_name, target)
 			next if get_libraries(Project_set::TOOLCHAIN).nil?

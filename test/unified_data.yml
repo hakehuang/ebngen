@@ -52,7 +52,7 @@ demo_project:
         outdir: build
         tool_chain_specific:
           GOutputBinary:
-            state: '0'
+            state: '1'
       release:
         cp_defines:
           MK64FN1M0xxx12: Freescale MK64FN1M0xxx12
@@ -100,9 +100,7 @@ demo_project:
         outdir: build
         tool_chain_specific: {}
     templates:
-    - templates/iar/general.ewd
     - templates/iar/general.ewp
-    - templates/iar/general.dni
     - templates/iar/general.eww
     - templates/iar/iar_xpath.yml
     type: application
