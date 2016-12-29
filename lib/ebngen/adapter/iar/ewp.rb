@@ -160,7 +160,11 @@ module EWP
       gfiles = Nokogiri::XML::Node.new('file', node)
       files_hash[node.text].each do |file|
         sfile = Nokogiri::XML::Node.new('name', gfiles)
-        full_path = path_mod.fullpath(file['rootdir'],file['path'])
+        if file['rootdir']
+          full_path = path_mod.fullpath(file['rootdir'],file['path'])
+        else
+          full_path = path_mod.fullpath('default_path',file['path'])
+        end
         sfile.content = File.join("$PROJ_DIR$", path_mod.relpath(proj_path, full_path))
         gfiles << sfile
       end
@@ -171,7 +175,11 @@ module EWP
       gfiles = Nokogiri::XML::Node.new('file', doc)
       files_hash["_"].each do |file|
         sfile = Nokogiri::XML::Node.new('name', gfiles)
-        full_path = path_mod.fullpath(file['rootdir'],file['path'])
+        if file['rootdir']
+          full_path = path_mod.fullpath(file['rootdir'],file['path'])
+        else
+          full_path = path_mod.fullpath('default_path',file['path'])
+        end
         sfile.content = File.join("$PROJ_DIR$", path_mod.relpath(proj_path, full_path))
         gfiles << sfile
       end

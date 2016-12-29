@@ -128,20 +128,20 @@ class Unifmt < UfBaseClass
 	validate_hash :as_predefines
 	validate_hash :as_defines
 	validate_array :as_flags
-	validate_hash :as_preincludes
-	validate_hash :as_include
+	validate_array :as_preincludes
+	validate_array :as_include
 
 	validate_hash :cc_predefines
 	validate_hash :cc_defines
 	validate_array :cc_flags
-	validate_hash :cc_preincludes
-	validate_hash :cc_include
+	validate_array :cc_preincludes
+	validate_array :cc_include
 
 	validate_hash :cxx_predefines
 	validate_hash :cxx_defines
 	validate_array :cxx_flags
-	validate_hash :cxx_preincludes
-	validate_hash :cxx_include
+	validate_array :cxx_preincludes
+	validate_array :cxx_include
 
 	validate_array :ld_flags
 	validate_array :meta_components
@@ -249,35 +249,35 @@ class Unifmt < UfBaseClass
 	end
 
 
-    def as_preincludes_hash
+    def as_preincludes_unit
     	return {"path" => "",  "rootdir" => ""}
     end
 
-    def as_include_hash
+    def as_include_unit
     	return {"path" => "",  "rootdir" => ""}
     end
 
-    def cc_preincludes_hash
+    def cc_preincludes_unit
     	return {"path" => "",  "rootdir" => ""}
     end
 
-    def cc_include_hash
+    def cc_include_unit
     	return {"path" => "",  "rootdir" => ""}
     end
 
-    def cxx_preincludes_hash
+    def cxx_preincludes_unit
     	return {"path" => "",  "rootdir" => ""}
     end
 
-    def cxx_include_hash
+    def cxx_include_unit
     	return {"path" => "",  "rootdir" => ""}
     end
 
-    def linker_file_hash
+    def linker_file_unit
     	return {"path" => "",  "rootdir" => ""}
     end
 
-    def sources_hash
+    def sources_unit
     	return {"source" => "", "virtual_dir" => "" ,"rootdir" => "", "release_dir" => ""}
     end
 end

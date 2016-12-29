@@ -16,23 +16,18 @@ options = {
 
 myunifmt = Unifmt.new(options)
 myunifmt.outdir =  "build"
-myunifmt.cp_defines = {"MK64FN1M0xxx12" =>  "Freescale MK64FN1M0xxx12"}
+myunifmt.cp_defines = {"CPU_MK64FN1M0VMD12" =>  nil}
 myunifmt.cc_defines = {  
           "CPU_MK64FN1M0VMD12" => nil, 
           "DEBUG" => nil, 
-          "SCANF_FLOAT_ENABLE" => 0, 
-          "PRINTF_ADVANCED_ENABLE" => 0,
-          "SCANF_ADVANCED_ENABLE" => 0, 
           "TWR_K64F120M" => nil,
           "TOWER" => nil}
-myunifmt.cc_flags = [ "--misra2004",
-        "--cpu=cortex-m4",
-        "--fpu=vfpv4_sp_d16",
-        "--diag_suppress Pa082,Pa050",
-        "--endian=little",
-        "-e",
-        "--use_c++_inline",
-        "--silent"]
+myunifmt.cc_flags = [ "-g", "-mthumb", "-mapcs", "-std=gnu99",
+        "-mcpu=cortex-m4",
+        "-mfloat-abi=hard",
+        "-mfpu=fpv4-sp-d16",
+        "-MMD",
+        "-MP"]
 myunifmt.as_defines = ["DEBUG"]
 myunifmt.as_flags = [ "--cpu=cortex-m4",
         "--fpu=vfpv4_sp_d16",
@@ -42,20 +37,17 @@ myunifmt.as_flags = [ "--cpu=cortex-m4",
         "-j",
         "-S"]
 myunifmt.linker_file = {
-	        "path" => "devices/MK64F12/iar/MK64FN1M0xxx12_flash.icf"         
+	        "path" => "devices/MK64F12/gcc/MK64FN1M0xxx12_flash.ld",
+          "rootdir" => "default_path"        
 }
 
-myunifmt.templates = [ "templates/iar/general.ewd",
-    "templates/iar/general.ewp",
-    "templates/iar/general.dni",
-    "templates/iar/general.eww" ,
-    "templates/iar/iar_xpath.yml"]
-
-myunifmt.tool_chain_specific = {
-  'GOutputBinary' => {
-    'state' => '0'
+myunifmt.cc_include = [
+  {
+    "path" =>  "test", 
+    "rootdir" => "default_path",
   }
-}
+]
+
 
 myunifmt.sources = [
 	{
@@ -72,30 +64,26 @@ myunifmt.sources = [
 myunifmt.update
 options = {
     :config => "release",
-    :tool_chain => "iar",
+    :tool_chain => "cmake",
     :type => "application",
     :board => "demo_board",
     :project_name => "demo_project"
 }
 myunifmt2 = Unifmt.new(options)
-myunifmt2.cp_defines = {"MK64FN1M0xxx12" =>  "Freescale MK64FN1M0xxx12"}
-myunifmt2.cc_defines = {
-          "NODEBUG" => nil,
+myunifmt2.outdir =  "build"
+myunifmt2.cp_defines = {"CPU_MK64FN1M0VMD12" =>  nil}
+myunifmt2.cc_defines = {  
           "CPU_MK64FN1M0VMD12" => nil, 
-          "PRINTF_FLOAT_ENABLE" => 0, 
-          "SCANF_FLOAT_ENABLE" => 0, 
-          "PRINTF_ADVANCED_ENABLE" => 0,
-          "SCANF_ADVANCED_ENABLE" => 0, 
+          "DEBUG" => nil, 
           "TWR_K64F120M" => nil,
-          "TOWER" => nil }
-myunifmt2.cc_flags = [ "--misra2004",
-        "--cpu=cortex-m4",
-        "--fpu=vfpv4_sp_d16",
-        "--diag_suppress Pa082,Pa050",
-        "--endian=little",
-        "-e",
-        "--use_c++_inline",
-        "--silent"]
+          "TOWER" => nil}
+myunifmt2.cc_flags = [ "-g", "-mthumb", "-mapcs", "-std=gnu99",
+        "-mcpu=cortex-m4",
+        "-mfloat-abi=hard",
+        "-mfpu=fpv4-sp-d16",
+        "-MMD",
+        "-MP"]
+myunifmt2.as_defines = ["RELEASE"]
 myunifmt2.as_flags = [ "--cpu=cortex-m4",
         "--fpu=vfpv4_sp_d16",
         "-s",
@@ -104,9 +92,30 @@ myunifmt2.as_flags = [ "--cpu=cortex-m4",
         "-j",
         "-S"]
 myunifmt2.linker_file = {
-          "path" => "devices/MK64F12/iar/MK64FN1M0xxx12_flash.icf"         
+          "path" => "devices/MK64F12/gcc/MK64FN1M0xxx12_flash.ld",
+          "rootdir" => "default_path"        
 }
-myunifmt2.outdir = "build"
+
+myunifmt2.cc_include = [
+  {
+    "path" =>  "test", 
+    "rootdir" => "default_path",
+  }
+]
+
+
+myunifmt2.sources = [
+  {
+   "path" =>  "hello_world.c", 
+   "rootdir" => "default_path",
+   "virtual_dir" => "src"
+  },
+  {
+   "path" =>  "hello_world.h", 
+   "rootdir" => "default_path",
+   "virtual_dir" => "include"
+  },  
+]
 myunifmt2.update
 myunifmt << myunifmt2
 
@@ -122,5 +131,5 @@ options = {
 }
 
 mygenerator = Generator.new(options)
-mygenerator.generate_project_set('iar',myunifmt.output_info['demo_project'])
-mygenerator.generate_projects('iar', '', myunifmt.output_info['demo_project'])
+mygenerator.generate_project_set('cmake',myunifmt.output_info['demo_project'])
+mygenerator.generate_projects('cmake', '', myunifmt.output_info['demo_project'])

@@ -57,6 +57,13 @@ myunifmt.tool_chain_specific = {
   }
 }
 
+myunifmt.cc_include = [
+  {
+    "path" =>  "test", 
+    "rootdir" => "default_path",
+  }
+]
+
 myunifmt.sources = [
 	{
 	 "path" =>  "hello_world.c", 
@@ -103,6 +110,12 @@ myunifmt2.as_flags = [ "--cpu=cortex-m4",
         "-w+",
         "-j",
         "-S"]
+myunifmt2.cc_include = [
+  {
+    "path" =>  "test", 
+    "rootdir" => "default_path",
+  }
+]
 myunifmt2.linker_file = {
           "path" => "devices/MK64F12/iar/MK64FN1M0xxx12_flash.icf"         
 }
