@@ -26,8 +26,8 @@ class Project
 		@board = get_board()
 		@paths = PathModifier.new(generator_variable["paths"])
 		@iar_project_files = {".ewp" => nil, ".dni" => nil, ".ewd" => nil, ".yml" => nil}
-		return nil if get_template(Project_set::TOOLCHAIN).nil?
-		get_template(Project_set::TOOLCHAIN).each do |template|
+		return nil if get_template(Project::TOOLCHAIN).nil?
+		get_template(Project::TOOLCHAIN).each do |template|
 			puts template
 			ext = File.extname(template)
 			if @iar_project_files.keys.include?(ext)
@@ -55,41 +55,40 @@ class Project
 	end
 
   	def generator(filter, project_data)
-    	create_method( Project::TOOLCHAIN ,project_data)
+    	create_method( Project::TOOLCHAIN)
     	send(Project::TOOLCHAIN.to_sym, project_data)
     	save_project()
   	end
 
-  	def source(project_data)
+  	def source()
   		#add sources to target
   		return if @iar_project_files['.ewp'].nil?
   		remove_sources(@iar_project_files['.ewp'])
-  		set_hash(project_data)
   		sources = get_src_list(Project::TOOLCHAIN)
-  		o_path = get_output_dir(Project_set::TOOLCHAIN, @paths.rootdir_table)
+  		o_path = get_output_dir(Project::TOOLCHAIN, @paths.rootdir_table)
   		proj_path = File.join(@paths.rootdir_table['output_root'], o_path)
   		add_sources(@iar_project_files['.ewp'], sources, @paths, proj_path)
   	end
 
-  	def templates(project_data)
+  	def templates()
   		#load tempaltes
   	end
 
-  	def document(project_data)
+  	def document()
   		#set prototype
 
     end
 
-  	def type(project_data)
+  	def type()
   		#set project type
   	end
 
-  	def outdir(project_data)
+  	def outdir()
 
   	end
 
-	def targets(project_data)
-		get_targets(Project_set::TOOLCHAIN).each do |key, value|
+	def targets()
+		get_targets(Project::TOOLCHAIN).each do |key, value|
 			next if value.nil?
 			#add target for ewp
 			t = new_target(key, @iar_project_files['.ewp'])
@@ -107,7 +106,7 @@ class Project
           		end
 			end
 		end
-		remove_targets(@iar_project_files['.ewp'], project_data[Project::TOOLCHAIN]['targets'].keys)
+		remove_targets(@iar_project_files['.ewp'], get_target_list(Project::TOOLCHAIN))
 	end
 
     # tool_chain_specific attribute for each target
@@ -119,7 +118,7 @@ class Project
 	end
 
 	def save_project()
-		path = get_output_dir(Project_set::TOOLCHAIN, @paths.rootdir_table)
+		path = get_output_dir(Project::TOOLCHAIN, @paths.rootdir_table)
 		save(@iar_project_files['.ewp'], File.join(@paths.rootdir_table['output_root'], path, "#{@project_name}_#{@board}.ewp"))
 	end
 

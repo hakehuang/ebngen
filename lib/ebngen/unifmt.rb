@@ -78,6 +78,8 @@ class Unifmt < UfBaseClass
 	attr_accessor :outdir
 	#tool_chain_specific
 	attr_accessor :tool_chain_specific
+	#binary_file
+	attr_accessor :binary_file
 
     #the keys that used in the uniformat
 	@@UNIFY_KEYS = ["meta_components", 
@@ -157,6 +159,7 @@ class Unifmt < UfBaseClass
 
 	validate_string :project_name
 	validate_string :outdir
+	validate_string :binary_file
 	validate_hash :tool_chain_specific
 	
 	def initialize(options)

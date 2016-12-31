@@ -53,6 +53,7 @@ demo_project:
           rootdir: default_path
         outdir: build
         tool_chain_specific: {}
+        binary_file: test_debug
       release:
         cp_defines:
           CPU_MK64FN1M0VMD12: 
@@ -100,6 +101,7 @@ demo_project:
           rootdir: default_path
         outdir: build
         tool_chain_specific: {}
+        binary_file: test_release
     templates: 
     type: application
     source:
@@ -110,4 +112,5 @@ demo_project:
       rootdir: default_path
       virtual_dir: include
     outdir: build
-    libraries: 
+    libraries:
+    - "-m"

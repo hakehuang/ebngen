@@ -29,6 +29,10 @@ module UNI_Project
    return @projects_hash[toolchain]["targets"].keys
   end
 
+  def get_type(toolchain)
+    return @projects_hash[toolchain]["type"]
+  end
+
   def get_targets(toolchain)
    return @projects_hash[toolchain]["targets"]
   end
@@ -44,6 +48,4 @@ module UNI_Project
   def get_template(toolchain)
     return @projects_hash[toolchain]['templates']
   end
-
-
 end

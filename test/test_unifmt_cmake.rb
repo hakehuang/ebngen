@@ -41,6 +41,10 @@ myunifmt.linker_file = {
           "rootdir" => "default_path"        
 }
 
+myunifmt.libraries = ["-m"]
+
+myunifmt.binary_file = "test_debug"
+
 myunifmt.cc_include = [
   {
     "path" =>  "test", 
@@ -103,6 +107,8 @@ myunifmt2.cc_include = [
   }
 ]
 
+myunifmt2.libraries = ["-m"]
+myunifmt2.binary_file = "test_release"
 
 myunifmt2.sources = [
   {
@@ -124,12 +130,11 @@ File.write('./unified_data.yml', YAML.dump(myunifmt.output_info))
 
 options = {
   "paths" => {
-   "default_path" => Dir.pwd ,
+   "default_path" => Dir.pwd,
    "output_root" => Dir.pwd
   },
   "all" => myunifmt.output_info
 }
 
 mygenerator = Generator.new(options)
-mygenerator.generate_project_set('cmake',myunifmt.output_info['demo_project'])
 mygenerator.generate_projects('cmake', '', myunifmt.output_info['demo_project'])
