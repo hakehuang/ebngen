@@ -87,15 +87,101 @@ module EWP
     hash_value.to_xml(doc)
   end
 
+  def add_specific(target_node, doc, xpath_table)
+    doc.each do |key, value|
+      checked = false
+      options = target_node.xpath("//option")
+      if ! xpath_table[key].nil?
+        #can retrieve from table directly
+        node = target_node.xpath(xpath_table[key]['xpath'][0])
+        value.each do |subkey, subvalue|
+          if subvalue.class == String
+            if node.css(subkey)[0].content.nil?
+              node.css(subkey)[0].content = subvalue
+            else
+              create_node(node, {subkey => subvalue})
+            end
+          elsif subvalue.class == Array
+            subvalue.each do |line|
+              create_node(node, {subkey => line})
+            end
+          else
+            puts "not supported format must be string or array"
+            next
+          end
+        end
+        checked = true
+        next
+      end
+      options.each do |option|
+        if option.css('name').text == key
+          value.each do |subkey, subvalue|
+            if subvalue.class == String
+              if node.css(subkey)[0].content.nil?
+                node.css(subkey)[0].content = subvalue
+              else
+                create_node(node, {subkey => subvalue})
+              end
+            elsif subvalue.class == Array
+              subvalue.each do |line|
+                create_node(node, {subkey => line})
+              end
+            else
+              puts "not supported format must be string or array"
+              next
+            end
+          end
+          #processing done
+          checked = true
+          break
+        end
+      end
+      if !checked
+        #not an exist option need create new node
+        data_node = target_node.xpath('data')
+        option_node = create_node(data_node, "option" => nil)
+        create_node(option_node, {"name" => key})
+        value.each do |subkey, subvalue|
+          if subvalue.class == String
+            create_node(node, {subkey => subvalue})
+          elsif subvalue.class == Array
+            subvalue.each do |line|
+              create_node(node, {subkey => line})
+            end
+          else
+            puts "not supported format must be string or array"
+            next
+          end
+        end
+      end
+      if !checked
+        puts "can not find match for #{key}"
+      end
+    end
+  end
+
   def set_specific(target_node, doc, xpath_table)
   	doc.each do |key, value|
       checked = false
   		options = target_node.xpath("//option")
       if ! xpath_table[key].nil?
-        #can retrieve from talbe directly
+        #can retrieve from table directly
         node = target_node.xpath(xpath_table[key]['xpath'][0])
         value.each do |subkey, subvalue|
-          node.css(subkey)[0].content = subvalue
+          if subvalue.class == String
+            if node.css(subkey)[0].content.nil?
+              node.css(subkey)[0].content = subvalue
+            else
+              create_node(node, {subkey => subvalue})
+            end
+          elsif subvalue.class == Array
+            subvalue.each do |line|
+              create_node(node, {subkey => line})
+            end
+          else
+            puts "not supported format must be string or array"
+            next
+          end
         end
         checked = true
         next
@@ -103,7 +189,20 @@ module EWP
   		options.each do |option|
   			if option.css('name').text == key
   				value.each do |subkey, subvalue|
-  					option.css(subkey)[0].content = subvalue
+            if subvalue.class == String
+              if node.css(subkey)[0].content.nil?
+                node.css(subkey)[0].content = subvalue
+              else
+                create_node(node, {subkey => subvalue})
+              end
+            elsif subvalue.class == Array
+              subvalue.each do |line|
+                create_node(node, {subkey => line})
+              end
+            else
+              puts "not supported format must be string or array"
+              next
+            end
   				end
           #processing done
           checked = true
@@ -112,12 +211,20 @@ module EWP
   		end
       if !checked
         #not an exist option need create new node
-        names = target_node.xpath('name')
-        names.each do |nn|
-          if nn.text == key
-            create_node(nn.parent, value)
-            checked = true
-            break
+        #not an exist option need create new node
+        data_node = target_node.xpath('data')
+        option_node = create_node(data_node, "option" => nil)
+        create_node(option_node, {"name" => key})
+        value.each do |subkey, subvalue|
+          if subvalue.class == String
+            create_node(node, {subkey => subvalue})
+          elsif subvalue.class == Array
+            subvalue.each do |line|
+              create_node(node, {subkey => line})
+            end
+          else
+            puts "not supported format must be string or array"
+            next
           end
         end
       end

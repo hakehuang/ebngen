@@ -74,11 +74,6 @@ class Project
   		#load tempaltes
   	end
 
-  	def document()
-  		#set prototype
-
-    end
-
   	def type()
   		#set project type
   	end
@@ -113,8 +108,12 @@ class Project
     # Params:
     # - target_node: the xml node of given target
     # - doc: the hash that holds the data
-	def target_tool_chain_specific(target_node, doc)
+	def target_tool_chain_set_spec(target_node, doc)
 		set_specific(target_node, doc, @iar_project_files['.yml'])
+	end
+
+	def target_tool_chain_add_spec(target_node, doc)
+		add_specific(target_node, doc, @iar_project_files['.yml'])
 	end
 
 	def save_project()
@@ -122,8 +121,13 @@ class Project
 		save(@iar_project_files['.ewp'], File.join(@paths.rootdir_table['output_root'], path, "#{@project_name}_#{@board}.ewp"))
 	end
 
-		def target_cp_defines(target_node, doc)
-
+	def target_cp_defines(target_node, doc)
+		value = doc.values.join(" ")
+		settings = {'OGChipSelectEditMenu' => {
+    				'state' => value
+  					}
+  				}
+		set_specific(target_node, settings, @iar_project_files['.yml'])
 	end
 
 	def target_as_predefines(target_node, doc)
@@ -131,15 +135,36 @@ class Project
 	end
 
 	def target_as_defines(target_node, doc)
-
+		settings = {'ADefines' => {
+    				'state' => doc
+  					}
+  				}
+  		add_specific(target_node, settings, @iar_project_files['.yml'])
 	end
 
 	def target_as_include(target_node, doc)
-
+		o_path = get_output_dir(Project::TOOLCHAIN, @paths.rootdir_table)
+  		proj_path = File.join(@paths.rootdir_table['output_root'], o_path)
+  		settings = {'AUserIncludes' => {} }
+  		inc_array = Array.new
+  		doc.each do |item|
+	      if item['rootdir']
+	        full_path = @paths.fullpath(item['rootdir'],item['path'])
+	      else
+	        full_path = @paths.fullpath('default_path',item['path'])
+	      end
+	      inc_array.insert(-1, File.join("$PROJ_DIR$", @paths.relpath(proj_path, full_path)))
+  		end
+  		settings['AUserIncludes']['state'] = inc_array
+  		add_specific(target_node, settings, @iar_project_files['.yml'])
 	end
 
 	def target_as_flags(target_node, doc)
-
+		settings = {'AExtraOptionsV2' => {
+    				'state' => doc
+  					}
+  				}
+  		add_specific(target_node, settings, @iar_project_files['.yml'])
 	end
 
 	def target_cc_predefines(target_node, doc)
@@ -147,51 +172,116 @@ class Project
 	end
 
 	def target_cc_preincludes(target_node, doc)
-
+		o_path = get_output_dir(Project::TOOLCHAIN, @paths.rootdir_table)
+  		proj_path = File.join(@paths.rootdir_table['output_root'], o_path)
+  		settings = {'PreInclude' => {} }
+  		inc_array = Array.new
+  		doc.each do |item|
+	      if item['rootdir']
+	        full_path = @paths.fullpath(item['rootdir'],item['path'])
+	      else
+	        full_path = @paths.fullpath('default_path',item['path'])
+	      end
+	      inc_array.insert(-1, File.join("$PROJ_DIR$", @paths.relpath(proj_path, full_path)))
+  		end
+  		settings['PreInclude']['state'] = inc_array
+  		add_specific(target_node, settings, @iar_project_files['.yml'])
 	end
 
 	def target_cc_defines(target_node, doc)
-
+		settings = {'CCDefines' => {
+    				'state' => doc
+  					}
+  				   }
+  		add_specific(target_node, settings, @iar_project_files['.yml'])
 	end
 
 	def target_cc_include(target_node, doc)
-
+		o_path = get_output_dir(Project::TOOLCHAIN, @paths.rootdir_table)
+  		proj_path = File.join(@paths.rootdir_table['output_root'], o_path)
+  		settings = {'CCIncludePath2' => {} }
+  		inc_array = Array.new
+  		doc.each do |item|
+	      if item['rootdir']
+	        full_path = @paths.fullpath(item['rootdir'],item['path'])
+	      else
+	        full_path = @paths.fullpath('default_path',item['path'])
+	      end
+	      inc_array.insert(-1, File.join("$PROJ_DIR$", @paths.relpath(proj_path, full_path)))
+  		end
+  		settings['CCIncludePath2']['state'] = inc_array
+  		add_specific(target_node, settings, @iar_project_files['.yml'])
 	end
 
 	def target_cc_flags(target_node, doc)
-
+		settings_check = { 'IExtraOptionsCheck' => {
+				'state' => 1
+			}
+		}
+		add_specific(target_node, settings_check, @iar_project_files['.yml'])
+		settings = {'IExtraOptions' => {
+    				'state' => doc
+  					}
+  				   }
+  		add_specific(target_node, settings, @iar_project_files['.yml'])
 	end
 
 	def target_cxx_predefines(target_node, doc)
-
+		target_cc_predefines(target_node, doc)
 	end
 
 	def target_cxx_preincludes(target_node, doc)
-
+		target_cc_preincludes(target_node, doc)
 	end
 
 	def target_cxx_defines(target_node, doc)
-
+		target_ccc_defines(target_node, doc)
 	end
 
 	def target_cxx_include(target_node, doc)
-
+		target_cc_include(target_node, doc)
 	end
 
 	def target_cxx_flags(target_node, doc)
-
+		target_cc_flags(target_node, doc)
 	end
 
 	def target_ld_flags(target_node, doc)
-
+		settings = {'IlinkConfigDefines' => {
+    				'state' => doc
+  					}
+  				   }
+  		add_specific(target_node, settings, @iar_project_files['.yml'])
 	end
 
 	def target_libraries(target_node, doc)
-
+		settings = {'IlinkAdditionalLibs' => {
+    				'state' => doc
+  					}
+  				   }
+  		add_specific(target_node, settings, @iar_project_files['.yml'])
 	end
 
 	def target_linker_file(target_node, doc)
-
+		settings_check = { 'IlinkIcfOverride' => {
+				'state' => 1
+			}
+		}
+		add_specific(target_node, settings_check, @iar_project_files['.yml'])
+		o_path = get_output_dir(Project::TOOLCHAIN, @paths.rootdir_table)
+  		proj_path = File.join(@paths.rootdir_table['output_root'], o_path)
+  		settings = {'IlinkIcfFile' => {} }
+  		inc_array = Array.new
+  		doc.each do |item|
+	      if item['rootdir']
+	        full_path = @paths.fullpath(item['rootdir'],item['path'])
+	      else
+	        full_path = @paths.fullpath('default_path',item['path'])
+	      end
+	      inc_array.insert(-1, File.join("$PROJ_DIR$", @paths.relpath(proj_path, full_path)))
+  		end
+  		settings['IlinkIcfFile']['state'] = inc_array.join(" ")
+  		add_specific(target_node, settings, @iar_project_files['.yml'])
 	end
 
 	def target_outdir(target_node, doc)

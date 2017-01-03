@@ -76,8 +76,10 @@ class Unifmt < UfBaseClass
 	attr_accessor :project_name
 	#project_name
 	attr_accessor :outdir
-	#tool_chain_specific
-	attr_accessor :tool_chain_specific
+	#tool_chain_set_spec
+	attr_accessor :tool_chain_set_spec
+	#tool_chain_add_apec
+	attr_accessor :tool_chain_add_spec
 	#binary_file
 	attr_accessor :binary_file
 
@@ -120,7 +122,8 @@ class Unifmt < UfBaseClass
 	:linker_file,
 	:outdir,
     :binary_file,
-    :tool_chain_specific
+    :tool_chain_set_spec,
+    :tool_chain_add_spec
 	]
 
 	extend Validate
@@ -160,7 +163,8 @@ class Unifmt < UfBaseClass
 	validate_string :project_name
 	validate_string :outdir
 	validate_string :binary_file
-	validate_hash :tool_chain_specific
+	validate_hash :tool_chain_set_spec
+	validate_hash :tool_chain_add_spec
 	
 	def initialize(options)
 		@options_default = {

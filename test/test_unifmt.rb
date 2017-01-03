@@ -51,7 +51,7 @@ myunifmt.templates = [
     "templates/iar/general.eww" ,
     "templates/iar/iar_xpath.yml"]
 
-myunifmt.tool_chain_specific = {
+myunifmt.tool_chain_set_spec = {
   'GOutputBinary' => {
     'state' => '1'
   }
