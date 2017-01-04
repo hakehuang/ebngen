@@ -43,9 +43,6 @@ class Project
 					when ".dni"
 						doc = Nokogiri::XML(open(path))
 						@iar_project_files[ext] = doc
-					when ".yml"
-						content = open(template.gsub("\\","/")){|f| f.read}
-        				@iar_project_files[ext] = YAML::load(content)
 				end
 			  #rescue
 			  #	puts "failed to open #{template}"
@@ -109,11 +106,11 @@ class Project
     # - target_node: the xml node of given target
     # - doc: the hash that holds the data
 	def target_tool_chain_set_spec(target_node, doc)
-		set_specific(target_node, doc, @iar_project_files['.yml'])
+		set_specific(target_node, doc)
 	end
 
 	def target_tool_chain_add_spec(target_node, doc)
-		add_specific(target_node, doc, @iar_project_files['.yml'])
+		add_specific(target_node, doc)
 	end
 
 	def save_project()
@@ -127,7 +124,7 @@ class Project
     				'state' => value
   					}
   				}
-		set_specific(target_node, settings, @iar_project_files['.yml'])
+		set_specific(target_node, settings)
 	end
 
 	def target_as_predefines(target_node, doc)
@@ -139,7 +136,7 @@ class Project
     				'state' => doc
   					}
   				}
-  		add_specific(target_node, settings, @iar_project_files['.yml'])
+  		add_specific(target_node, settings)
 	end
 
 	def target_as_include(target_node, doc)
@@ -156,7 +153,7 @@ class Project
 	      inc_array.insert(-1, File.join("$PROJ_DIR$", @paths.relpath(proj_path, full_path)))
   		end
   		settings['AUserIncludes']['state'] = inc_array
-  		add_specific(target_node, settings, @iar_project_files['.yml'])
+  		add_specific(target_node, settings)
 	end
 
 	def target_as_flags(target_node, doc)
@@ -164,7 +161,7 @@ class Project
     				'state' => doc
   					}
   				}
-  		add_specific(target_node, settings, @iar_project_files['.yml'])
+  		add_specific(target_node, settings)
 	end
 
 	def target_cc_predefines(target_node, doc)
@@ -185,7 +182,7 @@ class Project
 	      inc_array.insert(-1, File.join("$PROJ_DIR$", @paths.relpath(proj_path, full_path)))
   		end
   		settings['PreInclude']['state'] = inc_array
-  		add_specific(target_node, settings, @iar_project_files['.yml'])
+  		add_specific(target_node, settings)
 	end
 
 	def target_cc_defines(target_node, doc)
@@ -193,7 +190,7 @@ class Project
     				'state' => doc
   					}
   				   }
-  		add_specific(target_node, settings, @iar_project_files['.yml'])
+  		add_specific(target_node, settings)
 	end
 
 	def target_cc_include(target_node, doc)
@@ -210,7 +207,7 @@ class Project
 	      inc_array.insert(-1, File.join("$PROJ_DIR$", @paths.relpath(proj_path, full_path)))
   		end
   		settings['CCIncludePath2']['state'] = inc_array
-  		add_specific(target_node, settings, @iar_project_files['.yml'])
+  		add_specific(target_node, settings)
 	end
 
 	def target_cc_flags(target_node, doc)
@@ -218,12 +215,12 @@ class Project
 				'state' => 1
 			}
 		}
-		add_specific(target_node, settings_check, @iar_project_files['.yml'])
+		add_specific(target_node, settings_check)
 		settings = {'IExtraOptions' => {
     				'state' => doc
   					}
   				   }
-  		add_specific(target_node, settings, @iar_project_files['.yml'])
+  		add_specific(target_node, settings)
 	end
 
 	def target_cxx_predefines(target_node, doc)
@@ -235,7 +232,7 @@ class Project
 	end
 
 	def target_cxx_defines(target_node, doc)
-		target_ccc_defines(target_node, doc)
+		target_cc_defines(target_node, doc)
 	end
 
 	def target_cxx_include(target_node, doc)
@@ -251,7 +248,7 @@ class Project
     				'state' => doc
   					}
   				   }
-  		add_specific(target_node, settings, @iar_project_files['.yml'])
+  		add_specific(target_node, settings)
 	end
 
 	def target_libraries(target_node, doc)
@@ -259,7 +256,7 @@ class Project
     				'state' => doc
   					}
   				   }
-  		add_specific(target_node, settings, @iar_project_files['.yml'])
+  		add_specific(target_node, settings)
 	end
 
 	def target_linker_file(target_node, doc)
@@ -267,21 +264,19 @@ class Project
 				'state' => 1
 			}
 		}
-		add_specific(target_node, settings_check, @iar_project_files['.yml'])
+		add_specific(target_node, settings_check)
 		o_path = get_output_dir(Project::TOOLCHAIN, @paths.rootdir_table)
   		proj_path = File.join(@paths.rootdir_table['output_root'], o_path)
   		settings = {'IlinkIcfFile' => {} }
   		inc_array = Array.new
-  		doc.each do |item|
-	      if item['rootdir']
-	        full_path = @paths.fullpath(item['rootdir'],item['path'])
-	      else
-	        full_path = @paths.fullpath('default_path',item['path'])
-	      end
-	      inc_array.insert(-1, File.join("$PROJ_DIR$", @paths.relpath(proj_path, full_path)))
-  		end
+  		if doc.has_key?("rootdir")
+	      full_path = @paths.fullpath(doc['rootdir'],doc['path'])
+	    else
+	      full_path = @paths.fullpath('default_path',doc['path'])
+	    end
+	    inc_array.insert(-1, File.join("$PROJ_DIR$", @paths.relpath(proj_path, full_path)))
   		settings['IlinkIcfFile']['state'] = inc_array.join(" ")
-  		add_specific(target_node, settings, @iar_project_files['.yml'])
+  		add_specific(target_node, settings)
 	end
 
 	def target_outdir(target_node, doc)

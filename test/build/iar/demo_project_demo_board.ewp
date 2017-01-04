@@ -50,8 +50,8 @@
         </option>
         <option>
           <name>GOutputBinary</name>
-          <state>1</state>
-        </option>
+          
+        <state>1</state></option>
         <option>
           <name>OGCoreOrChip</name>
           <state>1</state>
@@ -88,8 +88,8 @@
         </option>
         <option>
           <name>OGChipSelectEditMenu</name>
-          <state>MK64FN1M0xxx12 Freescale MK64FN1M0xxx12</state>
-        </option>
+          
+        <state>Freescale MK64FN1M0xxx12</state></option>
         <option>
           <name>GenLowLevelInterface</name>
           <state>1</state>
@@ -261,8 +261,8 @@
         </option>
         <option>
           <name>IExtraOptions</name>
-          <state/>
-        </option>
+          
+        <state>--silent</state></option>
         <option>
           <name>CCLangConformance</name>
           <state>0</state>
@@ -310,7 +310,7 @@
         <option>
           <name>CCIncludePath2</name>
           
-        <state>$PROJ_DIR$/../../../../bsp/kinetis/platform/devices</state><state>$PROJ_DIR$/../../../../bsp/kinetis/platform/devices/MK64F12/include</state><state>$PROJ_DIR$/../../../../bsp/kinetis/platform/devices/MK64F12/startup</state><state>$PROJ_DIR$/../../../../bsp/kinetis/boards/frdmk64f</state><state>$PROJ_DIR$/../../../../bsp/kinetis/common/sgtl5000</state><state>$PROJ_DIR$/../../../../bsp/kinetis/common/phyksz8041</state><state>$PROJ_DIR$/../../../../bsp/kinetis/platform/system/src/clock/MK64F12</state><state>$PROJ_DIR$/../../../../bsp/kinetis/rt_app</state><state>$PROJ_DIR$/../../../../bsp/kinetis/platform/drivers/inc</state><state>$PROJ_DIR$/../../../../bsp/kinetis/platform/hal/inc</state><state>$PROJ_DIR$/../../../../bsp/kinetis/rtos</state><state>$PROJ_DIR$/../../../../bsp/kinetis/platform/osa/inc</state><state>$PROJ_DIR$/../../../../bsp/kinetis/platform/CMSIS/Include</state><state>$PROJ_DIR$/../../../../bsp/kinetis/platform/system/inc</state><state>$PROJ_DIR$/../../../../bsp/kinetis/platform/utilities/inc</state><state>$PROJ_DIR$/../../../../bsp/kinetis/platform/utilities/src</state><state>$PROJ_DIR$/../../../../components/drivers/include/drivers</state><state>$PROJ_DIR$/../../../../components/drivers/include</state><state>$PROJ_DIR$/../../../../bsp/kinetis/driver_wrapper/inc</state><state>$PROJ_DIR$/../../../../components/finsh</state><state>$PROJ_DIR$/../../../../include</state></option>
+        <state>$PROJ_DIR$/../../../../bsp/kinetis/platform/devices/MK64F12/startup</state><state>$PROJ_DIR$/../../../../bsp/kinetis/boards/frdmk64f</state><state>$PROJ_DIR$/../../../../bsp/kinetis/common/sgtl5000</state><state>$PROJ_DIR$/../../../../bsp/kinetis/common/phyksz8041</state><state>$PROJ_DIR$/../../../../bsp/kinetis/platform/system/src/clock/MK64F12</state><state>$PROJ_DIR$/../../../../bsp/kinetis/rt_app</state><state>$PROJ_DIR$/../../../../bsp/kinetis/platform/drivers/inc</state><state>$PROJ_DIR$/../../../../bsp/kinetis/platform/hal/inc</state><state>$PROJ_DIR$/../../../../bsp/kinetis/rtos</state><state>$PROJ_DIR$/../../../../bsp/kinetis/platform/osa/inc</state><state>$PROJ_DIR$/../../../../bsp/kinetis/platform/CMSIS/Include</state><state>$PROJ_DIR$/../../../../bsp/kinetis/platform/system/inc</state><state>$PROJ_DIR$/../../../../bsp/kinetis/platform/utilities/inc</state><state>$PROJ_DIR$/../../../../bsp/kinetis/platform/utilities/src</state><state>$PROJ_DIR$/../../../../components/drivers/include/drivers</state><state>$PROJ_DIR$/../../../../components/drivers/include</state><state>$PROJ_DIR$/../../../../bsp/kinetis/driver_wrapper/inc</state><state>$PROJ_DIR$/../../../../components/finsh</state><state>$PROJ_DIR$/../../../../include</state><state>$PROJ_DIR$/../../test</state><state>$PROJ_DIR$/../../test</state></option>
         <option>
           <name>CCStdIncCheck</name>
           <state>0</state>
@@ -579,8 +579,8 @@
         </option>
         <option>
           <name>AExtraOptionsV2</name>
-          <state/>
-        </option>
+          
+        <state>-S</state></option>
         <option>
           <name>AsmNoLiteralPool</name>
           <state>0</state>
@@ -724,8 +724,8 @@
         </option>
         <option>
           <name>IlinkIcfFile</name>
-          <state>$PROJ_DIR$/../../../../bsp/kinetis/platform/devices/MK64F12/linker/iar/MK64FN1M0xxx12_flash.icf</state>
-        </option>
+          
+        <state>$PROJ_DIR$/../../devices/MK64F12/iar/MK64FN1M0xxx12_flash.icf</state></option>
         <option>
           <name>IlinkIcfFileSlave</name>
           <state/>

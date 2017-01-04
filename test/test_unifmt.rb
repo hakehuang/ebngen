@@ -41,15 +41,14 @@ myunifmt.as_flags = [ "--cpu=cortex-m4",
         "-j",
         "-S"]
 myunifmt.linker_file = {
-	        "path" => "devices/MK64F12/iar/MK64FN1M0xxx12_flash.icf"         
+  "path" => "devices/MK64F12/iar/MK64FN1M0xxx12_flash.icf"         
 }
 
 myunifmt.templates = [ 
 #  "templates/iar/general.ewd",
     "templates/iar/general.ewp",
 #    "templates/iar/general.dni",
-    "templates/iar/general.eww" ,
-    "templates/iar/iar_xpath.yml"]
+    "templates/iar/general.eww"]
 
 myunifmt.tool_chain_set_spec = {
   'GOutputBinary' => {
