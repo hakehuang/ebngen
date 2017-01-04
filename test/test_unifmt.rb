@@ -16,7 +16,7 @@ options = {
 
 myunifmt = Unifmt.new(options)
 myunifmt.outdir =  "build"
-myunifmt.cp_defines = {"MK64FN1M0xxx12" =>  "Freescale MK64FN1M0xxx12"}
+myunifmt.cp_defines = {"MK64FN1M0xxx12" =>  "NXP MK64FN1M0xxx12"}
 myunifmt.cc_defines = {  
           "CPU_MK64FN1M0VMD12" => nil, 
           "PRINTF_FLOAT_ENABLE" => 0, 
@@ -84,7 +84,7 @@ options = {
     :project_name => "demo_project"
 }
 myunifmt2 = Unifmt.new(options)
-myunifmt2.cp_defines = {"MK64FN1M0xxx12" =>  "Freescale MK64FN1M0xxx12"}
+myunifmt2.cp_defines = {"MK64FN1M0xxx12" =>  "NXP MK64FN1M0xxx12"}
 myunifmt2.cc_defines = {
           "NODEBUG" => nil,
           "CPU_MK64FN1M0VMD12" => nil, 

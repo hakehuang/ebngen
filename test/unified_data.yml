@@ -8,7 +8,7 @@ demo_project:
     targets:
       debug:
         cp_defines:
-          MK64FN1M0xxx12: Freescale MK64FN1M0xxx12
+          MK64FN1M0xxx12: NXP MK64FN1M0xxx12
         as_predefines: {}
         as_preincludes: []
         as_defines: {}
@@ -59,7 +59,7 @@ demo_project:
         binary_file: ''
       release:
         cp_defines:
-          MK64FN1M0xxx12: Freescale MK64FN1M0xxx12
+          MK64FN1M0xxx12: NXP MK64FN1M0xxx12
         as_predefines: {}
         as_preincludes: []
         as_defines: {}

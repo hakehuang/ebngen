@@ -121,9 +121,14 @@ class Project
 	def target_cp_defines(target_node, doc)
 		value = doc.values.join(" ")
 		settings = {'OGChipSelectEditMenu' => {
-    				'state' => value
+    				'state' => doc.keys.join("") + "\t" + value
   					}
   				}
+		set_specific(target_node, settings)
+		settings = {'GEndianModeBE' => {
+					'state' => 1
+					}
+		}
 		set_specific(target_node, settings)
 	end
 

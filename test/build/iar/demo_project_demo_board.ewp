@@ -89,7 +89,7 @@
         <option>
           <name>OGChipSelectEditMenu</name>
           
-        <state>Freescale MK64FN1M0xxx12</state></option>
+        <state>MK64FN1M0xxx12	NXP MK64FN1M0xxx12</state></option>
         <option>
           <name>GenLowLevelInterface</name>
           <state>1</state>
