@@ -4,14 +4,15 @@ demo_project:
     board: demo_board
     project_name: demo_project
     project_root_dir: default_root_dir
-  iar:
+  cmake:
     targets:
       debug:
         cp_defines:
-          MK64FN1M0xxx12: NXP MK64FN1M0xxx12
+          CPU_MK64FN1M0VMD12: 
         as_predefines: {}
         as_preincludes: []
-        as_defines: {}
+        as_defines:
+        - DEBUG
         as_include: []
         as_flags:
         - "--cpu=cortex-m4"
@@ -25,24 +26,22 @@ demo_project:
         cc_preincludes: []
         cc_defines:
           CPU_MK64FN1M0VMD12: 
-          PRINTF_FLOAT_ENABLE: 0
-          SCANF_FLOAT_ENABLE: 0
-          PRINTF_ADVANCED_ENABLE: 0
-          SCANF_ADVANCED_ENABLE: 0
+          DEBUG: 
           TWR_K64F120M: 
           TOWER: 
         cc_include:
         - path: test
           rootdir: default_path
         cc_flags:
-        - "--misra2004"
-        - "--cpu=cortex-m4"
-        - "--fpu=vfpv4_sp_d16"
-        - "--diag_suppress Pa082,Pa050"
-        - "--endian=little"
-        - "-e"
-        - "--use_c++_inline"
-        - "--silent"
+        - "-g"
+        - "-mthumb"
+        - "-mapcs"
+        - "-std=gnu99"
+        - "-mcpu=cortex-m4"
+        - "-mfloat-abi=hard"
+        - "-mfpu=fpv4-sp-d16"
+        - "-MMD"
+        - "-MP"
         cxx_predefines: {}
         cxx_preincludes: []
         cxx_defines: {}
@@ -50,66 +49,62 @@ demo_project:
         cxx_flags: []
         ld_flags: []
         linker_file:
-          path: devices/MK64F12/iar/MK64FN1M0xxx12_flash.icf
-        outdir: build
-        tool_chain_set_spec:
-          GOutputBinary:
-            state: '1'
-        tool_chain_add_spec: {}
-        binary_file: ''
-      release:
-        cp_defines:
-          MK64FN1M0xxx12: NXP MK64FN1M0xxx12
-        as_predefines: {}
-        as_preincludes: []
-        as_defines: {}
-        as_include: []
-        as_flags:
-        - "--cpu=cortex-m4"
-        - "--fpu=vfpv4_sp_d16"
-        - "-s"
-        - "-M'<>'"
-        - "-w+"
-        - "-j"
-        - "-S"
-        cc_predefines: {}
-        cc_preincludes: []
-        cc_defines:
-          NODEBUG: 
-          CPU_MK64FN1M0VMD12: 
-          PRINTF_FLOAT_ENABLE: 0
-          SCANF_FLOAT_ENABLE: 0
-          PRINTF_ADVANCED_ENABLE: 0
-          SCANF_ADVANCED_ENABLE: 0
-          TWR_K64F120M: 
-          TOWER: 
-        cc_include:
-        - path: test
+          path: devices/MK64F12/gcc/MK64FN1M0xxx12_flash.ld
           rootdir: default_path
-        cc_flags:
-        - "--misra2004"
-        - "--cpu=cortex-m4"
-        - "--fpu=vfpv4_sp_d16"
-        - "--diag_suppress Pa082,Pa050"
-        - "--endian=little"
-        - "-e"
-        - "--use_c++_inline"
-        - "--silent"
-        cxx_predefines: {}
-        cxx_preincludes: []
-        cxx_defines: {}
-        cxx_include: []
-        cxx_flags: []
-        ld_flags: []
-        linker_file:
-          path: devices/MK64F12/iar/MK64FN1M0xxx12_flash.icf
         outdir: build
         tool_chain_set_spec: {}
         tool_chain_add_spec: {}
-        binary_file: ''
-    templates:
-    - templates/iar/general.ewp
-    - templates/iar/general.eww
+        binary_file: test_debug
+      release:
+        cp_defines:
+          CPU_MK64FN1M0VMD12: 
+        as_predefines: {}
+        as_preincludes: []
+        as_defines:
+        - RELEASE
+        as_include: []
+        as_flags:
+        - "--cpu=cortex-m4"
+        - "--fpu=vfpv4_sp_d16"
+        - "-s"
+        - "-M'<>'"
+        - "-w+"
+        - "-j"
+        - "-S"
+        cc_predefines: {}
+        cc_preincludes: []
+        cc_defines:
+          CPU_MK64FN1M0VMD12: 
+          DEBUG: 
+          TWR_K64F120M: 
+          TOWER: 
+        cc_include:
+        - path: test
+          rootdir: default_path
+        cc_flags:
+        - "-g"
+        - "-mthumb"
+        - "-mapcs"
+        - "-std=gnu99"
+        - "-mcpu=cortex-m4"
+        - "-mfloat-abi=hard"
+        - "-mfpu=fpv4-sp-d16"
+        - "-MMD"
+        - "-MP"
+        cxx_predefines: {}
+        cxx_preincludes: []
+        cxx_defines: {}
+        cxx_include: []
+        cxx_flags: []
+        ld_flags: []
+        linker_file:
+          path: devices/MK64F12/gcc/MK64FN1M0xxx12_flash.ld
+          rootdir: default_path
+        outdir: build
+        tool_chain_set_spec: {}
+        tool_chain_add_spec: {}
+        binary_file: test_release
+    templates: 
     type: application
     source:
     - path: hello_world.c
@@ -119,4 +114,5 @@ demo_project:
       rootdir: default_path
       virtual_dir: include
     outdir: build
-    libraries: 
+    libraries:
+    - "-m"
