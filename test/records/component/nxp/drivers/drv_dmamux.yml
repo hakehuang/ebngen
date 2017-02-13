@@ -1,0 +1,8 @@
+__load__:
+  - targets/nxp/sdk/drv_dmamux.yml
+
+dmamux:
+  configuration:
+    meta_components:
+
+      - dmamux

@@ -1,0 +1,56 @@
+__load__:
+  - mbed/mbed.yml
+  - mbed/mbed_cortexm.yml
+
+__hierarchy__:
+  configuration:
+    section-type: component
+    section-depends:
+      #put dependency libs here
+    tools:
+      __common__:
+        config:
+          __common__:
+            as_defines:
+            cc_defines:
+              __CORTEX_M4F:
+            cxx_defines:
+            ld_flags:
+            cc_include:
+              - path: rtos/rtx/TARGET_CORTEX_M/TARGET_RTOS_M4_M7
+                rootdir: "mbed_path"
+            cxx_include:
+              - path: rtos/rtx/TARGET_CORTEX_M/TARGET_RTOS_M4_M7
+                rootdir: "mbed_path"
+  tools:
+    iar:
+      files:
+        - path        : rtos/rtx/TARGET_CORTEX_M/TARGET_RTOS_M4_M7/TOOLCHAIN_IAR/HAL_CM4.S
+          rootdir:      "mbed_path"
+          virtual-dir   : mbed:portable
+        - path        : rtos/rtx/TARGET_CORTEX_M/TARGET_RTOS_M4_M7/TOOLCHAIN_IAR/SVC_Table.S
+          rootdir:      "mbed_path"
+          virtual-dir   : mbed:portable
+    mdk:
+      files:
+        - path        : rtos/rtx/TARGET_CORTEX_M/TARGET_RTOS_M4_M7/TOOLCHAIN_ARM/HAL_CM4.c
+          rootdir:      "mbed_path"
+          virtual-dir   : mbed:portable
+        - path        : rtos/rtx/TARGET_CORTEX_M/TARGET_RTOS_M4_M7/TOOLCHAIN_ARM/SVC_Table.S
+          rootdir:      "mbed_path"
+          virtual-dir   : mbed:portable
+    armgcc:
+      files:
+        - path        : rtos/rtx/TARGET_CORTEX_M/TARGET_RTOS_M4_M7/TOOLCHAIN_ARM/HAL_CM4.S
+          rootdir:      "mbed_path"
+          virtual-dir   : mbed:portable
+        - path        : rtos/rtx/TARGET_CORTEX_M/TARGET_RTOS_M4_M7/TOOLCHAIN_ARM/SVC_Table.S
+          rootdir:      "mbed_path"
+          virtual-dir   : mbed:portable
+
+
+
+
+
+
+

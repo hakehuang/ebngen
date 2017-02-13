@@ -1,0 +1,8 @@
+__load__:
+  - targets/nxp/sdk/drv_sdramc.yml
+
+sdramc:
+  configuration:
+    meta_components:
+
+      - sdramc

@@ -1,0 +1,9 @@
+__load__:
+  - targets/nxp/sdk/drv_mu.yml
+
+mu:
+  configuration:
+    meta_components:
+
+      - mu
+

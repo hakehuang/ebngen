@@ -1,0 +1,9 @@
+__load__:
+  - targets/nxp/sdk/drv_flexio.yml
+
+flexio:
+  configuration:
+    meta_components:
+
+      - flexio
+

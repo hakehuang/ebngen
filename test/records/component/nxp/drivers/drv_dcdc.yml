@@ -1,0 +1,8 @@
+__load__:
+  - targets/nxp/sdk/drv_dcdc.yml
+
+dcdc:
+  configuration:
+    meta_components:
+
+      - dcdc

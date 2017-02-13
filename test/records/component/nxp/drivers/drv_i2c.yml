@@ -1,0 +1,9 @@
+__load__:
+  - targets/nxp/sdk/drv_i2c.yml
+
+i2c:
+  configuration:
+    meta_components:
+
+      - i2c
+

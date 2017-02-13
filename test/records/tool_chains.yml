@@ -1,0 +1,106 @@
+#add too-chain and target support here
+
+__common__:
+  configuration:
+    tools:
+      ###
+      ### Common tool settings
+      ###
+      __common__:
+        config:
+          __common__:
+            cc_flags    : []
+            as_flags    : []
+            as_flags    : []
+            ld_flags    : []
+            cxx_flags    : []
+            cc_defines   : {}
+            as_defines   : {}
+            cxx_defines   : {}
+            cc_include   : []
+            as_include   : []
+            cp_defines    : {}
+          # define debug configuration
+          debug:
+            identifier  : Debug
+            target      : debug
+            cc_defines:
+              DEBUG:
+            cxx_defines:
+              DEBUG:
+            as_defines:
+          # define release configuration
+          release:
+            identifier  : Release
+            target      : release
+            cc_defines:
+              NDEBUG:
+        load_to:
+          debug: {}
+          release: {}
+
+      ###
+      ### IAR declaration
+      ###
+      iar               :
+        config:
+          __common__:
+            cc_defines:
+              TOOLCHAIN_IAR:
+            cxx_defines:
+              TOOLCHAIN_IAR:
+        project-templates:
+          - templates/iar/general.eww
+          - templates/iar/app_generic_nMISRA/appgeneric.ewd
+          - templates/iar/app_generic_nMISRA/appgeneric.ewp
+
+      ###
+      ### Keil declaration
+      ###
+      mdk               :
+        project-templates:
+          - templates/mdk/general.uvmpw
+        config:
+          __common__:
+            cc_defines:
+              KEIL:
+              TOOLCHAIN_ARM_STD:
+            cxx_defines:
+              TOOLCHAIN_ARM_STD:
+
+      ###
+      ### CMake declaration
+      ###
+      armgcc             :
+        config:
+          __common__:
+            cc_defines:
+              TOOLCHAIN_GCC:
+            cxx_defines:
+              TOOLCHAIN_GCC:
+        group: cmake
+        project-templates:
+          - templates/cmake/CMakeLists.txt
+          - tool_chains/armgcc.cmake
+
+      ###
+      ### KDS declaration
+      ###
+      kds               :
+        config:
+          __common__:
+            cc_defines:
+              KDS:
+
+      ###
+      ### atollic declaration
+      ###
+      atl               :
+        config:
+          __common__:
+            cc_defines:
+              ATL:
+
+
+
+

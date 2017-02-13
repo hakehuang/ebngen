@@ -1,0 +1,8 @@
+__load__:
+  - targets/nxp/sdk/drv_flexio_spi_dma.yml
+
+flexio_spi_dma:
+  configuration:
+    meta_components:
+
+      - flexio_spi_dma

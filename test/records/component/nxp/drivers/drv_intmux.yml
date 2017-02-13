@@ -1,0 +1,9 @@
+__load__:
+  - targets/nxp/sdk/drv_intmux.yml
+
+intmux:
+  configuration:
+    meta_components:
+
+      - intmux
+

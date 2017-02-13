@@ -1,0 +1,8 @@
+__load__:
+  - targets/nxp/sdk/drv_rnga.yml
+
+rnga:
+  configuration:
+    meta_components:
+
+      - rnga

@@ -1,0 +1,334 @@
+__hierarchy__:
+  configuration:
+    tools:
+      __common__:
+        config:
+          __common__:
+            cc_include:
+              - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F/device
+                rootdir: "mbed_path"
+              - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F/drivers
+                rootdir: "mbed_path"
+              - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F
+                rootdir: "mbed_path"
+            cxx_include:
+              - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F/device
+                rootdir: "mbed_path"
+              - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F/drivers
+                rootdir: "mbed_path"
+              - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F
+                rootdir: "mbed_path"
+  tools:
+    iar:
+      files:
+        - path        : targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F/device/TOOLCHAIN_IAR/startup_MK64F12.S
+          virtual-dir   : startup
+          rootdir       : "mbed_path"
+    mdk:
+      files:
+        - path        : targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F/device/TOOLCHAIN_ARM_STD/startup_MK64F12.S
+          virtual-dir   : startup
+          rootdir       : "mbed_path"
+        - path        : targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F/device/TOOLCHAIN_ARM_STD/sys.cpp
+          virtual-dir   : startup
+          rootdir       : "mbed_path"
+    kds:
+      files:
+        - path        : targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F/device/TOOLCHAIN_GCC_ARM/startup_MK64F12.S
+          virtual-dir   : startup
+          rootdir       : "mbed_path"
+    armgcc:
+      files:
+        - path        : targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F/device/TOOLCHAIN_GCC_ARM/startup_MK64F12.S
+          virtual-dir   : startup
+          rootdir       : "mbed_path"
+    atl:
+      files:
+        - path        : targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F/device/TOOLCHAIN_GCC_ARM/startup_MK64F12.S
+          virtual-dir   : startup
+          rootdir       : "mbed_path"
+  modules:
+    clock:
+      name: clock
+      files:
+        - path        : targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F/drivers/fsl_clock.c
+          virtual-dir   : clock
+          rootdir       : "mbed_path"
+        - path        : targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F/drivers/fsl_clock.h
+          virtual-dir   : clock
+          rootdir       : "mbed_path"
+    device:
+      name: device
+      files:
+        - path        : targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F/device/MK64F12.h
+          virtual-dir   : device
+          rootdir       : "mbed_path"
+        - path        : targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F/device/MK64F12_features.h
+          virtual-dir   : device
+          rootdir       : "mbed_path"
+        - path        : targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F/device/cmsis.h
+          virtual-dir   : device
+          rootdir       : "mbed_path"
+        - path        : targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F/device/cmsis_nvic.h
+          virtual-dir   : device
+          rootdir       : "mbed_path"
+        - path        : targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F/device/fsl_device_registers.h
+          virtual-dir   : device
+          rootdir       : "mbed_path"
+        - path        : targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F/device/system_MK64F12.h
+          virtual-dir   : device
+          rootdir       : "mbed_path"
+        - path        : targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F/device/cmsis_nvic.c
+          virtual-dir   : device
+          rootdir       : "mbed_path"
+        - path        : targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F/device/system_MK64F12.c
+          virtual-dir   : device
+          rootdir       : "mbed_path"    
+    porting:
+      name: porting
+      files:
+        - path        : targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F/device/MK64F12.h
+          virtual-dir   : porting
+          rootdir       : "mbed_path"
+        - path        : targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F/device/MK64F12_features.h
+          virtual-dir   : porting
+          rootdir       : "mbed_path"
+        - path        : targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F/device/cmsis.h
+          virtual-dir   : porting
+          rootdir       : "mbed_path"
+        - path        : targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F/device/cmsis_nvic.h
+          virtual-dir   : porting
+          rootdir       : "mbed_path"
+        - path        : targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F/device/fsl_device_registers.h
+          virtual-dir   : porting
+          rootdir       : "mbed_path"
+        - path        : targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F/device/system_MK64F12.h
+          virtual-dir   : porting
+          rootdir       : "mbed_path"
+        - path        : targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F/peripheral_clock_defines.h
+          virtual-dir   : porting
+          rootdir       : "mbed_path"
+        - path        : targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F/pwmout_api.c
+          virtual-dir   : porting
+          rootdir       : "mbed_path"
+        - path        : targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F/serial_api.c
+          virtual-dir   : porting
+          rootdir       : "mbed_path"
+        - path        : targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F/spi_api.c
+          virtual-dir   : porting
+          rootdir       : "mbed_path"
+        - path        : targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F/storage_driver.c
+          virtual-dir   : porting
+          rootdir       : "mbed_path"
+        - path        : targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F/trng_api.c
+          virtual-dir   : porting
+          rootdir       : "mbed_path"
+        - path        : targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F/us_ticker.c
+          virtual-dir   : porting
+          rootdir       : "mbed_path"
+
+MK64FN1M0xxx12:
+  configuration:
+    tools:
+###
+### Iar settings
+###
+      iar:
+        config:
+          __common__:
+            as_flags:
+              - --cpu Cortex-M4
+              - --fpu=vfpv4_sp_d16
+            cc_flags:
+              - --cpu=Cortex-M4
+              - --fpu=vfpv4_sp_d16
+            cxx_flags:
+              - --cpu=Cortex-M4
+              - --fpu=vfpv4_sp_d16
+            cc_defines:
+              CPU_MK64FN1M0VMD12:
+            cp_defines:
+              MK64FN1M0xxx12: "Freescale MK64FN1M0xxx12"
+
+        load-to:
+          debug:
+            target      : intflash
+            identifier  : Debug
+            config      : debug
+            linker-file : targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F/device/TOOLCHAIN_IAR/MK64FN1M0xxx12.icf
+            rootdir     : "mbed_path"
+          release:
+            target      : intflash
+            identifier  : Release
+            config      : release
+            linker-file : targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F/device/TOOLCHAIN_IAR/MK64FN1M0xxx12.icf
+            rootdir     : "mbed_path"
+
+###
+### Keil settings
+###
+      mdk:
+        config:
+          __common__:
+            as_flags:
+              - --cpu Cortex-M4.fp
+            cc_flags:
+              - --cpu Cortex-M4.fp
+              - --library_type=standardlib
+              - --c99 
+              - --diag_suppress=1296,186
+              - --library_interface=armcc
+            cxx_flags:
+              - --cpu Cortex-M4.fp
+              - --library_type=standardlib
+              - --c99 
+              - --diag_suppress=1296,186
+              - --library_interface=armcc
+            ld_flags:
+              - --cpu Cortex-M4.fp
+            cc_defines:
+              CPU_MK64FN1M0VMD12:
+            cp_defines:
+              MK64FN1M0xxx12: "Freescale"
+
+        load-to:
+          debug:
+            target      : intflash
+            identifier  : Debug
+            config      : debug
+            linker-file : targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F/device/TOOLCHAIN_ARM_STD/MK64FN1M0xxx12.sct
+            rootdir     : "mbed_path"
+          release:
+            target      : intflash
+            identifier  : Release
+            config      : release
+            linker-file : targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F/device/TOOLCHAIN_ARM_STD/MK64FN1M0xxx12.sct
+            rootdir     : "mbed_path"
+
+###
+### CMake files
+###
+      armgcc:
+        config:
+          __common__:
+            as_flags:
+              - -mcpu=cortex-m4
+              - -mfloat-abi=hard
+              - -mfpu=fpv4-sp-d16
+            cc_flags:
+              - -mcpu=cortex-m4
+              - -mfloat-abi=hard 
+              - -mfpu=fpv4-sp-d16
+              - -mthumb
+            cxx_flags:
+              - -mcpu=cortex-m4
+              - -mfloat-abi=hard
+              - -mfpu=fpv4-sp-d16
+              - -mthumb
+              - -MMD
+              - -MP
+            ld_flags:
+              - -mcpu=cortex-m4
+              - -mfloat-abi=hard
+              - -mfpu=fpv4-sp-d16
+            cc_defines:
+              CPU_MK64FN1M0VMD12:
+            cp_defines:
+              MK64FN1M0xxx12: "Freescale Semiconductor"
+        load-to:
+          debug:
+            target      : 128kb-ram
+            identifier  : Debug
+            config      : debug
+            linker-file : targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F/device/TOOLCHAIN_GCC_ARM/MK64FN1M0xxx12.ld
+            rootdir     : "mbed_path"
+          release:
+            target      : 128kb-ram
+            identifier  : Release
+            config      : release
+            linker-file : targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F/device/TOOLCHAIN_GCC_ARM/MK64FN1M0xxx12.ld
+            rootdir     : "mbed_path"
+
+###
+### kds settings
+###
+      kds:
+        config:
+          __common__:
+            as_flags:
+              - -mcpu=cortex-m4
+              - -Wall
+              - -mfloat-abi=hard
+              - -mfpu=fpv4-sp-d16
+            cc_flags:
+              - -mcpu=cortex-m4
+              - -Wall
+              - -mfloat-abi=hard
+              - -mfpu=fpv4-sp-d16
+            cxx_flags:
+              - -mcpu=cortex-m4
+              - -Wall
+              - -mfloat-abi=hard
+              - -mfpu=fpv4-sp-d16
+            ld_flags:
+              - -mfloat-abi=hard
+              - -mfpu=fpv4-sp-d16
+            cc_defines:
+              CPU_MK64FN1M0VMD12:
+
+        load-to:
+          debug:
+            target      : debug
+            identifier  : Debug
+            config      : debug
+            linker-file : targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F/devices/TOOLCHAIN_GCC_ARM/MK64FN1M0xxx12.ld
+            rootdir     : "mbed_path"
+          release:
+            target      : release
+            identifier  : Release
+            config      : release
+            linker-file : targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F/devices/TOOLCHAIN_GCC_ARM/MK64FN1M0xxx12.ld
+            rootdir     : "mbed_path"
+
+###
+### kds settings
+###
+      atl:
+        config:
+          __common__:
+            as_flags:
+              - -mcpu=cortex-m4
+              - -Wall
+              - -mfloat-abi=hard
+              - -mfpu=fpv4-sp-d16
+            cc_flags:
+              - -mcpu=cortex-m4
+              - -Wall
+              - -mfloat-abi=hard
+              - -mfpu=fpv4-sp-d16
+            cx_flags:
+              - -mcpu=cortex-m4
+              - -Wall
+              - -mfloat-abi=hard
+              - -mfpu=fpv4-sp-d16
+            ld_flags:
+              - -mfloat-abi=hard
+              - -mfpu=fpv4-sp-d16
+            cc_defines:
+              CPU_MK64FN1M0VMD12:
+            cp_defines:
+              MK64FN1M0xxx12: "MK64FN1M0xxx12"
+
+        load-to:
+          debug:
+            target      : debug
+            identifier  : Debug
+            config      : debug
+            linker-file : targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F/devices/TOOLCHAIN_GCC_ARM/MK64FN1M0xxx12.ld
+            rootdir     : "mbed_path"
+          release:
+            target      : release
+            identifier  : Release
+            config      : release
+            linker-file : targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F/devices/TOOLCHAIN_GCC_ARM/MK64FN1M0xxx12.ld
+            rootdir     : "mbed_path"

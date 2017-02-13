@@ -1,0 +1,8 @@
+__load__:
+  - targets/nxp/sdk/drv_enc.yml
+
+enc:
+  configuration:
+    meta_components:
+
+      - enc

@@ -1,0 +1,20 @@
+qspi_edma:
+  configuration:
+    tools:
+      __common__:
+        config:
+          __common__:
+            cc_include:
+              - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/sdk_drivers
+                rootdir: "mbed_path"
+            cxx_include:
+              - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/sdk_drivers
+                rootdir: "mbed_path"
+  modules:
+    qspi_edma:
+      virtual-dir: drivers
+      files:
+      - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/sdk_drivers/fsl_qspi_edma.h
+        rootdir: "mbed_path"
+      - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/sdk_drivers/fsl_qspi_edma.c
+        rootdir: "mbed_path"

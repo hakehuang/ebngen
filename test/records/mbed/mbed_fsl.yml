@@ -1,0 +1,80 @@
+
+mbed_os_fsl:
+  configuration:
+    section-type: component
+    section-depends:
+      #put dependency libs here
+    tools:
+      __common__:
+        config:
+          __common__:
+            as_defines:
+            cc_defines:
+            cxx_defines:
+            ld_flags:
+            cc_include:
+              - path: targets/TARGET_Freescale
+                rootdir: "mbed_path"
+              - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/api
+                rootdir: "mbed_path"
+            cxx_include:
+              - path: targets/TARGET_Freescale
+                rootdir: "mbed_path"
+              - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/api
+                rootdir: "mbed_path"
+  modules:
+    api:
+      name: api
+      files:
+        - path        : targets/TARGET_Freescale/mbed_rtx.h
+          virtual-dir   : api
+          rootdir       : "mbed_path"
+        - path        : targets/TARGET_Freescale/TARGET_KSDK2_MCUS/api/PeripheralPins.h
+          virtual-dir   : api
+          rootdir       : "mbed_path"
+        - path        : targets/TARGET_Freescale/TARGET_KSDK2_MCUS/api/PortNames.h
+          virtual-dir   : api
+          rootdir       : "mbed_path"
+        - path        : targets/TARGET_Freescale/TARGET_KSDK2_MCUS/api/gpio_object.h
+          virtual-dir   : api
+          rootdir       : "mbed_path"
+        - path        : targets/TARGET_Freescale/TARGET_KSDK2_MCUS/api/objects.h
+          virtual-dir   : api
+          rootdir       : "mbed_path"
+        - path        : targets/TARGET_Freescale/TARGET_KSDK2_MCUS/api/analogin_api.c
+          virtual-dir   : api
+          rootdir       : "mbed_path"
+        - path        : targets/TARGET_Freescale/TARGET_KSDK2_MCUS/api/analogout_api.c
+          virtual-dir   : api
+          rootdir       : "mbed_path"
+        - path        : targets/TARGET_Freescale/TARGET_KSDK2_MCUS/api/gpio_api.c
+          virtual-dir   : api
+          rootdir       : "mbed_path"
+        - path        : targets/TARGET_Freescale/TARGET_KSDK2_MCUS/api/gpio_irq_api.c
+          virtual-dir   : api
+          rootdir       : "mbed_path"
+        - path        : targets/TARGET_Freescale/TARGET_KSDK2_MCUS/api/i2c_api.c
+          virtual-dir   : api
+          rootdir       : "mbed_path"
+        - path        : targets/TARGET_Freescale/TARGET_KSDK2_MCUS/api/lp_ticker.c
+          virtual-dir   : api
+          rootdir       : "mbed_path"
+        - path        : targets/TARGET_Freescale/TARGET_KSDK2_MCUS/api/pinmap.c
+          virtual-dir   : api
+          rootdir       : "mbed_path"
+        - path        : targets/TARGET_Freescale/TARGET_KSDK2_MCUS/api/port_api.c
+          virtual-dir   : api
+          rootdir       : "mbed_path"
+        - path        : targets/TARGET_Freescale/TARGET_KSDK2_MCUS/api/rtc_api.c
+          virtual-dir   : api
+          rootdir       : "mbed_path"
+        - path        : targets/TARGET_Freescale/TARGET_KSDK2_MCUS/api/sleep.c
+          virtual-dir   : api
+          rootdir       : "mbed_path"
+
+
+
+
+
+
+

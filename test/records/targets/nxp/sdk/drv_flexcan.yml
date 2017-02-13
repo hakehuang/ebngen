@@ -1,0 +1,20 @@
+flexcan:
+  configuration:
+    tools:
+      __common__:
+        config:
+          __common__:
+            cc_include:
+              - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/sdk_drivers
+                rootdir: "mbed_path"
+            cxx_include:
+              - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/sdk_drivers
+                rootdir: "mbed_path"
+  modules:
+    flexcan:
+      virtual-dir: drivers
+      files:
+      - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/sdk_drivers/fsl_flexcan.h
+        rootdir: "mbed_path"
+      - source: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/sdk_drivers/fsl_flexcan.c
+        rootdir: "mbed_path"

@@ -1,0 +1,22 @@
+smartcard_emvsim:
+  configuration:
+    tools:
+      __common__:
+        config:
+          __common__:
+            cc_include:
+              - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/sdk_drivers
+                rootdir: "mbed_path"
+            cxx_include:
+              - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/sdk_drivers
+                rootdir: "mbed_path"
+  modules:
+    smartcard_emvsim:
+      virtual-dir: drivers
+      files:
+      - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/sdk_drivers/fsl_smartcard.h
+        rootdir: "mbed_path"
+      - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/sdk_drivers/fsl_smartcard_emvsim.h
+        rootdir: "mbed_path"
+      - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/sdk_drivers/fsl_smartcard_emvsim.c
+        rootdir: "mbed_path"

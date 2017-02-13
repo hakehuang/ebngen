@@ -1,0 +1,8 @@
+__load__:
+  - targets/nxp/sdk/drv_rcm.yml
+
+rcm:
+  configuration:
+    meta_components:
+
+      - rcm

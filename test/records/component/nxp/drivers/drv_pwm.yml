@@ -1,0 +1,8 @@
+__load__:
+  - targets/nxp/sdk/drv_pwm.yml
+
+pwm:
+  configuration:
+    meta_components:
+
+      - pwm

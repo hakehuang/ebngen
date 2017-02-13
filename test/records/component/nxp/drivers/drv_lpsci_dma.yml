@@ -1,0 +1,8 @@
+__load__:
+  - targets/nxp/sdk/drv_lpsci_dma.yml
+
+lpsci_dma:
+  configuration:
+    meta_components:
+
+      - lpsci_dma

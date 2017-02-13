@@ -1,0 +1,8 @@
+__load__:
+  - targets/nxp/sdk/drv_lpc_crc.yml
+
+lpc_crc:
+  configuration:
+    meta_components:
+
+      - lpc_crc

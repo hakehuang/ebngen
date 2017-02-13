@@ -1,0 +1,8 @@
+__load__:
+  - targets/nxp/sdk/drv_common.yml
+
+common:
+  configuration:
+    meta_components:
+
+      - common

@@ -1,0 +1,8 @@
+__load__:
+  - targets/nxp/sdk/drv_flexcan.yml
+
+flexcan:
+  configuration:
+    meta_components:
+
+      - flexcan

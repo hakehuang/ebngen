@@ -1,0 +1,8 @@
+__load__:
+  - targets/nxp/sdk/drv_cmt.yml
+
+cmt:
+  configuration:
+    meta_components:
+
+      - cmt

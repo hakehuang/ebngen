@@ -1,0 +1,8 @@
+__load__:
+  - targets/nxp/sdk/drv_sim.yml
+
+sim:
+  configuration:
+    meta_components:
+
+      - sim

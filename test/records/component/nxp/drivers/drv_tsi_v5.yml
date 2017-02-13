@@ -1,0 +1,9 @@
+
+__load__:
+  - targets/nxp/sdk/drv_tsi_v5.yml
+
+tsi_v5:
+  configuration:
+    meta_components:
+
+      - tsi_v5

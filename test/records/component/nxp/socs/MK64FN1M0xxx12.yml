@@ -1,0 +1,9 @@
+__load__:
+  - targets/nxp/socs/MK64FN1M0xxx12.yml
+
+MK64FN1M0xxx12:
+  configuration:
+    section-type: component
+    meta_components:
+
+      - MK64FN1M0xxx12

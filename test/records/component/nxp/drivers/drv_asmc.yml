@@ -1,0 +1,10 @@
+__load__:
+  - targets/nxp/sdk/drv_asmc.yml
+
+asmc:
+  configuration:
+    section-type: component
+    meta_components:
+
+      - asmc
+

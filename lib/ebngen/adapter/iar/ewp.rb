@@ -215,13 +215,13 @@ module EWP
         files_hash[virtual_dir] = Array.new if files_hash[virtual_dir].nil?
         files_hash[virtual_dir].insert(-1, {'path' => path, 'rootdir' => rootdir})
       else
-        files_hash["_"] = Array.new files_hash["_"].nil?
+        files_hash["_"] = Array.new if files_hash["_"].nil?
         files_hash["_"].insert(-1, {'path' => path, 'rootdir' => rootdir})
       end
     end #end source_hash
     doc.css("//group").each do |node|
-      gfiles = Nokogiri::XML::Node.new('file', node)
       files_hash[node.text].each do |file|
+        gfiles = Nokogiri::XML::Node.new('file', node)
         sfile = Nokogiri::XML::Node.new('name', gfiles)
         if file['rootdir']
           full_path = path_mod.fullpath(file['rootdir'],file['path'])
@@ -230,23 +230,21 @@ module EWP
         end
         sfile.content = File.join("$PROJ_DIR$", path_mod.relpath(proj_path, full_path))
         gfiles << sfile
+        node << gfiles
       end
-      node << gfiles
     end
     return if files_hash["_"].nil?
     files_hash["_"].each do |file|
       gfiles = Nokogiri::XML::Node.new('file', doc)
-      files_hash["_"].each do |file|
-        sfile = Nokogiri::XML::Node.new('name', gfiles)
-        if file['rootdir']
-          full_path = path_mod.fullpath(file['rootdir'],file['path'])
-        else
-          full_path = path_mod.fullpath('default_path',file['path'])
-        end
-        sfile.content = File.join("$PROJ_DIR$", path_mod.relpath(proj_path, full_path))
-        gfiles << sfile
+      sfile = Nokogiri::XML::Node.new('name', gfiles)
+      if file['rootdir']
+        full_path = path_mod.fullpath(file['rootdir'],file['path'])
+      else
+        full_path = path_mod.fullpath('default_path',file['path'])
       end
-      doc.root << gfiles          
+      sfile.content = File.join("$PROJ_DIR$", path_mod.relpath(proj_path, full_path))
+      gfiles << sfile
+      doc.root << gfiles
     end
   end
 end

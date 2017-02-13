@@ -1,0 +1,9 @@
+__load__:
+  - targets/nxp/sdk/drv_gpio.yml
+
+gpio:
+  configuration:
+    section-type: component
+    meta_components:
+
+      - gpio

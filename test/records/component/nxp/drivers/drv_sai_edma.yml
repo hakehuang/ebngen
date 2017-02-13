@@ -1,0 +1,8 @@
+__load__:
+  - targets/nxp/sdk/drv_sai_edma.yml
+
+sai_edma:
+  configuration:
+    meta_components:
+
+      - sai_edma

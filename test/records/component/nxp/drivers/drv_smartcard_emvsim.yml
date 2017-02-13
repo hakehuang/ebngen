@@ -1,0 +1,8 @@
+__load__:
+  - targets/nxp/sdk/drv_smartcard_emvsim.yml
+
+smartcard_emvsim:
+  configuration:
+    meta_components:
+
+      - smartcard_emvsim

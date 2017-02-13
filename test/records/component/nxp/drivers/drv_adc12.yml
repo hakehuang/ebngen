@@ -1,0 +1,9 @@
+__load__:
+  - targets/nxp/sdk/drv_adc12.yml
+
+adc12:
+  configuration:
+    section-type: component
+    meta_components:
+
+      - adc12

@@ -1,0 +1,9 @@
+__load__:
+  - targets/nxp/sdk/drv_rtc.yml
+
+rtc:
+  configuration:
+    meta_components:
+
+      - rtc
+

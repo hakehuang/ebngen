@@ -1,0 +1,21 @@
+flexio_uart:
+  configuration:
+    tools:
+      __common__:
+        config:
+          __common__:
+            cc_include:
+              - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/sdk_drivers
+                rootdir: "mbed_path"
+            cxx_include:
+              - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/sdk_drivers
+                rootdir: "mbed_path"
+  modules:
+    flexio_uart:
+      virtual-dir: drivers
+      files:
+      - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/sdk_drivers/fsl_flexio_uart.c
+        rootdir: "mbed_path"
+      - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/sdk_drivers/fsl_flexio_uart.h
+        rootdir: "mbed_path"
+

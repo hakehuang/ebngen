@@ -1,0 +1,8 @@
+__load__:
+  - targets/nxp/sdk/drv_spi_dma.yml
+
+spi_dma:
+  configuration:
+    meta_components:
+
+      - spi_dma

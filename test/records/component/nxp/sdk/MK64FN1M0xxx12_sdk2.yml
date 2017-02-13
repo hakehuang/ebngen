@@ -1,0 +1,89 @@
+__load__:
+  - component/nxp/socs/MK64FN1M0xxx12.yml
+  - component/nxp/drivers/drv_common.yml
+  - component/nxp/drivers/drv_adc16.yml
+  - component/nxp/drivers/drv_cmp.yml
+  - component/nxp/drivers/drv_cmt.yml
+  - component/nxp/drivers/drv_crc.yml
+  - component/nxp/drivers/drv_dac.yml
+  - component/nxp/drivers/drv_dmamux.yml
+  - component/nxp/drivers/drv_dspi.yml
+  - component/nxp/drivers/drv_dspi_edma.yml
+  - component/nxp/drivers/drv_edma.yml
+  - component/nxp/drivers/drv_enet.yml
+  - component/nxp/drivers/drv_ewm.yml
+  - component/nxp/drivers/drv_flash.yml
+  - component/nxp/drivers/drv_flexbus.yml
+  - component/nxp/drivers/drv_flexcan.yml
+  - component/nxp/drivers/drv_ftm.yml
+  - component/nxp/drivers/drv_gpio.yml
+  - component/nxp/drivers/drv_i2c.yml
+  - component/nxp/drivers/drv_i2c_edma.yml
+  - component/nxp/drivers/drv_llwu.yml
+  - component/nxp/drivers/drv_lptmr.yml
+  - component/nxp/drivers/drv_mpu.yml
+  - component/nxp/drivers/drv_pdb.yml
+  - component/nxp/drivers/drv_pit.yml
+  - component/nxp/drivers/drv_pmc.yml
+  - component/nxp/drivers/drv_port.yml
+  - component/nxp/drivers/drv_rcm.yml
+  - component/nxp/drivers/drv_rnga.yml
+  - component/nxp/drivers/drv_rtc.yml
+  - component/nxp/drivers/drv_sai.yml
+  - component/nxp/drivers/drv_sai_edma.yml
+  - component/nxp/drivers/drv_sdhc.yml
+  - component/nxp/drivers/drv_sim.yml
+  - component/nxp/drivers/drv_smc.yml
+  - component/nxp/drivers/drv_uart.yml
+  - component/nxp/drivers/drv_uart_edma.yml
+  - component/nxp/drivers/drv_vref.yml
+  - component/nxp/drivers/drv_watchdog.yml
+
+
+__hierarchy__:
+  configuration:
+    section-type: component 
+
+MK64FN1M0xxx12_sdk2:
+  __add__:
+    - MK64FN1M0xxx12
+    - adc16
+    - cmp
+    - cmt
+    - crc 
+    - dac 
+    - dmamux 
+    - dspi 
+    - dspi_edma 
+    - edma 
+    - enet 
+    - ewm 
+    - flash
+    - flexbus 
+    - flexcan 
+    - ftm 
+    - gpio
+    - lptmr
+    - llwu 
+    - mpu 
+    - pit 
+    - pdb 
+    - pmc 
+    - port 
+    - rcm 
+    - rnga 
+    - rtc 
+    - smc 
+    - sim 
+    - sdhc 
+    - sai 
+    - sai_edma 
+    - uart
+    - uart_edma 
+    - vref 
+    - watchdog
+  configuration:
+    meta_components:
+
+      - MK64FN1M0xxx12_sdk2
+

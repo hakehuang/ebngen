@@ -1,0 +1,9 @@
+__load__:
+  - targets/nxp/sdk/drv_dspi.yml
+
+dspi:
+  configuration:
+    meta_components:
+
+      - dspi
+

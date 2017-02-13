@@ -1,0 +1,8 @@
+__load__:
+  - targets/nxp/sdk/drv_smartcard_uart.yml
+
+smartcard_uart:
+  configuration:
+    meta_components:
+
+      - smartcard_uart

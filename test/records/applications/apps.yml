@@ -1,0 +1,21 @@
+#add all supported applications here
+__load__:
+  - tool_chains.yml
+  - applications/common/hello_world.yml
+
+__hierarchy__:
+  mode: post-process-app
+  configuration:
+    section-type        : application
+    section-depends:
+      #put dependency libs here
+    tools:
+      __common__:
+        config:
+          __common__:
+            as_defines: {}
+            cc_defines: {}
+            cxx_defines: {}
+            ld_flags: []
+            cc_include: []
+

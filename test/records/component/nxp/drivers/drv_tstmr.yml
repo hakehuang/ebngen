@@ -1,0 +1,10 @@
+
+__load__:
+  - targets/nxp/sdk/drv_tstmr.yml
+
+tstmr:
+  configuration:
+    meta_components:
+
+      - tstmr
+

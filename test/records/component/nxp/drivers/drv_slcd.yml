@@ -1,0 +1,8 @@
+__load__:
+  - targets/nxp/sdk/drv_slcd.yml
+
+slcd:
+  configuration:
+    meta_components:
+
+      - slcd

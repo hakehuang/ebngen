@@ -1,0 +1,8 @@
+__load__:
+  - targets/nxp/sdk/drv_cmp.yml
+
+cmp:
+  configuration:
+    meta_components:
+
+      - cmp

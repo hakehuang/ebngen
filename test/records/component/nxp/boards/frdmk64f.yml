@@ -1,0 +1,9 @@
+__load__:
+  - targets/nxp/boards/frdmk64f.yml
+
+frdmk64f:
+  configuration:
+    section-type: component
+    meta_components:
+
+      - frdmk64f

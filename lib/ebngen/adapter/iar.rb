@@ -94,7 +94,7 @@ class Project
           		if methods.include?("target_#{subkey}".to_sym)
             		send("target_#{subkey}".to_sym, t, value[subkey])
           		else
-            		puts "#{key} is not processed"
+            		puts "#{subkey} is not processed"
           		end
 			end
 		end

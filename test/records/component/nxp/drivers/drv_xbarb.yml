@@ -1,0 +1,8 @@
+__load__:
+  - targets/nxp/sdk/drv_xbarb.yml
+
+xbarb:
+  configuration:
+    meta_components:
+
+      - xbarb

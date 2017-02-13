@@ -1,0 +1,133 @@
+__load__:
+  - mbed/mbed.yml
+
+__hierarchy__:
+  configuration:
+    section-depends:
+      #put dependency libs here
+    tools:
+      __common__:
+        config:
+          __common__:
+            as_defines:
+            cc_defines:
+            cxx_defines:
+            ld_flags:
+            cc_include:
+              - path: rtos/rtx/TARGET_CORTEX_M
+                rootdir: "mbed_path"
+            cxx_include:
+              - path: rtos/rtx/TARGET_CORTEX_M
+                rootdir: "mbed_path"
+  modules:
+    rtos:
+      name: rtos
+      files:
+        - path        : rtos/rtx/TARGET_CORTEX_M/RTX_CM_lib.h
+          virtual-dir   : rtos
+          rootdir       : "mbed_path"
+        - path        : rtos/rtx/TARGET_CORTEX_M/RTX_Config.h
+          virtual-dir   : rtos
+          rootdir       : "mbed_path"
+        - path        : rtos/rtx/TARGET_CORTEX_M/cmsis_os.h
+          virtual-dir   : rtos
+          rootdir       : "mbed_path"
+        - path        : rtos/rtx/TARGET_CORTEX_M/rt_Event.h
+          virtual-dir   : rtos
+          rootdir       : "mbed_path"
+        - path        : rtos/rtx/TARGET_CORTEX_M/rt_HAL_CM.h
+          virtual-dir   : rtos
+          rootdir       : "mbed_path"
+        - path        : rtos/rtx/TARGET_CORTEX_M/rt_List.h
+          virtual-dir   : rtos
+          rootdir       : "mbed_path"
+        - path        : rtos/rtx/TARGET_CORTEX_M/rt_Mailbox.h
+          virtual-dir   : rtos
+          rootdir       : "mbed_path"
+        - path        : rtos/rtx/TARGET_CORTEX_M/rt_MemBox.h
+          virtual-dir   : rtos
+          rootdir       : "mbed_path"
+        - path        : rtos/rtx/TARGET_CORTEX_M/rt_Memory.h
+          virtual-dir   : rtos
+          rootdir       : "mbed_path"
+        - path        : rtos/rtx/TARGET_CORTEX_M/rt_Mutex.h
+          virtual-dir   : rtos
+          rootdir       : "mbed_path"
+        - path        : rtos/rtx/TARGET_CORTEX_M/rt_OsEventObserver.h
+          virtual-dir   : rtos
+          rootdir       : "mbed_path"
+        - path        : rtos/rtx/TARGET_CORTEX_M/rt_Robin.h
+          virtual-dir   : rtos
+          rootdir       : "mbed_path"
+        - path        : rtos/rtx/TARGET_CORTEX_M/rt_Semaphore.h
+          virtual-dir   : rtos
+          rootdir       : "mbed_path"
+        - path        : rtos/rtx/TARGET_CORTEX_M/rt_System.h
+          virtual-dir   : rtos
+          rootdir       : "mbed_path"
+        - path        : rtos/rtx/TARGET_CORTEX_M/rt_Task.h
+          virtual-dir   : rtos
+          rootdir       : "mbed_path"
+        - path        : rtos/rtx/TARGET_CORTEX_M/rt_Time.h
+          virtual-dir   : rtos
+          rootdir       : "mbed_path"
+        - path        : rtos/rtx/TARGET_CORTEX_M/rt_Timer.h
+          virtual-dir   : rtos
+          rootdir       : "mbed_path"
+        - path        : rtos/rtx/TARGET_CORTEX_M/rt_TypeDef.h
+          virtual-dir   : rtos
+          rootdir       : "mbed_path"
+        - path        : rtos/rtos_idle.c
+          virtual-dir   : rtos
+          rootdir       : "mbed_path"
+        - path        : rtos/rtx/TARGET_CORTEX_M/HAL_CM.c
+          virtual-dir   : rtos
+          rootdir       : "mbed_path"
+        - path        : rtos/rtx/TARGET_CORTEX_M/RTX_Conf_CM.c
+          virtual-dir   : rtos
+          rootdir       : "mbed_path"
+        - path        : rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.c
+          virtual-dir   : rtos
+          rootdir       : "mbed_path"
+        - path        : rtos/rtx/TARGET_CORTEX_M/rt_Event.c
+          virtual-dir   : rtos
+          rootdir       : "mbed_path"
+        - path        : rtos/rtx/TARGET_CORTEX_M/rt_List.c
+          virtual-dir   : rtos
+          rootdir       : "mbed_path"
+        - path        : rtos/rtx/TARGET_CORTEX_M/rt_Mailbox.c
+          virtual-dir   : rtos
+          rootdir       : "mbed_path"
+        - path        : rtos/rtx/TARGET_CORTEX_M/rt_MemBox.c
+          virtual-dir   : rtos
+          rootdir       : "mbed_path"
+        - path        : rtos/rtx/TARGET_CORTEX_M/rt_Memory.c
+          virtual-dir   : rtos
+          rootdir       : "mbed_path"
+        - path        : rtos/rtx/TARGET_CORTEX_M/rt_Mutex.c
+          virtual-dir   : rtos
+          rootdir       : "mbed_path"
+        - path        : rtos/rtx/TARGET_CORTEX_M/rt_OsEventObserver.c
+          virtual-dir   : rtos
+          rootdir       : "mbed_path"
+        - path        : rtos/rtx/TARGET_CORTEX_M/rt_Robin.c
+          virtual-dir   : rtos
+          rootdir       : "mbed_path"
+        - path        : rtos/rtx/TARGET_CORTEX_M/rt_Semaphore.c
+          virtual-dir   : rtos
+          rootdir       : "mbed_path"
+        - path        : rtos/rtx/TARGET_CORTEX_M/rt_System.c
+          virtual-dir   : rtos
+          rootdir       : "mbed_path"
+        - path        : rtos/rtx/TARGET_CORTEX_M/rt_Task.c
+          virtual-dir   : rtos
+          rootdir       : "mbed_path"
+        - path        : rtos/rtx/TARGET_CORTEX_M/rt_Time.c
+          virtual-dir   : rtos
+          rootdir       : "mbed_path"
+        - path        : rtos/rtx/TARGET_CORTEX_M/rt_Timer.c
+          virtual-dir   : rtos
+          rootdir       : "mbed_path"
+
+
+

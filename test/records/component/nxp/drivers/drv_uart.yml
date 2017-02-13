@@ -1,0 +1,10 @@
+
+__load__:
+  - targets/nxp/sdk/drv_uart.yml
+
+uart:
+  configuration:
+    section-type: component
+    meta_components:
+
+      - uart

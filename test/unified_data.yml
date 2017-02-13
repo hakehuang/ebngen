@@ -1,118 +1,999 @@
 ---
-demo_project:
-  document:
-    board: demo_board
-    project_name: demo_project
-    project_root_dir: default_root_dir
-  cmake:
+hello_world:
+  meta_components:
+  - frdmk64f
+  - mbed_os
+  - mbed_os_fsl
+  - MK64FN1M0xxx12
+  - uart
+  - gpio
+  - smc
+  - pit
+  - enet
+  - common
+  - flash
+  iar:
     targets:
       debug:
-        cp_defines:
-          CPU_MK64FN1M0VMD12: 
-        as_predefines: {}
-        as_preincludes: []
-        as_defines:
-        - DEBUG
-        as_include: []
-        as_flags:
-        - "--cpu=cortex-m4"
-        - "--fpu=vfpv4_sp_d16"
-        - "-s"
-        - "-M'<>'"
-        - "-w+"
-        - "-j"
-        - "-S"
-        cc_predefines: {}
-        cc_preincludes: []
+        identifier: Debug
+        target: intflash
         cc_defines:
-          CPU_MK64FN1M0VMD12: 
           DEBUG: 
-          TWR_K64F120M: 
-          TOWER: 
+          TOOLCHAIN_IAR: 
+          FRDM_K64F120M: 
+          TARGET_K64F: 
+          __MBED__: 
+          DEVICE_STDIO_MESSAGES: 1
+          _DLIB_FILE_DESCRIPTOR: 1
+          __CORTEX_M4F: 
+          CPU_MK64FN1M0VMD12: 
+        cxx_defines:
+          DEBUG: 
+          TOOLCHAIN_IAR: 
+        as_defines: {}
+        ld_flags:
+        - "--skip_dynamic_initialization"
+        - "--threaded_lib"
         cc_include:
-        - path: test
-          rootdir: default_path
+        - path: hello_world
+          rootdir: app_path
+        - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F/TARGET_FRDM
+          rootdir: mbed_path
+        - path: "."
+          rootdir: mbed_path
+        - path: cmsis
+          rootdir: mbed_path
+        - path: drivers
+          rootdir: mbed_path
+        - path: events
+          rootdir: mbed_path
+        - path: events/equeue
+          rootdir: mbed_path
+        - path: rtos
+          rootdir: mbed_path
+        - path: platform
+          rootdir: mbed_path
+        - path: hal
+          rootdir: mbed_path
+        - path: hal/hal
+          rootdir: mbed_path
+        - path: hal/storage_abstraction
+          rootdir: mbed_path
+        - path: rtos/rtx/TARGET_CORTEX_M
+          rootdir: mbed_path
+        - path: rtos/rtx/TARGET_CORTEX_M/TARGET_RTOS_M4_M7
+          rootdir: mbed_path
+        - path: targets/TARGET_Freescale
+          rootdir: mbed_path
+        - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/api
+          rootdir: mbed_path
+        - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F/device
+          rootdir: mbed_path
+        - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F/drivers
+          rootdir: mbed_path
+        - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F
+          rootdir: mbed_path
+        - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/sdk_drivers
+          rootdir: mbed_path
         cc_flags:
-        - "-g"
-        - "-mthumb"
-        - "-mapcs"
-        - "-std=gnu99"
-        - "-mcpu=cortex-m4"
-        - "-mfloat-abi=hard"
-        - "-mfpu=fpv4-sp-d16"
-        - "-MMD"
-        - "-MP"
-        cxx_predefines: {}
-        cxx_preincludes: []
-        cxx_defines: {}
-        cxx_include: []
-        cxx_flags: []
-        ld_flags: []
+        - "-e"
+        - "--cpu=Cortex-M4"
+        - "--fpu=vfpv4_sp_d16"
+        as_flags:
+        - "--cpu Cortex-M4"
+        - "--fpu=vfpv4_sp_d16"
+        cxx_flags:
+        - "-e"
+        - "--cpu=Cortex-M4"
+        - "--fpu=vfpv4_sp_d16"
+        as_include: []
+        cp_defines:
+          MK64FN1M0xxx12: Freescale MK64FN1M0xxx12
+        cxx_include:
+        - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F/TARGET_FRDM
+          rootdir: mbed_path
+        - path: cmsis
+          rootdir: mbed_path
+        - path: drivers
+          rootdir: mbed_path
+        - path: events
+          rootdir: mbed_path
+        - path: events/equeue
+          rootdir: mbed_path
+        - path: rtos
+          rootdir: mbed_path
+        - path: hal
+          rootdir: mbed_path
+        - path: hal/hal
+          rootdir: mbed_path
+        - path: hal/storage_abstraction
+          rootdir: mbed_path
+        - path: platfrom
+          rootdir: mbed_path
+        - path: rtos/rtx/TARGET_CORTEX_M
+          rootdir: mbed_path
+        - path: rtos/rtx/TARGET_CORTEX_M/TARGET_RTOS_M4_M7
+          rootdir: mbed_path
+        - path: targets/TARGET_Freescale
+          rootdir: mbed_path
+        - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/api
+          rootdir: mbed_path
+        - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F/device
+          rootdir: mbed_path
+        - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F/drivers
+          rootdir: mbed_path
+        - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F
+          rootdir: mbed_path
+        - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/sdk_drivers
+          rootdir: mbed_path
         linker_file:
-          path: devices/MK64F12/gcc/MK64FN1M0xxx12_flash.ld
-          rootdir: default_path
-        outdir: build
-        tool_chain_set_spec: {}
-        tool_chain_add_spec: {}
-        binary_file: test_debug
+          path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F/device/TOOLCHAIN_IAR/MK64FN1M0xxx12.icf
+          rootdir: mbed_path
+        config: debug
+        libraries: []
       release:
-        cp_defines:
-          CPU_MK64FN1M0VMD12: 
-        as_predefines: {}
-        as_preincludes: []
-        as_defines:
-        - RELEASE
-        as_include: []
-        as_flags:
-        - "--cpu=cortex-m4"
-        - "--fpu=vfpv4_sp_d16"
-        - "-s"
-        - "-M'<>'"
-        - "-w+"
-        - "-j"
-        - "-S"
-        cc_predefines: {}
-        cc_preincludes: []
+        identifier: Release
+        target: intflash
         cc_defines:
+          NDEBUG: 
+          TOOLCHAIN_IAR: 
+          FRDM_K64F120M: 
+          TARGET_K64F: 
+          __MBED__: 
+          DEVICE_STDIO_MESSAGES: 1
+          _DLIB_FILE_DESCRIPTOR: 1
+          __CORTEX_M4F: 
           CPU_MK64FN1M0VMD12: 
-          DEBUG: 
-          TWR_K64F120M: 
-          TOWER: 
+        cxx_defines:
+          TOOLCHAIN_IAR: 
+        as_defines: {}
+        ld_flags:
+        - "--skip_dynamic_initialization"
+        - "--threaded_lib"
         cc_include:
-        - path: test
-          rootdir: default_path
+        - path: hello_world
+          rootdir: app_path
+        - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F/TARGET_FRDM
+          rootdir: mbed_path
+        - path: "."
+          rootdir: mbed_path
+        - path: cmsis
+          rootdir: mbed_path
+        - path: drivers
+          rootdir: mbed_path
+        - path: events
+          rootdir: mbed_path
+        - path: events/equeue
+          rootdir: mbed_path
+        - path: rtos
+          rootdir: mbed_path
+        - path: platform
+          rootdir: mbed_path
+        - path: hal
+          rootdir: mbed_path
+        - path: hal/hal
+          rootdir: mbed_path
+        - path: hal/storage_abstraction
+          rootdir: mbed_path
+        - path: rtos/rtx/TARGET_CORTEX_M
+          rootdir: mbed_path
+        - path: rtos/rtx/TARGET_CORTEX_M/TARGET_RTOS_M4_M7
+          rootdir: mbed_path
+        - path: targets/TARGET_Freescale
+          rootdir: mbed_path
+        - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/api
+          rootdir: mbed_path
+        - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F/device
+          rootdir: mbed_path
+        - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F/drivers
+          rootdir: mbed_path
+        - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F
+          rootdir: mbed_path
+        - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/sdk_drivers
+          rootdir: mbed_path
         cc_flags:
-        - "-g"
-        - "-mthumb"
-        - "-mapcs"
-        - "-std=gnu99"
-        - "-mcpu=cortex-m4"
-        - "-mfloat-abi=hard"
-        - "-mfpu=fpv4-sp-d16"
-        - "-MMD"
-        - "-MP"
-        cxx_predefines: {}
-        cxx_preincludes: []
-        cxx_defines: {}
-        cxx_include: []
-        cxx_flags: []
-        ld_flags: []
+        - "-e"
+        - "--cpu=Cortex-M4"
+        - "--fpu=vfpv4_sp_d16"
+        as_flags:
+        - "--cpu Cortex-M4"
+        - "--fpu=vfpv4_sp_d16"
+        cxx_flags:
+        - "-e"
+        - "--cpu=Cortex-M4"
+        - "--fpu=vfpv4_sp_d16"
+        as_include: []
+        cp_defines:
+          MK64FN1M0xxx12: Freescale MK64FN1M0xxx12
+        cxx_include:
+        - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F/TARGET_FRDM
+          rootdir: mbed_path
+        - path: cmsis
+          rootdir: mbed_path
+        - path: drivers
+          rootdir: mbed_path
+        - path: events
+          rootdir: mbed_path
+        - path: events/equeue
+          rootdir: mbed_path
+        - path: rtos
+          rootdir: mbed_path
+        - path: hal
+          rootdir: mbed_path
+        - path: hal/hal
+          rootdir: mbed_path
+        - path: hal/storage_abstraction
+          rootdir: mbed_path
+        - path: platfrom
+          rootdir: mbed_path
+        - path: rtos/rtx/TARGET_CORTEX_M
+          rootdir: mbed_path
+        - path: rtos/rtx/TARGET_CORTEX_M/TARGET_RTOS_M4_M7
+          rootdir: mbed_path
+        - path: targets/TARGET_Freescale
+          rootdir: mbed_path
+        - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/api
+          rootdir: mbed_path
+        - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F/device
+          rootdir: mbed_path
+        - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F/drivers
+          rootdir: mbed_path
+        - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F
+          rootdir: mbed_path
+        - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/sdk_drivers
+          rootdir: mbed_path
         linker_file:
-          path: devices/MK64F12/gcc/MK64FN1M0xxx12_flash.ld
-          rootdir: default_path
-        outdir: build
-        tool_chain_set_spec: {}
-        tool_chain_add_spec: {}
-        binary_file: test_release
-    templates: 
+          path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F/device/TOOLCHAIN_IAR/MK64FN1M0xxx12.icf
+          rootdir: mbed_path
+        config: release
+        libraries: []
     type: application
+    templates:
+    - templates/iar/general.eww
+    - templates/iar/app_generic_nMISRA/appgeneric.ewd
+    - templates/iar/app_generic_nMISRA/appgeneric.ewp
+    outdir: build/hello_world/iar/frdmk64f
     source:
-    - path: hello_world.c
-      rootdir: default_path
-      virtual_dir: src
-    - path: hello_world.h
-      rootdir: default_path
-      virtual_dir: include
-    outdir: build
-    libraries:
-    - "-m"
+    - path: rtos/rtx/TARGET_CORTEX_M/TARGET_RTOS_M4_M7/TOOLCHAIN_IAR/HAL_CM4.S
+      rootdir: mbed_path
+      virtual-dir: mbed:portable
+    - path: rtos/rtx/TARGET_CORTEX_M/TARGET_RTOS_M4_M7/TOOLCHAIN_IAR/SVC_Table.S
+      rootdir: mbed_path
+      virtual-dir: mbed:portable
+    - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F/device/TOOLCHAIN_IAR/startup_MK64F12.S
+      virtual-dir: startup
+      rootdir: mbed_path
+    - path: hello_world/main.cpp
+      virtual-dir: hello_world
+      rootdir: app_path
+    - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F/TARGET_FRDM/PeripheralPins.c
+      virtual-dir: board
+      rootdir: mbed_path
+    - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F/TARGET_FRDM/crc.c
+      virtual-dir: board
+      rootdir: mbed_path
+    - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F/TARGET_FRDM/fsl_clock_config.c
+      virtual-dir: board
+      rootdir: mbed_path
+    - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F/TARGET_FRDM/fsl_phy.c
+      virtual-dir: board
+      rootdir: mbed_path
+    - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F/TARGET_FRDM/mbed_overrides.c
+      virtual-dir: board
+      rootdir: mbed_path
+    - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F/TARGET_FRDM/PeripheralNames.h
+      virtual-dir: board
+      rootdir: mbed_path
+    - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F/TARGET_FRDM/PinNames.h
+      virtual-dir: board
+      rootdir: mbed_path
+    - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F/TARGET_FRDM/crc.h
+      virtual-dir: board
+      rootdir: mbed_path
+    - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F/TARGET_FRDM/device.h
+      virtual-dir: board
+      rootdir: mbed_path
+    - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F/TARGET_FRDM/fsl_clock_config.h
+      virtual-dir: board
+      rootdir: mbed_path
+    - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F/TARGET_FRDM/fsl_phy.h
+      virtual-dir: board
+      rootdir: mbed_path
+    - path: mbed.h
+      virtual-dir: mbed
+      rootdir: mbed_path
+    - path: rtos/Mail.h
+      virtual-dir: rtos
+      rootdir: mbed_path
+    - path: rtos/MemoryPool.h
+      virtual-dir: rtos
+      rootdir: mbed_path
+    - path: rtos/Mutex.cpp
+      virtual-dir: rtos
+      rootdir: mbed_path
+    - path: rtos/Mutex.h
+      virtual-dir: rtos
+      rootdir: mbed_path
+    - path: rtos/Queue.h
+      virtual-dir: rtos
+      rootdir: mbed_path
+    - path: rtos/rtos.h
+      virtual-dir: rtos
+      rootdir: mbed_path
+    - path: rtos/rtos_idle.c
+      virtual-dir: rtos
+      rootdir: mbed_path
+    - path: rtos/rtos_idle.h
+      virtual-dir: rtos
+      rootdir: mbed_path
+    - path: rtos/RtosTimer.cpp
+      virtual-dir: rtos
+      rootdir: mbed_path
+    - path: rtos/Semaphore.cpp
+      virtual-dir: rtos
+      rootdir: mbed_path
+    - path: rtos/Semaphore.h
+      virtual-dir: rtos
+      rootdir: mbed_path
+    - path: rtos/Thread.cpp
+      virtual-dir: rtos
+      rootdir: mbed_path
+    - path: rtos/Thread.h
+      virtual-dir: rtos
+      rootdir: mbed_path
+    - path: rtos/rtx/TARGET_CORTEX_M/RTX_CM_lib.h
+      virtual-dir: rtos
+      rootdir: mbed_path
+    - path: rtos/rtx/TARGET_CORTEX_M/RTX_Config.h
+      virtual-dir: rtos
+      rootdir: mbed_path
+    - path: rtos/rtx/TARGET_CORTEX_M/cmsis_os.h
+      virtual-dir: rtos
+      rootdir: mbed_path
+    - path: rtos/rtx/TARGET_CORTEX_M/rt_Event.h
+      virtual-dir: rtos
+      rootdir: mbed_path
+    - path: rtos/rtx/TARGET_CORTEX_M/rt_HAL_CM.h
+      virtual-dir: rtos
+      rootdir: mbed_path
+    - path: rtos/rtx/TARGET_CORTEX_M/rt_List.h
+      virtual-dir: rtos
+      rootdir: mbed_path
+    - path: rtos/rtx/TARGET_CORTEX_M/rt_Mailbox.h
+      virtual-dir: rtos
+      rootdir: mbed_path
+    - path: rtos/rtx/TARGET_CORTEX_M/rt_MemBox.h
+      virtual-dir: rtos
+      rootdir: mbed_path
+    - path: rtos/rtx/TARGET_CORTEX_M/rt_Memory.h
+      virtual-dir: rtos
+      rootdir: mbed_path
+    - path: rtos/rtx/TARGET_CORTEX_M/rt_Mutex.h
+      virtual-dir: rtos
+      rootdir: mbed_path
+    - path: rtos/rtx/TARGET_CORTEX_M/rt_OsEventObserver.h
+      virtual-dir: rtos
+      rootdir: mbed_path
+    - path: rtos/rtx/TARGET_CORTEX_M/rt_Robin.h
+      virtual-dir: rtos
+      rootdir: mbed_path
+    - path: rtos/rtx/TARGET_CORTEX_M/rt_Semaphore.h
+      virtual-dir: rtos
+      rootdir: mbed_path
+    - path: rtos/rtx/TARGET_CORTEX_M/rt_System.h
+      virtual-dir: rtos
+      rootdir: mbed_path
+    - path: rtos/rtx/TARGET_CORTEX_M/rt_Task.h
+      virtual-dir: rtos
+      rootdir: mbed_path
+    - path: rtos/rtx/TARGET_CORTEX_M/rt_Time.h
+      virtual-dir: rtos
+      rootdir: mbed_path
+    - path: rtos/rtx/TARGET_CORTEX_M/rt_Timer.h
+      virtual-dir: rtos
+      rootdir: mbed_path
+    - path: rtos/rtx/TARGET_CORTEX_M/rt_TypeDef.h
+      virtual-dir: rtos
+      rootdir: mbed_path
+    - path: rtos/rtx/TARGET_CORTEX_M/HAL_CM.c
+      virtual-dir: rtos
+      rootdir: mbed_path
+    - path: rtos/rtx/TARGET_CORTEX_M/RTX_Conf_CM.c
+      virtual-dir: rtos
+      rootdir: mbed_path
+    - path: rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.c
+      virtual-dir: rtos
+      rootdir: mbed_path
+    - path: rtos/rtx/TARGET_CORTEX_M/rt_Event.c
+      virtual-dir: rtos
+      rootdir: mbed_path
+    - path: rtos/rtx/TARGET_CORTEX_M/rt_List.c
+      virtual-dir: rtos
+      rootdir: mbed_path
+    - path: rtos/rtx/TARGET_CORTEX_M/rt_Mailbox.c
+      virtual-dir: rtos
+      rootdir: mbed_path
+    - path: rtos/rtx/TARGET_CORTEX_M/rt_MemBox.c
+      virtual-dir: rtos
+      rootdir: mbed_path
+    - path: rtos/rtx/TARGET_CORTEX_M/rt_Memory.c
+      virtual-dir: rtos
+      rootdir: mbed_path
+    - path: rtos/rtx/TARGET_CORTEX_M/rt_Mutex.c
+      virtual-dir: rtos
+      rootdir: mbed_path
+    - path: rtos/rtx/TARGET_CORTEX_M/rt_OsEventObserver.c
+      virtual-dir: rtos
+      rootdir: mbed_path
+    - path: rtos/rtx/TARGET_CORTEX_M/rt_Robin.c
+      virtual-dir: rtos
+      rootdir: mbed_path
+    - path: rtos/rtx/TARGET_CORTEX_M/rt_Semaphore.c
+      virtual-dir: rtos
+      rootdir: mbed_path
+    - path: rtos/rtx/TARGET_CORTEX_M/rt_System.c
+      virtual-dir: rtos
+      rootdir: mbed_path
+    - path: rtos/rtx/TARGET_CORTEX_M/rt_Task.c
+      virtual-dir: rtos
+      rootdir: mbed_path
+    - path: rtos/rtx/TARGET_CORTEX_M/rt_Time.c
+      virtual-dir: rtos
+      rootdir: mbed_path
+    - path: rtos/rtx/TARGET_CORTEX_M/rt_Timer.c
+      virtual-dir: rtos
+      rootdir: mbed_path
+    - path: rtos/arm_common_tables.h
+      virtual-dir: cmsis
+      rootdir: mbed_path
+    - path: rtos/arm_const_structs.h
+      virtual-dir: cmsis
+      rootdir: mbed_path
+    - path: rtos/arm_math.h
+      virtual-dir: cmsis
+      rootdir: mbed_path
+    - path: rtos/core_cmFunc.h
+      virtual-dir: cmsis
+      rootdir: mbed_path
+    - path: rtos/core_cmInstr.h
+      virtual-dir: cmsis
+      rootdir: mbed_path
+    - path: rtos/core_cmSecureAccess.h
+      virtual-dir: cmsis
+      rootdir: mbed_path
+    - path: rtos/core_cmSimd.h
+      virtual-dir: cmsis
+      rootdir: mbed_path
+    - path: hal/analogin_api.h
+      virtual-dir: hal
+      rootdir: mbed_path
+    - path: hal/analogout_api.h
+      virtual-dir: hal
+      rootdir: mbed_path
+    - path: hal/buffer.h
+      virtual-dir: hal
+      rootdir: mbed_path
+    - path: hal/can_api.h
+      virtual-dir: hal
+      rootdir: mbed_path
+    - path: hal/can_helper.h
+      virtual-dir: hal
+      rootdir: mbed_path
+    - path: hal/dma_api.h
+      virtual-dir: hal
+      rootdir: mbed_path
+    - path: hal/gpio_api.h
+      virtual-dir: hal
+      rootdir: mbed_path
+    - path: hal/gpio_irq_api.h
+      virtual-dir: hal
+      rootdir: mbed_path
+    - path: hal/i2c_api.h
+      virtual-dir: hal
+      rootdir: mbed_path
+    - path: hal/lp_ticker_api.h
+      virtual-dir: hal
+      rootdir: mbed_path
+    - path: hal/mbed_gpio.c
+      virtual-dir: hal
+      rootdir: mbed_path
+    - path: hal/mbed_lp_ticker_api.c
+      virtual-dir: hal
+      rootdir: mbed_path
+    - path: hal/mbed_pinmap_common.c
+      virtual-dir: hal
+      rootdir: mbed_path
+    - path: hal/mbed_ticker_api.c
+      virtual-dir: hal
+      rootdir: mbed_path
+    - path: hal/mbed_us_ticker_api.c
+      virtual-dir: hal
+      rootdir: mbed_path
+    - path: hal/pinmap.h
+      virtual-dir: hal
+      rootdir: mbed_path
+    - path: hal/port_api.h
+      virtual-dir: hal
+      rootdir: mbed_path
+    - path: hal/pwmout_api.h
+      virtual-dir: hal
+      rootdir: mbed_path
+    - path: hal/rtc_api.h
+      virtual-dir: hal
+      rootdir: mbed_path
+    - path: hal/serial_api.h
+      virtual-dir: hal
+      rootdir: mbed_path
+    - path: hal/sleep_api.h
+      virtual-dir: hal
+      rootdir: mbed_path
+    - path: hal/spi_api.h
+      virtual-dir: hal
+      rootdir: mbed_path
+    - path: hal/ticker_api.h
+      virtual-dir: hal
+      rootdir: mbed_path
+    - path: hal/trng_api.h
+      virtual-dir: hal
+      rootdir: mbed_path
+    - path: hal/us_ticker_api.h
+      virtual-dir: hal
+      rootdir: mbed_path
+    - path: hal/hal/emac_api.h
+      virtual-dir: hal
+      rootdir: mbed_path
+    - path: hal/storage_abstraction/Driver_Common.h
+      virtual-dir: hal
+      rootdir: mbed_path
+    - path: hal/storage_abstraction/Driver_Storage.h
+      virtual-dir: hal
+      rootdir: mbed_path
+    - path: drivers/AnalogIn.h
+      virtual-dir: mbed-drivers
+      rootdir: mbed_path
+    - path: drivers/AnalogOut.h
+      virtual-dir: mbed-drivers
+      rootdir: mbed_path
+    - path: drivers/BusIn.h
+      virtual-dir: mbed-drivers
+      rootdir: mbed_path
+    - path: drivers/BusInOut.h
+      virtual-dir: mbed-drivers
+      rootdir: mbed_path
+    - path: drivers/BusOut.h
+      virtual-dir: mbed-drivers
+      rootdir: mbed_path
+    - path: drivers/CAN.h
+      virtual-dir: mbed-drivers
+      rootdir: mbed_path
+    - path: drivers/DigitalIn.h
+      virtual-dir: mbed-drivers
+      rootdir: mbed_path
+    - path: drivers/DigitalInOut.h
+      virtual-dir: mbed-drivers
+      rootdir: mbed_path
+    - path: drivers/DigitalOut.h
+      virtual-dir: mbed-drivers
+      rootdir: mbed_path
+    - path: drivers/DirHandle.h
+      virtual-dir: mbed-drivers
+      rootdir: mbed_path
+    - path: drivers/Ethernet.h
+      virtual-dir: mbed-drivers
+      rootdir: mbed_path
+    - path: drivers/FileBase.h
+      virtual-dir: mbed-drivers
+      rootdir: mbed_path
+    - path: drivers/FileHandle.h
+      virtual-dir: mbed-drivers
+      rootdir: mbed_path
+    - path: drivers/FileLike.h
+      virtual-dir: mbed-drivers
+      rootdir: mbed_path
+    - path: drivers/FilePath.h
+      virtual-dir: mbed-drivers
+      rootdir: mbed_path
+    - path: drivers/FileSystemLike.h
+      virtual-dir: mbed-drivers
+      rootdir: mbed_path
+    - path: drivers/I2C.h
+      virtual-dir: mbed-drivers
+      rootdir: mbed_path
+    - path: drivers/I2CSlave.h
+      virtual-dir: mbed-drivers
+      rootdir: mbed_path
+    - path: drivers/InterruptIn.h
+      virtual-dir: mbed-drivers
+      rootdir: mbed_path
+    - path: drivers/InterruptManager.h
+      virtual-dir: mbed-drivers
+      rootdir: mbed_path
+    - path: drivers/LocalFileSystem.h
+      virtual-dir: mbed-drivers
+      rootdir: mbed_path
+    - path: drivers/LowPowerTicker.h
+      virtual-dir: mbed-drivers
+      rootdir: mbed_path
+    - path: drivers/LowPowerTimeout.h
+      virtual-dir: mbed-drivers
+      rootdir: mbed_path
+    - path: drivers/LowPowerTimer.h
+      virtual-dir: mbed-drivers
+      rootdir: mbed_path
+    - path: drivers/PortIn.h
+      virtual-dir: mbed-drivers
+      rootdir: mbed_path
+    - path: drivers/PortInOut.h
+      virtual-dir: mbed-drivers
+      rootdir: mbed_path
+    - path: drivers/PortOut.h
+      virtual-dir: mbed-drivers
+      rootdir: mbed_path
+    - path: drivers/PwmOut.h
+      virtual-dir: mbed-drivers
+      rootdir: mbed_path
+    - path: drivers/RawSerial.h
+      virtual-dir: mbed-drivers
+      rootdir: mbed_path
+    - path: drivers/SPI.h
+      virtual-dir: mbed-drivers
+      rootdir: mbed_path
+    - path: drivers/SPISlave.h
+      virtual-dir: mbed-drivers
+      rootdir: mbed_path
+    - path: drivers/Serial.h
+      virtual-dir: mbed-drivers
+      rootdir: mbed_path
+    - path: drivers/SerialBase.h
+      virtual-dir: mbed-drivers
+      rootdir: mbed_path
+    - path: drivers/Stream.h
+      virtual-dir: mbed-drivers
+      rootdir: mbed_path
+    - path: drivers/Ticker.h
+      virtual-dir: mbed-drivers
+      rootdir: mbed_path
+    - path: drivers/Timeout.h
+      virtual-dir: mbed-drivers
+      rootdir: mbed_path
+    - path: drivers/Timer.h
+      virtual-dir: mbed-drivers
+      rootdir: mbed_path
+    - path: drivers/TimerEvent.h
+      virtual-dir: mbed-drivers
+      rootdir: mbed_path
+    - path: drivers/AnalogIn.cpp
+      virtual-dir: mbed-drivers
+      rootdir: mbed_path
+    - path: drivers/BusIn.cpp
+      virtual-dir: mbed-drivers
+      rootdir: mbed_path
+    - path: drivers/BusInOut.cpp
+      virtual-dir: mbed-drivers
+      rootdir: mbed_path
+    - path: drivers/BusOut.cpp
+      virtual-dir: mbed-drivers
+      rootdir: mbed_path
+    - path: drivers/CAN.cpp
+      virtual-dir: mbed-drivers
+      rootdir: mbed_path
+    - path: drivers/Ethernet.cpp
+      virtual-dir: mbed-drivers
+      rootdir: mbed_path
+    - path: drivers/FileBase.cpp
+      virtual-dir: mbed-drivers
+      rootdir: mbed_path
+    - path: drivers/FileLike.cpp
+      virtual-dir: mbed-drivers
+      rootdir: mbed_path
+    - path: drivers/FilePath.cpp
+      virtual-dir: mbed-drivers
+      rootdir: mbed_path
+    - path: drivers/FileSystemLike.cpp
+      virtual-dir: mbed-drivers
+      rootdir: mbed_path
+    - path: drivers/I2C.cpp
+      virtual-dir: mbed-drivers
+      rootdir: mbed_path
+    - path: drivers/I2CSlave.cpp
+      virtual-dir: mbed-drivers
+      rootdir: mbed_path
+    - path: drivers/InterruptIn.cpp
+      virtual-dir: mbed-drivers
+      rootdir: mbed_path
+    - path: drivers/InterruptManager.cpp
+      virtual-dir: mbed-drivers
+      rootdir: mbed_path
+    - path: drivers/LocalFileSystem.cpp
+      virtual-dir: mbed-drivers
+      rootdir: mbed_path
+    - path: drivers/RawSerial.cpp
+      virtual-dir: mbed-drivers
+      rootdir: mbed_path
+    - path: drivers/SPI.cpp
+      virtual-dir: mbed-drivers
+      rootdir: mbed_path
+    - path: drivers/SPISlave.cpp
+      virtual-dir: mbed-drivers
+      rootdir: mbed_path
+    - path: drivers/Serial.cpp
+      virtual-dir: mbed-drivers
+      rootdir: mbed_path
+    - path: drivers/SerialBase.cpp
+      virtual-dir: mbed-drivers
+      rootdir: mbed_path
+    - path: drivers/Stream.cpp
+      virtual-dir: mbed-drivers
+      rootdir: mbed_path
+    - path: drivers/Ticker.cpp
+      virtual-dir: mbed-drivers
+      rootdir: mbed_path
+    - path: drivers/Timeout.cpp
+      virtual-dir: mbed-drivers
+      rootdir: mbed_path
+    - path: drivers/Timer.cpp
+      virtual-dir: mbed-drivers
+      rootdir: mbed_path
+    - path: drivers/TimerEvent.cpp
+      virtual-dir: mbed-drivers
+      rootdir: mbed_path
+    - path: platform/CThunk.h
+      virtual-dir: platform
+      rootdir: mbed_path
+    - path: platform/CallChain.h
+      virtual-dir: platform
+      rootdir: mbed_path
+    - path: platform/Callback.h
+      virtual-dir: platform
+      rootdir: mbed_path
+    - path: platform/CircularBuffer.h
+      virtual-dir: platform
+      rootdir: mbed_path
+    - path: platform/FunctionPointer.h
+      virtual-dir: platform
+      rootdir: mbed_path
+    - path: platform/PlatformMutex.h
+      virtual-dir: platform
+      rootdir: mbed_path
+    - path: platform/SingletonPtr.h
+      virtual-dir: platform
+      rootdir: mbed_path
+    - path: platform/Transaction.h
+      virtual-dir: platform
+      rootdir: mbed_path
+    - path: platform/critical.h
+      virtual-dir: platform
+      rootdir: mbed_path
+    - path: platform/mbed_assert.h
+      virtual-dir: platform
+      rootdir: mbed_path
+    - path: platform/mbed_debug.h
+      virtual-dir: platform
+      rootdir: mbed_path
+    - path: platform/mbed_error.h
+      virtual-dir: platform
+      rootdir: mbed_path
+    - path: platform/mbed_interface.h
+      virtual-dir: platform
+      rootdir: mbed_path
+    - path: platform/mbed_mem_trace.h
+      virtual-dir: platform
+      rootdir: mbed_path
+    - path: platform/mbed_stats.h
+      virtual-dir: platform
+      rootdir: mbed_path
+    - path: platform/platform.h
+      virtual-dir: platform
+      rootdir: mbed_path
+    - path: platform/rtc_time.h
+      virtual-dir: platform
+      rootdir: mbed_path
+    - path: platform/semihost_api.h
+      virtual-dir: platform
+      rootdir: mbed_path
+    - path: platform/toolchain.h
+      virtual-dir: platform
+      rootdir: mbed_path
+    - path: platform/wait_api.h
+      virtual-dir: platform
+      rootdir: mbed_path
+    - path: platform/mbed_assert.c
+      virtual-dir: platform
+      rootdir: mbed_path
+    - path: platform/mbed_board.c
+      virtual-dir: platform
+      rootdir: mbed_path
+    - path: platform/mbed_critical.c
+      virtual-dir: platform
+      rootdir: mbed_path
+    - path: platform/mbed_error.c
+      virtual-dir: platform
+      rootdir: mbed_path
+    - path: platform/mbed_interface.c
+      virtual-dir: platform
+      rootdir: mbed_path
+    - path: platform/mbed_mem_trace.c
+      virtual-dir: platform
+      rootdir: mbed_path
+    - path: platform/mbed_semihost_api.c
+      virtual-dir: platform
+      rootdir: mbed_path
+    - path: platform/mbed_wait_api_no_rtos.c
+      virtual-dir: platform
+      rootdir: mbed_path
+    - path: platform/CallChain.cpp
+      virtual-dir: platform
+      rootdir: mbed_path
+    - path: platform/mbed_alloc_wrappers.cpp
+      virtual-dir: platform
+      rootdir: mbed_path
+    - path: platform/mbed_rtc_time.cpp
+      virtual-dir: platform
+      rootdir: mbed_path
+    - path: platform/mbed_wait_api_rtos.cpp
+      virtual-dir: platform
+      rootdir: mbed_path
+    - path: platform/retarget.cpp
+      virtual-dir: platform
+      rootdir: mbed_path
+    - path: targets/TARGET_Freescale/mbed_rtx.h
+      virtual-dir: api
+      rootdir: mbed_path
+    - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/api/PeripheralPins.h
+      virtual-dir: api
+      rootdir: mbed_path
+    - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/api/PortNames.h
+      virtual-dir: api
+      rootdir: mbed_path
+    - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/api/gpio_object.h
+      virtual-dir: api
+      rootdir: mbed_path
+    - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/api/objects.h
+      virtual-dir: api
+      rootdir: mbed_path
+    - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/api/analogin_api.c
+      virtual-dir: api
+      rootdir: mbed_path
+    - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/api/analogout_api.c
+      virtual-dir: api
+      rootdir: mbed_path
+    - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/api/gpio_api.c
+      virtual-dir: api
+      rootdir: mbed_path
+    - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/api/gpio_irq_api.c
+      virtual-dir: api
+      rootdir: mbed_path
+    - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/api/i2c_api.c
+      virtual-dir: api
+      rootdir: mbed_path
+    - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/api/lp_ticker.c
+      virtual-dir: api
+      rootdir: mbed_path
+    - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/api/pinmap.c
+      virtual-dir: api
+      rootdir: mbed_path
+    - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/api/port_api.c
+      virtual-dir: api
+      rootdir: mbed_path
+    - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/api/rtc_api.c
+      virtual-dir: api
+      rootdir: mbed_path
+    - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/api/sleep.c
+      virtual-dir: api
+      rootdir: mbed_path
+    - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F/drivers/fsl_clock.c
+      virtual-dir: clock
+      rootdir: mbed_path
+    - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F/drivers/fsl_clock.h
+      virtual-dir: clock
+      rootdir: mbed_path
+    - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F/device/MK64F12.h
+      virtual-dir: device
+      rootdir: mbed_path
+    - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F/device/MK64F12_features.h
+      virtual-dir: device
+      rootdir: mbed_path
+    - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F/device/cmsis.h
+      virtual-dir: device
+      rootdir: mbed_path
+    - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F/device/cmsis_nvic.h
+      virtual-dir: device
+      rootdir: mbed_path
+    - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F/device/fsl_device_registers.h
+      virtual-dir: device
+      rootdir: mbed_path
+    - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F/device/system_MK64F12.h
+      virtual-dir: device
+      rootdir: mbed_path
+    - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F/device/cmsis_nvic.c
+      virtual-dir: device
+      rootdir: mbed_path
+    - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F/device/system_MK64F12.c
+      virtual-dir: device
+      rootdir: mbed_path
+    - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F/device/MK64F12.h
+      virtual-dir: porting
+      rootdir: mbed_path
+    - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F/device/MK64F12_features.h
+      virtual-dir: porting
+      rootdir: mbed_path
+    - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F/device/cmsis.h
+      virtual-dir: porting
+      rootdir: mbed_path
+    - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F/device/cmsis_nvic.h
+      virtual-dir: porting
+      rootdir: mbed_path
+    - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F/device/fsl_device_registers.h
+      virtual-dir: porting
+      rootdir: mbed_path
+    - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F/device/system_MK64F12.h
+      virtual-dir: porting
+      rootdir: mbed_path
+    - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F/peripheral_clock_defines.h
+      virtual-dir: porting
+      rootdir: mbed_path
+    - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F/pwmout_api.c
+      virtual-dir: porting
+      rootdir: mbed_path
+    - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F/serial_api.c
+      virtual-dir: porting
+      rootdir: mbed_path
+    - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F/spi_api.c
+      virtual-dir: porting
+      rootdir: mbed_path
+    - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F/storage_driver.c
+      virtual-dir: porting
+      rootdir: mbed_path
+    - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F/trng_api.c
+      virtual-dir: porting
+      rootdir: mbed_path
+    - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F/us_ticker.c
+      virtual-dir: porting
+      rootdir: mbed_path
+    - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/sdk_drivers/fsl_uart.h
+      rootdir: mbed_path
+      virtual_dir: drivers
+    - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/sdk_drivers/fsl_uart.c
+      rootdir: mbed_path
+      virtual_dir: drivers
+    - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/sdk_drivers/fsl_gpio.h
+      rootdir: mbed_path
+      virtual_dir: drivers
+    - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/sdk_drivers/fsl_gpio.c
+      rootdir: mbed_path
+      virtual_dir: drivers
+    - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/sdk_drivers/fsl_smc.h
+      rootdir: mbed_path
+      virtual_dir: drivers
+    - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/sdk_drivers/fsl_smc.c
+      rootdir: mbed_path
+      virtual_dir: drivers
+    - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/sdk_drivers/fsl_pit.c
+      rootdir: mbed_path
+      virtual_dir: drivers
+    - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/sdk_drivers/fsl_pit.h
+      rootdir: mbed_path
+      virtual_dir: drivers
+    - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/sdk_drivers/fsl_enet.h
+      rootdir: mbed_path
+      virtual_dir: drivers
+    - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/sdk_drivers/fsl_enet.c
+      rootdir: mbed_path
+      virtual_dir: drivers
+    - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/sdk_drivers/fsl_common.c
+      rootdir: mbed_path
+      virtual_dir: drivers
+    - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/sdk_drivers/fsl_common.h
+      rootdir: mbed_path
+      virtual_dir: drivers
+    - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/sdk_drivers/fsl_flash.c
+      rootdir: mbed_path
+      virtual_dir: drivers
+    - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/sdk_drivers/fsl_flash.h
+      rootdir: mbed_path
+      virtual_dir: drivers
+    document:
+      board: frdmk64f
+  document:
+    board: frdmk64f
+    project_name: hello_world

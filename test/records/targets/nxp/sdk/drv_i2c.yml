@@ -1,0 +1,21 @@
+i2c:
+  configuration:
+    tools:
+      __common__:
+        config:
+          __common__:
+            cc_include:
+              - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/sdk_drivers
+                rootdir: "mbed_path"
+            cxx_include:
+              - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/sdk_drivers
+                rootdir: "mbed_path"
+  modules:
+    i2c:
+      virtual-dir: drivers
+      files:
+      - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/sdk_drivers/fsl_i2c.h
+        rootdir: "mbed_path"
+      - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/sdk_drivers/fsl_i2c.c
+        rootdir: "mbed_path"
+

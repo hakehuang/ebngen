@@ -1,0 +1,11 @@
+__load__:
+  - mbed/mbed_m4.yml
+
+mbed_os:
+  configuration:
+    section-type: component
+    meta_components:
+
+      - mbed_os
+  __add__: []
+#if the component requires other component

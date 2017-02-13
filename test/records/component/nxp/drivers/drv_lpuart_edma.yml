@@ -1,0 +1,8 @@
+__load__:
+  - targets/nxp/sdk/drv_lpuart_edma.yml
+
+lpuart_edma:
+  configuration:
+    meta_components:
+
+      - lpuart_edma

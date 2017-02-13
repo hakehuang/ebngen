@@ -1,0 +1,565 @@
+
+mbed_os:
+  configuration:
+    section-depends:
+      #put dependency libs here
+    tools:
+      iar:
+        config:
+          __common__:
+            ld_flags:
+              - --skip_dynamic_initialization
+              - --threaded_lib
+            cc_flags:
+              -  -e
+            cxx_flags:
+              -  -e
+      __common__:
+        config:
+          __common__:
+            as_defines:
+            cc_defines:
+              __MBED__:
+              DEVICE_STDIO_MESSAGES: 1
+              _DLIB_FILE_DESCRIPTOR: 1
+            cxx_defines:
+            ld_flags:
+            cc_include:
+              - path: .
+                rootdir: "mbed_path"
+              - path: cmsis
+                rootdir: "mbed_path"
+              - path: drivers
+                rootdir: "mbed_path"
+              - path: events
+                rootdir: "mbed_path"
+              - path: events/equeue
+                rootdir: "mbed_path"
+              - path: rtos
+                rootdir: "mbed_path"
+              - path: platform
+                rootdir: "mbed_path"
+              - path: hal
+                rootdir: "mbed_path"
+              - path: hal/hal
+                rootdir: "mbed_path"
+              - path: hal/storage_abstraction
+                rootdir: "mbed_path"
+            cxx_include:
+              - path: cmsis
+                rootdir: "mbed_path"
+              - path: drivers
+                rootdir: "mbed_path"
+              - path: events
+                rootdir: "mbed_path"
+              - path: events/equeue
+                rootdir: "mbed_path"
+              - path: rtos
+                rootdir: "mbed_path"
+              - path: hal
+                rootdir: "mbed_path"
+              - path: hal/hal
+                rootdir: "mbed_path"
+              - path: hal/storage_abstraction
+                rootdir: "mbed_path"
+              - path: platfrom
+                rootdir: "mbed_path"
+  modules:
+    mbed:
+      name              : mbed
+      files:
+        - path        : mbed.h
+          virtual-dir   : mbed
+          rootdir       : "mbed_path"
+    rtos:
+      name              : rtos
+      files:
+        - path        : rtos/Mail.h
+          virtual-dir   : rtos
+          rootdir       : "mbed_path"
+        - path        : rtos/MemoryPool.h
+          virtual-dir   : rtos
+          rootdir       : "mbed_path"
+        - path        : rtos/Mutex.cpp
+          virtual-dir   : rtos
+          rootdir       : "mbed_path"
+        - path        : rtos/Mutex.h
+          virtual-dir   : rtos
+          rootdir       : "mbed_path"
+        - path        : rtos/Queue.h
+          virtual-dir   : rtos
+          rootdir       : "mbed_path"
+        - path        : rtos/rtos.h
+          virtual-dir   : rtos
+          rootdir       : "mbed_path"
+        - path        : rtos/rtos_idle.c
+          virtual-dir   : rtos
+          rootdir       : "mbed_path"
+        - path        : rtos/rtos_idle.h
+          virtual-dir   : rtos
+          rootdir       : "mbed_path"
+        - path        : rtos/RtosTimer.cpp
+          virtual-dir   : rtos
+          rootdir       : "mbed_path"
+        - path        : rtos/Semaphore.cpp
+          virtual-dir   : rtos
+          rootdir       : "mbed_path"
+        - path        : rtos/Semaphore.h
+          virtual-dir   : rtos
+          rootdir       : "mbed_path"
+        - path        : rtos/Thread.cpp
+          virtual-dir   : rtos
+          rootdir       : "mbed_path"
+        - path        : rtos/Thread.h
+          virtual-dir   : rtos
+          rootdir       : "mbed_path"
+    cmsis:
+      name              : cmsis
+      files:
+        - path        : rtos/arm_common_tables.h
+          virtual-dir   : cmsis
+          rootdir       : "mbed_path"
+        - path        : rtos/arm_const_structs.h
+          virtual-dir   : cmsis
+          rootdir       : "mbed_path"
+        - path        : rtos/arm_math.h
+          virtual-dir   : cmsis
+          rootdir       : "mbed_path"
+        - path        : rtos/core_cmFunc.h
+          virtual-dir   : cmsis
+          rootdir       : "mbed_path"
+        - path        : rtos/core_cmInstr.h
+          virtual-dir   : cmsis
+          rootdir       : "mbed_path"
+        - path        : rtos/core_cmSecureAccess.h
+          virtual-dir   : cmsis
+          rootdir       : "mbed_path"
+        - path        : rtos/core_cmSimd.h
+          virtual-dir   : cmsis
+          rootdir       : "mbed_path"
+    hal:
+      name              : hal
+      files:
+        - path        : hal/analogin_api.h
+          virtual-dir   : hal
+          rootdir       : "mbed_path"
+        - path        : hal/analogout_api.h
+          virtual-dir   : hal
+          rootdir       : "mbed_path"
+        - path        : hal/buffer.h
+          virtual-dir   : hal
+          rootdir       : "mbed_path"
+        - path        : hal/can_api.h
+          virtual-dir   : hal
+          rootdir       : "mbed_path"
+        - path        : hal/can_helper.h
+          virtual-dir   : hal
+          rootdir       : "mbed_path"
+        - path        : hal/dma_api.h
+          virtual-dir   : hal
+          rootdir       : "mbed_path"
+        - path        : hal/gpio_api.h
+          virtual-dir   : hal
+          rootdir       : "mbed_path"
+        - path        : hal/gpio_irq_api.h
+          virtual-dir   : hal
+          rootdir       : "mbed_path"
+        - path        : hal/i2c_api.h
+          virtual-dir   : hal
+          rootdir       : "mbed_path"
+        - path        : hal/lp_ticker_api.h
+          virtual-dir   : hal
+          rootdir       : "mbed_path"
+        - path        : hal/mbed_gpio.c
+          virtual-dir   : hal
+          rootdir       : "mbed_path"
+        - path        : hal/mbed_lp_ticker_api.c
+          virtual-dir   : hal
+          rootdir       : "mbed_path"
+        - path        : hal/mbed_pinmap_common.c
+          virtual-dir   : hal
+          rootdir       : "mbed_path"
+        - path        : hal/mbed_ticker_api.c
+          virtual-dir   : hal
+          rootdir       : "mbed_path"
+        - path        : hal/mbed_us_ticker_api.c
+          virtual-dir   : hal
+          rootdir       : "mbed_path"
+        - path        : hal/pinmap.h
+          virtual-dir   : hal
+          rootdir       : "mbed_path"
+        - path        : hal/port_api.h
+          virtual-dir   : hal
+          rootdir       : "mbed_path"
+        - path        : hal/pwmout_api.h
+          virtual-dir   : hal
+          rootdir       : "mbed_path"
+        - path        : hal/rtc_api.h
+          virtual-dir   : hal
+          rootdir       : "mbed_path"
+        - path        : hal/serial_api.h
+          virtual-dir   : hal
+          rootdir       : "mbed_path"
+        - path        : hal/sleep_api.h
+          virtual-dir   : hal
+          rootdir       : "mbed_path"
+        - path        : hal/spi_api.h
+          virtual-dir   : hal
+          rootdir       : "mbed_path"
+        - path        : hal/ticker_api.h
+          virtual-dir   : hal
+          rootdir       : "mbed_path"
+        - path        : hal/trng_api.h
+          virtual-dir   : hal
+          rootdir       : "mbed_path"
+        - path        : hal/us_ticker_api.h
+          virtual-dir   : hal
+          rootdir       : "mbed_path"
+        - path        : hal/hal/emac_api.h
+          virtual-dir   : hal
+          rootdir       : "mbed_path"
+        - path        : hal/storage_abstraction/Driver_Common.h
+          virtual-dir   : hal
+          rootdir       : "mbed_path"
+        - path        : hal/storage_abstraction/Driver_Storage.h
+          virtual-dir   : hal
+          rootdir       : "mbed_path"
+    # events:
+    #   name              : events
+    #   files:
+    #     - path        : events/Event.h
+    #       virtual-dir   : events
+    #       rootdir       : "mbed_path"
+    #     - path        : events/EventQueue.cpp
+    #       virtual-dir   : events
+    #       rootdir       : "mbed_path"
+    #     - path        : events/EventQueue.h
+    #       virtual-dir   : events
+    #       rootdir       : "mbed_path"
+    #     - path        : events/mbed_events.h
+    #       virtual-dir   : events
+    #       rootdir       : "mbed_path"
+    #     - path        : events/equeue/equeue.c
+    #       virtual-dir   : events
+    #       rootdir       : "mbed_path"
+    #     - path        : events/equeue/equeue.h
+    #       virtual-dir   : events
+    #       rootdir       : "mbed_path"
+    #     - path        : events/equeue/equeue_mbed.cpp
+    #       virtual-dir   : events
+    #       rootdir       : "mbed_path"
+    #     - path        : events/equeue/equeue_platform.h
+    #       virtual-dir   : events
+    #       rootdir       : "mbed_path"
+    #     - path        : events/equeue/equeue_posix.c
+    #       virtual-dir   : events
+    #       rootdir       : "mbed_path"
+    drivers:
+      name              : drivers
+      files:
+        - path        : drivers/AnalogIn.h
+          virtual-dir   : mbed-drivers
+          rootdir       : "mbed_path"
+        - path        : drivers/AnalogOut.h
+          virtual-dir   : mbed-drivers
+          rootdir       : "mbed_path"
+        - path        : drivers/BusIn.h
+          virtual-dir   : mbed-drivers
+          rootdir       : "mbed_path"
+        - path        : drivers/BusInOut.h
+          virtual-dir   : mbed-drivers
+          rootdir       : "mbed_path"
+        - path        : drivers/BusOut.h
+          virtual-dir   : mbed-drivers
+          rootdir       : "mbed_path"
+        - path        : drivers/CAN.h
+          virtual-dir   : mbed-drivers
+          rootdir       : "mbed_path"
+        - path        : drivers/DigitalIn.h
+          virtual-dir   : mbed-drivers
+          rootdir       : "mbed_path"
+        - path        : drivers/DigitalInOut.h
+          virtual-dir   : mbed-drivers
+          rootdir       : "mbed_path"
+        - path        : drivers/DigitalOut.h
+          virtual-dir   : mbed-drivers
+          rootdir       : "mbed_path"
+        - path        : drivers/DirHandle.h
+          virtual-dir   : mbed-drivers
+          rootdir       : "mbed_path"
+        - path        : drivers/Ethernet.h
+          virtual-dir   : mbed-drivers
+          rootdir       : "mbed_path"
+        - path        : drivers/FileBase.h
+          virtual-dir   : mbed-drivers
+          rootdir       : "mbed_path"
+        - path        : drivers/FileHandle.h
+          virtual-dir   : mbed-drivers
+          rootdir       : "mbed_path"
+        - path        : drivers/FileLike.h
+          virtual-dir   : mbed-drivers
+          rootdir       : "mbed_path"
+        - path        : drivers/FilePath.h
+          virtual-dir   : mbed-drivers
+          rootdir       : "mbed_path"
+        - path        : drivers/FileSystemLike.h
+          virtual-dir   : mbed-drivers
+          rootdir       : "mbed_path"
+        - path        : drivers/I2C.h
+          virtual-dir   : mbed-drivers
+          rootdir       : "mbed_path"
+        - path        : drivers/I2CSlave.h
+          virtual-dir   : mbed-drivers
+          rootdir       : "mbed_path"
+        - path        : drivers/InterruptIn.h
+          virtual-dir   : mbed-drivers
+          rootdir       : "mbed_path"
+        - path        : drivers/InterruptManager.h
+          virtual-dir   : mbed-drivers
+          rootdir       : "mbed_path"
+        - path        : drivers/LocalFileSystem.h
+          virtual-dir   : mbed-drivers
+          rootdir       : "mbed_path"
+        - path        : drivers/LowPowerTicker.h
+          virtual-dir   : mbed-drivers
+          rootdir       : "mbed_path"
+        - path        : drivers/LowPowerTimeout.h
+          virtual-dir   : mbed-drivers
+          rootdir       : "mbed_path"
+        - path        : drivers/LowPowerTimer.h
+          virtual-dir   : mbed-drivers
+          rootdir       : "mbed_path"
+        - path        : drivers/PortIn.h
+          virtual-dir   : mbed-drivers
+          rootdir       : "mbed_path"
+        - path        : drivers/PortInOut.h
+          virtual-dir   : mbed-drivers
+          rootdir       : "mbed_path"
+        - path        : drivers/PortOut.h
+          virtual-dir   : mbed-drivers
+          rootdir       : "mbed_path"
+        - path        : drivers/PwmOut.h
+          virtual-dir   : mbed-drivers
+          rootdir       : "mbed_path"
+        - path        : drivers/RawSerial.h
+          virtual-dir   : mbed-drivers
+          rootdir       : "mbed_path"
+        - path        : drivers/SPI.h
+          virtual-dir   : mbed-drivers
+          rootdir       : "mbed_path"
+        - path        : drivers/SPISlave.h
+          virtual-dir   : mbed-drivers
+          rootdir       : "mbed_path"
+        - path        : drivers/Serial.h
+          virtual-dir   : mbed-drivers
+          rootdir       : "mbed_path"
+        - path        : drivers/SerialBase.h
+          virtual-dir   : mbed-drivers
+          rootdir       : "mbed_path"
+        - path        : drivers/Stream.h
+          virtual-dir   : mbed-drivers
+          rootdir       : "mbed_path"
+        - path        : drivers/Ticker.h
+          virtual-dir   : mbed-drivers
+          rootdir       : "mbed_path"
+        - path        : drivers/Timeout.h
+          virtual-dir   : mbed-drivers
+          rootdir       : "mbed_path"
+        - path        : drivers/Timer.h
+          virtual-dir   : mbed-drivers
+          rootdir       : "mbed_path"
+        - path        : drivers/TimerEvent.h
+          virtual-dir   : mbed-drivers
+          rootdir       : "mbed_path"
+        - path        : drivers/AnalogIn.cpp
+          virtual-dir   : mbed-drivers
+          rootdir       : "mbed_path"
+        - path        : drivers/BusIn.cpp
+          virtual-dir   : mbed-drivers
+          rootdir       : "mbed_path"
+        - path        : drivers/BusInOut.cpp
+          virtual-dir   : mbed-drivers
+          rootdir       : "mbed_path"
+        - path        : drivers/BusOut.cpp
+          virtual-dir   : mbed-drivers
+          rootdir       : "mbed_path"
+        - path        : drivers/CAN.cpp
+          virtual-dir   : mbed-drivers
+          rootdir       : "mbed_path"
+        - path        : drivers/Ethernet.cpp
+          virtual-dir   : mbed-drivers
+          rootdir       : "mbed_path"
+        - path        : drivers/FileBase.cpp
+          virtual-dir   : mbed-drivers
+          rootdir       : "mbed_path"
+        - path        : drivers/FileLike.cpp
+          virtual-dir   : mbed-drivers
+          rootdir       : "mbed_path"
+        - path        : drivers/FilePath.cpp
+          virtual-dir   : mbed-drivers
+          rootdir       : "mbed_path"
+        - path        : drivers/FileSystemLike.cpp
+          virtual-dir   : mbed-drivers
+          rootdir       : "mbed_path"
+        - path        : drivers/I2C.cpp
+          virtual-dir   : mbed-drivers
+          rootdir       : "mbed_path"
+        - path        : drivers/I2CSlave.cpp
+          virtual-dir   : mbed-drivers
+          rootdir       : "mbed_path"
+        - path        : drivers/InterruptIn.cpp
+          virtual-dir   : mbed-drivers
+          rootdir       : "mbed_path"
+        - path        : drivers/InterruptManager.cpp
+          virtual-dir   : mbed-drivers
+          rootdir       : "mbed_path"
+        - path        : drivers/LocalFileSystem.cpp
+          virtual-dir   : mbed-drivers
+          rootdir       : "mbed_path"
+        - path        : drivers/RawSerial.cpp
+          virtual-dir   : mbed-drivers
+          rootdir       : "mbed_path"
+        - path        : drivers/SPI.cpp
+          virtual-dir   : mbed-drivers
+          rootdir       : "mbed_path"
+        - path        : drivers/SPISlave.cpp
+          virtual-dir   : mbed-drivers
+          rootdir       : "mbed_path"
+        - path        : drivers/Serial.cpp
+          virtual-dir   : mbed-drivers
+          rootdir       : "mbed_path"
+        - path        : drivers/SerialBase.cpp
+          virtual-dir   : mbed-drivers
+          rootdir       : "mbed_path"
+        - path        : drivers/Stream.cpp
+          virtual-dir   : mbed-drivers
+          rootdir       : "mbed_path"
+        - path        : drivers/Ticker.cpp
+          virtual-dir   : mbed-drivers
+          rootdir       : "mbed_path"
+        - path        : drivers/Timeout.cpp
+          virtual-dir   : mbed-drivers
+          rootdir       : "mbed_path"
+        - path        : drivers/Timer.cpp
+          virtual-dir   : mbed-drivers
+          rootdir       : "mbed_path"
+        - path        : drivers/TimerEvent.cpp
+          virtual-dir   : mbed-drivers
+          rootdir       : "mbed_path"
+    platform:
+      name              : platform
+      files:
+        - path        : platform/CThunk.h
+          virtual-dir   : platform
+          rootdir       : "mbed_path"
+        - path        : platform/CallChain.h
+          virtual-dir   : platform
+          rootdir       : "mbed_path"
+        - path        : platform/Callback.h
+          virtual-dir   : platform
+          rootdir       : "mbed_path"
+        - path        : platform/CircularBuffer.h
+          virtual-dir   : platform
+          rootdir       : "mbed_path"
+        - path        : platform/FunctionPointer.h
+          virtual-dir   : platform
+          rootdir       : "mbed_path"
+        - path        : platform/PlatformMutex.h
+          virtual-dir   : platform
+          rootdir       : "mbed_path"
+        - path        : platform/SingletonPtr.h
+          virtual-dir   : platform
+          rootdir       : "mbed_path"
+        - path        : platform/Transaction.h
+          virtual-dir   : platform
+          rootdir       : "mbed_path"
+        - path        : platform/critical.h
+          virtual-dir   : platform
+          rootdir       : "mbed_path"
+        - path        : platform/mbed_assert.h
+          virtual-dir   : platform
+          rootdir       : "mbed_path"
+        - path        : platform/mbed_debug.h
+          virtual-dir   : platform
+          rootdir       : "mbed_path"
+        - path        : platform/mbed_error.h
+          virtual-dir   : platform
+          rootdir       : "mbed_path"
+        - path        : platform/mbed_interface.h
+          virtual-dir   : platform
+          rootdir       : "mbed_path"
+        - path        : platform/mbed_mem_trace.h
+          virtual-dir   : platform
+          rootdir       : "mbed_path"
+        - path        : platform/mbed_stats.h
+          virtual-dir   : platform
+          rootdir       : "mbed_path"
+        - path        : platform/platform.h
+          virtual-dir   : platform
+          rootdir       : "mbed_path"
+        - path        : platform/rtc_time.h
+          virtual-dir   : platform
+          rootdir       : "mbed_path"
+        - path        : platform/semihost_api.h
+          virtual-dir   : platform
+          rootdir       : "mbed_path"
+        - path        : platform/toolchain.h
+          virtual-dir   : platform
+          rootdir       : "mbed_path"
+        - path        : platform/wait_api.h
+          virtual-dir   : platform
+          rootdir       : "mbed_path"
+        - path        : platform/mbed_assert.c
+          virtual-dir   : platform
+          rootdir       : "mbed_path"
+        - path        : platform/mbed_board.c
+          virtual-dir   : platform
+          rootdir       : "mbed_path"
+        - path        : platform/mbed_critical.c
+          virtual-dir   : platform
+          rootdir       : "mbed_path"
+        - path        : platform/mbed_error.c
+          virtual-dir   : platform
+          rootdir       : "mbed_path"
+        - path        : platform/mbed_interface.c
+          virtual-dir   : platform
+          rootdir       : "mbed_path"
+        - path        : platform/mbed_mem_trace.c
+          virtual-dir   : platform
+          rootdir       : "mbed_path"
+        - path        : platform/mbed_semihost_api.c
+          virtual-dir   : platform
+          rootdir       : "mbed_path"
+        - path        : platform/mbed_wait_api_no_rtos.c
+          virtual-dir   : platform
+          rootdir       : "mbed_path"
+        - path        : platform/CallChain.cpp
+          virtual-dir   : platform
+          rootdir       : "mbed_path"
+        - path        : platform/mbed_alloc_wrappers.cpp
+          virtual-dir   : platform
+          rootdir       : "mbed_path"
+        - path        : platform/mbed_rtc_time.cpp
+          virtual-dir   : platform
+          rootdir       : "mbed_path"
+        - path        : platform/mbed_wait_api_rtos.cpp
+          virtual-dir   : platform
+          rootdir       : "mbed_path"
+        - path        : platform/retarget.cpp
+          virtual-dir   : platform
+          rootdir       : "mbed_path"
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+

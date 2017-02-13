@@ -1,0 +1,9 @@
+__load__:
+  - targets/nxp/sdk/drv_lpit.yml
+
+lpit:
+  configuration:
+    meta_components:
+
+      - lpit
+

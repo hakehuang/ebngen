@@ -1,0 +1,9 @@
+__load__:
+  - targets/nxp/sdk/drv_lpspi_edma.yml
+
+lpspi_edma:
+  configuration:
+    meta_components:
+
+      - lpspi_edma
+

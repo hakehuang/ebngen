@@ -1,0 +1,11 @@
+__load__:
+  - mbed/mbed_fsl.yml
+
+mbed_os_fsl:
+  configuration:
+    section-type: component
+    meta_components:
+
+      - mbed_os_fsl
+  __add__: []
+#if the component requires other component

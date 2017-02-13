@@ -1,0 +1,8 @@
+__load__:
+  - targets/nxp/sdk/dev_sai_dma.yml
+
+sai_dma:
+  configuration:
+    meta_components:
+
+      - sai_dma

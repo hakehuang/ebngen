@@ -1,0 +1,9 @@
+__load__:
+  - targets/nxp/sdk/drv_flexio_uart.yml
+
+flexio_uart:
+  configuration:
+    meta_components:
+
+      - flexio_uart
+

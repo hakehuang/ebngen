@@ -1,0 +1,8 @@
+__load__:
+  - targets/nxp/sdk/drv_mmau.yml
+
+mmau:
+  configuration:
+    meta_components:
+
+      - mmau

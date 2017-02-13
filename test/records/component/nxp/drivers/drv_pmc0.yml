@@ -1,0 +1,8 @@
+__load__:
+  - targets/nxp/sdk/drv_pmc0.yml
+
+pmc0:
+  configuration:
+    meta_components:
+
+      - pmc0

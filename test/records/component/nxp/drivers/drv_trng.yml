@@ -1,0 +1,9 @@
+__load__:
+  - targets/nxp/sdk/drv_trng.yml
+
+trng:
+  configuration:
+    meta_components:
+
+      - trng
+

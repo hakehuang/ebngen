@@ -1,0 +1,9 @@
+__load__:
+  - targets/nxp/sdk/drv_flexio_i2s_dma.yml
+
+flexio_i2s_dma:
+  configuration:
+    meta_components:
+
+      - flexio_i2s_dma
+

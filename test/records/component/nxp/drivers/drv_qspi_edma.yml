@@ -1,0 +1,8 @@
+__load__:
+  - targets/nxp/sdk/drv_qspi_edma.yml
+
+qspi_edma:
+  configuration:
+    meta_components:
+
+      - qspi_edma

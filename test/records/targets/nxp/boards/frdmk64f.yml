@@ -1,0 +1,76 @@
+
+frdmk64f:
+  document:
+    board: frdmk64f
+  configuration:
+    report-name         : frdmk64f
+    board               : frdmk64f
+    tools:
+      __common__:
+        config:
+          __common__:
+            cc_include:
+              - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F/TARGET_FRDM
+                rootdir: "mbed_path"
+            cxx_include:
+              - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F/TARGET_FRDM
+                rootdir: "mbed_path"
+            cc_defines:
+              FRDM_K64F120M:
+              TARGET_K64F:
+      uv4:
+        project-templates:
+          - templates/uv4/app_frdmk64f/frdmk64f.uvproj
+      mdk:
+        project-templates:
+          - templates/mdk/app_frdmk64f/frdmk64f.uvprojx
+          #- templates/mdk/app_frdmk64f/frdmk64f.uvproj
+      kds:
+        project-templates:
+          - templates/kds/app_frdmk64f/.cproject
+          - templates/kds/app_frdmk64f/.project
+          - templates/kds/app_frdmk64f/Debug Jlink.launch
+          - templates/kds/app_frdmk64f/Release Jlink.launch
+      atl:
+        project-templates:
+          - templates/atl/app_frdmk64f/.cproject
+          - templates/atl/app_frdmk64f/.project
+          - templates/atl/app_frdmk64f/.settings
+  modules:
+    board:
+      attribute: "required"
+      name: board
+      files:
+        - path        : targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F/TARGET_FRDM/PeripheralPins.c
+          virtual-dir   : board
+          rootdir       : "mbed_path"
+        - path        : targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F/TARGET_FRDM/crc.c
+          virtual-dir   : board
+          rootdir       : "mbed_path"
+        - path        : targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F/TARGET_FRDM/fsl_clock_config.c
+          virtual-dir   : board
+          rootdir       : "mbed_path"
+        - path        : targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F/TARGET_FRDM/fsl_phy.c
+          virtual-dir   : board
+          rootdir       : "mbed_path"
+        - path        : targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F/TARGET_FRDM/mbed_overrides.c
+          virtual-dir   : board
+          rootdir       : "mbed_path"
+        - path        : targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F/TARGET_FRDM/PeripheralNames.h
+          virtual-dir   : board
+          rootdir       : "mbed_path"
+        - path        : targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F/TARGET_FRDM/PinNames.h
+          virtual-dir   : board
+          rootdir       : "mbed_path"
+        - path        : targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F/TARGET_FRDM/crc.h
+          virtual-dir   : board
+          rootdir       : "mbed_path"
+        - path        : targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F/TARGET_FRDM/device.h
+          virtual-dir   : board
+          rootdir       : "mbed_path"
+        - path        : targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F/TARGET_FRDM/fsl_clock_config.h
+          virtual-dir   : board
+          rootdir       : "mbed_path"
+        - path        : targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F/TARGET_FRDM/fsl_phy.h
+          virtual-dir   : board
+          rootdir       : "mbed_path"

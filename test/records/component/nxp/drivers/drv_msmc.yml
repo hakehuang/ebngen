@@ -1,0 +1,9 @@
+__load__:
+  - targets/nxp/sdk/drv_msmc.yml
+
+msmc:
+  configuration:
+    meta_components:
+
+      - msmc
+

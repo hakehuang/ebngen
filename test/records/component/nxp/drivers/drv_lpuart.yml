@@ -1,0 +1,8 @@
+__load__:
+  - targets/nxp/sdk/drv_lpuart.yml
+
+lpuart:
+  configuration:
+    meta_components:
+
+      - lpuart
