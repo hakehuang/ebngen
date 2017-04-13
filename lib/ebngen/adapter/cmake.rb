@@ -18,7 +18,12 @@ module CMAKE
 	include TXT
 	include UNI_Project
 
-	def initialize(project_data, generator_variable)
+	def initialize(project_data, generator_variable, logger = nil)
+		@logger = logger 
+    	unless (logger)
+        	@logger = Logger.new(STDOUT)
+        	@logger.level = Logger::WARN
+    	end
 		set_hash(project_data)
 		@project_name = get_project_name()
 		@board = get_board()
@@ -29,6 +34,7 @@ module CMAKE
 	end
 
   	def generator(filter, project_data)
+  		return if not is_toolchain_support(Project::TOOLCHAIN)
     	create_method(Project::TOOLCHAIN)
     	send(Project::TOOLCHAIN.to_sym, project_data)
     	save_project()
@@ -41,13 +47,21 @@ module CMAKE
   		proj_path = File.join(@paths.rootdir_table['output_root'], o_path)
   		@project['sources'] = Array.new
   		sources.each do |src|
-          if src['rootdir']
-            full_path = @paths.fullpath(src['rootdir'],src['path'])
-          else
-            full_path = @paths.fullpath('default_path',src['path'])
-          end
-          ipath = File.join("$ProjDirPath$", @paths.relpath(proj_path, full_path))
-		  @project['sources'].insert(-1, ipath)
+			if file['rootdir']
+			  if file.has_key? 'path'
+			    full_path = path_mod.fullpath(file['rootdir'],file['path'])
+			  else
+			    full_path = path_mod.fullpath(file['rootdir'],file['source'])
+			  end
+			else
+			  if file.has_key? 'path'
+			    full_path = path_mod.fullpath('default_path',file['path'])
+			  else
+			    full_path = path_mod.fullpath('default_path',file['source'])
+			  end
+			end
+          	ipath = File.join("$ProjDirPath$", @paths.relpath(proj_path, full_path))
+		  	@project['sources'].insert(-1, ipath)
 		end
 
   	end
@@ -61,7 +75,7 @@ module CMAKE
   	end
 
   	def outdir()
-  		puts "#{get_output_dir(Project::TOOLCHAIN, @paths.rootdir_table)}"
+  		@logger.info "#{get_output_dir(Project::TOOLCHAIN, @paths.rootdir_table)}"
   	end
 
 	def targets()
@@ -76,7 +90,7 @@ module CMAKE
           		if methods.include?("target_#{subkey}".to_sym)
             		send("target_#{subkey}".to_sym, key, value[subkey])
           		else
-            		puts "#{key} is not processed"
+            		@logger.info "#{key} is not processed"
           		end
 			end
 		end

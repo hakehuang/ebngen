@@ -14,6 +14,7 @@ merge_unit      = YML_Merger.new(
     @entry_yml, @search_path
 )
 merged_data     = merge_unit.process()
+File.write('./merged_data.yml', YAML.dump(merged_data))
 
 #myassembly = Assembly.new(merged_data)
 
@@ -27,7 +28,7 @@ translated_data = translator_unit.translate()
 options = {
   "paths" => {
    "default_path" => Dir.pwd,
-   "output_root" => Dir.pwd,
+   "output_root" => Dir.pwd + '/build',
    "mbed_path"  => Dir.pwd,
 	#'mqx_path' => @mqx_path,
    "app_path" => Dir.pwd

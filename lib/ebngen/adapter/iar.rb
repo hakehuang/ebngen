@@ -20,7 +20,12 @@ class Project
 	include EWD
 	include UNI_Project
 
-	def initialize(project_data, generator_variable)
+	def initialize(project_data, generator_variable, logger = nil)
+		@logger = logger 
+    	unless (logger)
+        	@logger = Logger.new(STDOUT)
+        	@logger.level = Logger::WARN
+    	end
 		set_hash(project_data)
 		@project_name = get_project_name()
 		@board = get_board()
@@ -28,7 +33,7 @@ class Project
 		@iar_project_files = {".ewp" => nil, ".dni" => nil, ".ewd" => nil, ".yml" => nil}
 		return nil if get_template(Project::TOOLCHAIN).nil?
 		get_template(Project::TOOLCHAIN).each do |template|
-			puts template
+			@logger.info template
 			ext = File.extname(template)
 			if @iar_project_files.keys.include?(ext)
 				path = @paths.fullpath("default_path",template)
@@ -45,13 +50,14 @@ class Project
 						@iar_project_files[ext] = doc
 				end
 			  #rescue
-			  #	puts "failed to open #{template}"
+			  #	@logger.info "failed to open #{template}"
 			  #end
 			end
 		end
 	end
 
   	def generator(filter, project_data)
+  		return if not is_toolchain_support(Project::TOOLCHAIN)
     	create_method( Project::TOOLCHAIN)
     	send(Project::TOOLCHAIN.to_sym, project_data)
     	save_project()
@@ -80,21 +86,36 @@ class Project
   	end
 
 	def targets()
+		convert_lut = {
+			'cx_flags' => 'cxx_flags',
+			'cc_define' => 'cc_defines',
+			'cx_define' => 'cxx_defines',
+			'as_define' => 'as_defines', 
+			'cp_define' => 'cp_defines',
+			'ar_flags' => 'ar_flags' 
+		}
 		get_targets(Project::TOOLCHAIN).each do |key, value|
 			next if value.nil?
 			#add target for ewp
 			t = new_target(key, @iar_project_files['.ewp'])
 			if t.nil?
-			  puts "missing default debug configuration in template"
+			  @logger.info "missing default debug configuration in template"
  			  return
 			end
 			#do the target settings
 			value.each_key do |subkey|
+				#for backward compatible
+				temp_op = subkey.gsub('-', '_')
+				if convert_lut.has_key? temp_op
+					target_op = convert_lut[temp_op]
+				else
+					target_op = temp_op
+				end
 				methods = self.class.instance_methods(false)
-          		if methods.include?("target_#{subkey}".to_sym)
-            		send("target_#{subkey}".to_sym, t, value[subkey])
+          		if methods.include?("target_#{target_op}".to_sym)
+            		send("target_#{target_op}".to_sym, t, value[subkey])
           		else
-            		puts "#{subkey} is not processed"
+            		@logger.info "#{subkey} is not processed try to use the tool-chain specific"
           		end
 			end
 		end
@@ -299,7 +320,12 @@ class Project_set
     # PARAMS:
     # - project_data: specific project data format for a application/library
     # - generator_variable: all dependency in hash
-	def initialize(project_data, generator_variable)
+	def initialize(project_data, generator_variable, logger = nil)
+		@logger = logger 
+    	unless (logger)
+        	@logger = Logger.new(STDOUT)
+        	@logger.level = Logger::WARN
+    	end
 		set_hash(project_data)
 		@project_name = get_project_name()
 		@board = get_board()
@@ -316,7 +342,7 @@ class Project_set
 					when ".eww"
 						@iar_project_files[ext] = doc
 					else
-						puts "#{ext} not processed"
+						@logger.info "#{ext} not processed"
 				end
 			end
 		end
@@ -330,6 +356,7 @@ class Project_set
 	end
 
 	def generator()
+		return if not is_toolchain_support(Project::TOOLCHAIN)
 		add_project_to_set()
 		save_set()
 	end
@@ -360,7 +387,7 @@ class Project_set
 		return if get_libraries(Project_set::TOOLCHAIN).nil?
 		get_libraries(Project_set::TOOLCHAIN).each do |lib|
 			if ustruct[lib].nil?
-				puts "#{lib} information is missing in all hash"
+				@logger.info "#{lib} information is missing in all hash"
 				next
 			end
 			libname = "#{@project_name}.ewp"
@@ -379,10 +406,14 @@ class Project_set
 
 	def save_set()
 		path = get_output_dir(Project_set::TOOLCHAIN, @paths.rootdir_table)
-		puts @paths.rootdir_table['output_root']
-		puts path
-		puts "#{@project_name}_#{@board}.eww"
-		save(@iar_project_files['.eww'], File.join(@paths.rootdir_table['output_root'], path, "#{@project_name}_#{@board}.eww"))
+		@logger.info  @paths.rootdir_table['output_root']
+		@logger.info path
+		@logger.info "#{@project_name}_#{@board}.eww"
+		if path.class == Hash 
+			save(@iar_project_files['.eww'], File.join(@paths.rootdir_table[path['rootdir']], path['path'], "#{@project_name}_#{@board}.eww"))
+		else
+		  save(@iar_project_files['.eww'], File.join(@paths.rootdir_table['output_root'], path, "#{@project_name}_#{@board}.eww"))
+		end
 	end
 
 end

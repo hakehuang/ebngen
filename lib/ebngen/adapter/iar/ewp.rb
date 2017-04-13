@@ -204,7 +204,11 @@ module EWP
     source_hash.each do |src|
       rootdir = src['rootdir']
       virtual_dir = src['virtual_dir']
-      path = src['path']
+      if src.has_key?('path')
+        path = src['path']
+      else
+        path = src['source']
+      end
       if virtual_dir
         if ! groups_existing.include?(virtual_dir)
           groups_existing.insert(-1, virtual_dir)

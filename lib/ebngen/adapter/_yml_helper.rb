@@ -3,18 +3,16 @@ require "yaml"
 
 
 module UNI_Project
+  def is_toolchain_support(tool_chain)
+    return @projects_hash.has_key?(tool_chain)
+  end
 
   def set_hash(options)
      @projects_hash = options
   end
 
-  def get_output_dir(toolchain,  path_hash, **args)
-    if args.length == 0
-      return File.join(@projects_hash[toolchain]["outdir"], toolchain)
-    elsif ! args[:dir].nil?
-      return Pathname.new(File.join(
-      @projects_hash[toolchain]["outdir"], toolchain)).relative_path_from(Pathname.new(args[:dir])).to_s
-    end
+  def get_output_dir(toolchain,  path_hash)
+    @projects_hash[toolchain]["outdir"]
   end
 
   def get_src_list(toolchain)

@@ -252,7 +252,7 @@ hello_world:
     - templates/iar/general.eww
     - templates/iar/app_generic_nMISRA/appgeneric.ewd
     - templates/iar/app_generic_nMISRA/appgeneric.ewp
-    outdir: build/hello_world/iar/frdmk64f
+    outdir: frdmk64f/hello_world/iar
     source:
     - path: rtos/rtx/TARGET_CORTEX_M/TARGET_RTOS_M4_M7/TOOLCHAIN_IAR/HAL_CM4.S
       rootdir: mbed_path

@@ -2,6 +2,7 @@ require 'deep_merge'
 require 'rubygems'
 require 'pathname'
 require 'fileutils'
+require 'logger'
 
 module Utils_set
   def nodes_exist?(node, subnodes)
@@ -18,7 +19,12 @@ class Translator
 
   include Utils_set
 
-  def initialize(node, logger: nil)
+  def initialize(node, logger = nil)
+      @logger = logger 
+      unless (logger)
+        @logger = Logger.new(STDOUT)
+        @logger.level = Logger::INFO
+      end
       @data_in = deep_copy(node)
       @data_in_component = deep_copy(node)
       @data_out = Hash.new
@@ -61,10 +67,10 @@ class Translator
           begin
             next if struct[subnode]['configuration']['section-type'] != "application"
             if struct[addon]['configuration']['section-type'] != "component"
-              puts "WARNING #{addon} is required as component but has not a component attribute"
+              @logger.warn "WARNING #{addon} is required as component but has not a component attribute"
             end
           rescue
-            puts "error with the merge_by_add with #{subnode} add #{addon}"
+            @logger.error "error with the merge_by_add with #{subnode} add #{addon}"
           end
             deep_add_merge(struct, subnode, addon)
           end
@@ -77,6 +83,25 @@ class Translator
      translate_project()
      return [@data_out, @data_in_component, @data_in]
      #puts @data_out.to_yaml
+  end
+
+  def output_path(proj, comp)
+    if @data_in[proj].has_key?('outdir')
+      board = @data_in[proj]['configuration']['board']
+      if @data_out[proj][comp]['type'] == "library"
+        if comp == 'uv4'
+          @data_out[proj][comp]['outdir'] = File.join(@data_in[proj]['outdir'], proj, "mdk")
+        else
+          @data_out[proj][comp]['outdir'] = File.join(@data_in[proj]['outdir'], proj, comp)
+        end
+      else
+        if comp == "uv4"
+          @data_out[proj][comp]['outdir'] = File.join(board, @data_in[proj]['outdir'], "mdk")
+        else
+          @data_out[proj][comp]['outdir'] = File.join(board, @data_in[proj]['outdir'], comp)
+        end
+      end
+    end
   end
 
   private
@@ -111,23 +136,7 @@ class Translator
       if compiler.has_key?("group")
          @data_out[proj][comp]['group'] =  compiler['group']
       end
-
-      if @data_in[proj].has_key?('outdir')
-        board = @data_in[proj]['configuration']['board']
-        if @data_out[proj][comp]['type'] == "library"
-          if comp == 'uv4'
-            @data_out[proj][comp]['outdir'] = File.join(@data_in[proj]['outdir'], proj, "mdk")
-          else
-            @data_out[proj][comp]['outdir'] = File.join(@data_in[proj]['outdir'], proj, comp)
-          end
-        else
-          if comp == "uv4"
-            @data_out[proj][comp]['outdir'] = File.join(@data_in[proj]['outdir'], "mdk", board)
-          else
-            @data_out[proj][comp]['outdir'] = File.join(@data_in[proj]['outdir'], comp, board)
-          end
-        end
-      end
+      output_path(proj, comp)
   	  compiler['config'].each_key do |target|
           next if compiler['load-to'].nil?
           next if compiler['load-to'][target].nil?

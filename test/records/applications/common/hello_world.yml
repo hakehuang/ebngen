@@ -1,6 +1,6 @@
 
 hello_world:
-  outdir            : build/hello_world
+  outdir            : hello_world
   configuration:
     tools:
       __common__:
