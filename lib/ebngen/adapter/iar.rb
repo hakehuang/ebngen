@@ -81,7 +81,8 @@ class Project
   		#set project type
   	end
 
-  	def outdir()
+  	def document()
+  		project_name = get_project_name()
 
   	end
 
@@ -147,7 +148,7 @@ class Project
   				}
 		set_specific(target_node, settings)
 		settings = {'GEndianModeBE' => {
-					'state' => 1
+					'state' => '1'
 					}
 		}
 		set_specific(target_node, settings)
@@ -158,8 +159,18 @@ class Project
 	end
 
 	def target_as_defines(target_node, doc)
+		defines_array = Array.new
+		doc.each do |item|
+		  if item.class == Hash
+		  	item.each do |key, value|
+		  	  defines_array.insert(-1, "#{key}=#{value}")
+		    end
+		  else
+	      	defines_array.insert(-1, item)
+	      end
+  		end
 		settings = {'ADefines' => {
-    				'state' => doc
+    				'state' => defines_array
   					}
   				}
   		add_specific(target_node, settings)
@@ -183,8 +194,18 @@ class Project
 	end
 
 	def target_as_flags(target_node, doc)
+		flags_array = Array.new
+		doc.each do |item|
+		  if item.class == Hash
+		  	item.each do |key, value|
+		  	  flags_array.insert(-1, "#{key}=#{value}")
+		    end
+		  else
+	      	flags_array.insert(-1, item)
+	      end
+  		end
 		settings = {'AExtraOptionsV2' => {
-    				'state' => doc
+    				'state' => flags_array
   					}
   				}
   		add_specific(target_node, settings)
@@ -212,8 +233,16 @@ class Project
 	end
 
 	def target_cc_defines(target_node, doc)
+		defines_array = Array.new
+		doc.each do |item, item_value|
+		   if item_value.nil?
+	         defines_array.insert(-1, "#{item}")
+	       else
+              defines_array.insert(-1, "#{item}=#{item_value}")
+	       end
+  		end
 		settings = {'CCDefines' => {
-    				'state' => doc
+    				'state' => defines_array
   					}
   				   }
   		add_specific(target_node, settings)
@@ -238,7 +267,7 @@ class Project
 
 	def target_cc_flags(target_node, doc)
 		settings_check = { 'IExtraOptionsCheck' => {
-				'state' => 1
+				'state' => '1'
 			}
 		}
 		add_specific(target_node, settings_check)
@@ -306,7 +335,17 @@ class Project
 	end
 
 	def target_outdir(target_node, doc)
-
+=begin
+		<option>
+          <name>IlinkOutputFile</name>
+          <state>K70_pit_drivers_test.out</state>
+        </option>
+=end
+		settings = { 'IlinkOutputFile' => {
+				'state' => "#{get_project_name()}.out"
+			}
+		}
+		set_specific(target_node, settings)
 	end
 
 end

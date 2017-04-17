@@ -6,6 +6,16 @@ class Hash
  def to_xml(doc)
    return if doc.nil?
    self.each do |key, value|
+     mynode = Nokogiri::XML::Node.new key, doc
+     doc.add_child mynode
+     value.to_xml(mynode) if value.class == Hash
+     mynode.content = value if value.class == String or value.class == Fixnum
+   end
+   return doc
+ end #end to_xml
+ def to_xml!(doc)
+   return if doc.nil?
+   self.each do |key, value|
      if doc.css("/#{key}").count == 0
        mynode = Nokogiri::XML::Node.new key, doc
      else
@@ -16,7 +26,7 @@ class Hash
      mynode.content = value if value.class == String or value.class == Fixnum
    end
    return doc
- end #end to_xml
+ end #end to_xml!
 end #end Hash
 
 module EWP
@@ -28,15 +38,16 @@ module EWP
   	nset = load_node(doc, "/project/configuration")
   	#use existing one
   	nset.each do |element|
-  		if element.xpath("name").text.downcase == target.downcase
-  			return element
+  		if element.css("/name").text.downcase == target.downcase
+        puts "find existing #{element.css("/name").text.downcase}"
+        return element
   		end
   	end
   	#create new one
   	nset.each do |element|
   		#use the first available configuration
   		t = element.dup
-  		t.xpath('name').text = target
+  		t.css('/name').text = target
   			#doc.xpath("/project") << t
   		element.add_previous_sibling(t)
   		return t
@@ -84,13 +95,17 @@ module EWP
   end
 
   def create_node(doc, hash_value)
+    hash_value.to_xml!(doc)
+  end
+
+  def append_node(doc, hash_value)
     hash_value.to_xml(doc)
   end
 
   def add_specific(target_node, doc)
     doc.each do |key, value|
       checked = false
-      options = target_node.xpath("//option")
+      options = target_node.xpath(".//option")
       options.each do |option|
         if option.css('name').text == key
           value.each do |subkey, subvalue|
@@ -102,7 +117,7 @@ module EWP
               end
             elsif subvalue.class == Array
               subvalue.each do |line|
-                create_node(option, {subkey => line})
+                append_node(option, {subkey => line})
               end
             else
               puts "not supported format must be string or array"
@@ -124,7 +139,7 @@ module EWP
             create_node(option_node, {subkey => subvalue})
           elsif subvalue.class == Array
             subvalue.each do |line|
-              create_node(option_node, {subkey => line})
+              append_node(option_node, {subkey => line})
             end
           else
             puts "not supported format must be string or array"
@@ -141,7 +156,7 @@ module EWP
   def set_specific(target_node, doc)
   	doc.each do |key, value|
       checked = false
-  		options = target_node.xpath("//option")
+  		options = target_node.xpath(".//option")
   		options.each do |option|
   			if option.css('name').text == key
   				value.each do |subkey, subvalue|
@@ -153,7 +168,7 @@ module EWP
               end
             elsif subvalue.class == Array
               subvalue.each do |line|
-                create_node(node, {subkey => line})
+                append_node(node, {subkey => line})
               end
             else
               puts "not supported format must be string or array"
@@ -176,7 +191,7 @@ module EWP
             create_node(option_node, {subkey => subvalue})
           elsif subvalue.class == Array
             subvalue.each do |line|
-              create_node(option_node, {subkey => line})
+              append_node(option_node, {subkey => line})
             end
           else
             puts "not supported format must be string or array"
@@ -203,7 +218,8 @@ module EWP
     files_hash = Hash.new
     source_hash.each do |src|
       rootdir = src['rootdir']
-      virtual_dir = src['virtual_dir']
+      virtual_dir = src['virtual_dir'] if src.has_key? 'virtual_dir'
+      virtual_dir = src['virtual-dir'] if src.has_key? 'virtual-dir'
       if src.has_key?('path')
         path = src['path']
       else
