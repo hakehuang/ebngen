@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name        = 'ebngen'
-  s.version     = '1.0.2'
-  s.date        = '2017-04-12'
+  s.version     = '1.0.3'
+  s.date        = '2017-06-16'
   s.summary     = "ebngen"
   s.description = "embedded project generator"
   s.authors     = ["Hake Huang", "Marian Cingel"]

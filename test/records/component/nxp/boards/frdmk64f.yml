@@ -5,5 +5,4 @@ frdmk64f:
   configuration:
     section-type: component
     meta_components:
-
       - frdmk64f
