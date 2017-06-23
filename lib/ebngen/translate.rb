@@ -208,7 +208,7 @@ class Translator
   	  end
 
      if @data_in[proj].has_key?('document')
-       create_and_deep_merge(@data_out[proj][comp],'document',  @data_in[proj]['document'])
+       create_and_deep_merge(@data_out[proj],'document',  @data_in[proj]['document'])
      end
     end
   end
