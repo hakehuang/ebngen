@@ -71,7 +71,7 @@ __common__:
       ###
       ### CMake declaration
       ###
-      armgcc             :
+      cmake             :
         config:
           __common__:
             cc_defines:

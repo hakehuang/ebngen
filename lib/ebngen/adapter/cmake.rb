@@ -46,18 +46,18 @@ module CMAKE
   		o_path = get_output_dir(Project::TOOLCHAIN, @paths.rootdir_table)
   		proj_path = File.join(@paths.rootdir_table['output_root'], o_path)
   		@project['sources'] = Array.new
-  		sources.each do |src|
+  		sources.each do |file|
 			if file['rootdir']
 			  if file.has_key? 'path'
-			    full_path = path_mod.fullpath(file['rootdir'],file['path'])
+			    full_path = @paths.fullpath(file['rootdir'],file['path'])
 			  else
-			    full_path = path_mod.fullpath(file['rootdir'],file['source'])
+			    full_path = @paths.fullpath(file['rootdir'],file['source'])
 			  end
 			else
 			  if file.has_key? 'path'
-			    full_path = path_mod.fullpath('default_path',file['path'])
+			    full_path = @paths.fullpath('default_path',file['path'])
 			  else
-			    full_path = path_mod.fullpath('default_path',file['source'])
+			    full_path = @paths.fullpath('default_path',file['source'])
 			  end
 			end
           	ipath = File.join("$ProjDirPath$", @paths.relpath(proj_path, full_path))
@@ -268,13 +268,13 @@ module CMAKE
 		ta = target.upcase
 		convert_string = {'DEBUG' => 'debug', 'RELEASE' => 'optimized'}
 		@project["target"][ta]['libraries'] = Array.new
-		header = "TARGET_LINK_LIBRARIES(#{project_name}.elf -Wl,--start-group)"
+		header = "TARGET_LINK_LIBRARIES(#{@project_name}.elf -Wl,--start-group)"
 		@project["target"][ta]['libraries'].insert(-1, header)
 		doc.each do |library|
-		  lib = "target_link_libraries(#{project_name}.elf #{convert_string[ta]} #{library})"
+		  lib = "target_link_libraries(#{@project_name}.elf #{convert_string[ta]} #{library})"
 		  @project["target"][ta]['libraries'].insert(-1, lib)
 		end
-		footer = "TARGET_LINK_LIBRARIES(#{project_name}.elf -Wl,--end-group)"
+		footer = "TARGET_LINK_LIBRARIES(#{@project_name}.elf -Wl,--end-group)"
 		@project["target"][ta]['libraries'].insert(-1, footer)
 	end
 

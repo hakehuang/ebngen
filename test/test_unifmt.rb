@@ -53,6 +53,9 @@ myunifmt.templates = [
 myunifmt.tool_chain_set_spec = {
   'GOutputBinary' => {
     'state' => '1'
+  },
+  'IlinkOutputFile' => {
+    'state' => "demo_project.out"
   }
 }
 

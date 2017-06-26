@@ -40,8 +40,8 @@ class Generator
     	 IAR::Project_set.new(project_data, @generator_variable, @logger).generator()
     when 'mdk'
     	@logger.info "mdk TBD"
-    when 'armgcc'
-    	@logger.info "armgcc TBD"
+    when 'cmake'
+    	@logger.info "cmake TBD"
 	end  
   end
 

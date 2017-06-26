@@ -37,7 +37,7 @@ __hierarchy__:
         - path        : targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F/device/TOOLCHAIN_GCC_ARM/startup_MK64F12.S
           virtual-dir   : startup
           rootdir       : "mbed_path"
-    armgcc:
+    cmake:
       files:
         - path        : targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F/device/TOOLCHAIN_GCC_ARM/startup_MK64F12.S
           virtual-dir   : startup
@@ -208,7 +208,7 @@ MK64FN1M0xxx12:
 ###
 ### CMake files
 ###
-      armgcc:
+      cmake:
         config:
           __common__:
             as_flags:

@@ -39,7 +39,7 @@ __hierarchy__:
         - path        : rtos/rtx/TARGET_CORTEX_M/TARGET_RTOS_M4_M7/TOOLCHAIN_ARM/SVC_Table.S
           rootdir:      "mbed_path"
           virtual-dir   : mbed:portable
-    armgcc:
+    cmake:
       files:
         - path        : rtos/rtx/TARGET_CORTEX_M/TARGET_RTOS_M4_M7/TOOLCHAIN_ARM/HAL_CM4.S
           rootdir:      "mbed_path"
