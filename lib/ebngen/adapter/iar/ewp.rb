@@ -47,7 +47,7 @@ module EWP
   	nset.each do |element|
   		#use the first available configuration
   		t = element.dup
-  		t.css('/name').text = target
+  		t.at_css('/name').content = target
   			#doc.xpath("/project") << t
   		element.add_previous_sibling(t)
   		return t
