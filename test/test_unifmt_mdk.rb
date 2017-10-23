@@ -45,10 +45,10 @@ myunifmt.linker_file = {
 }
 
 myunifmt.templates = [ 
-#  "templates/iar/general.ewd",
-    "templates/mdk/project_mpw.xsd",
+# "templates/iar/general.ewd",
+    "templates/mdk/k64f120m.uvprojx",
 #    "templates/iar/general.dni",
-    "templates/mdk/project_projx.xsd"]
+    "templates/mdk/project_mpw.xsd"]
 
 =begin
 myunifmt.tool_chain_set_spec = {

@@ -59,7 +59,9 @@ __common__:
       ###
       mdk               :
         project-templates:
-          - templates/mdk/general.uvmpw
+          #- templates/mdk/general.uvmpw
+          - templates/mdk/project_mpw.xsd
+          - templates/mdk/project_projx.xsd
         config:
           __common__:
             cc_defines:

@@ -23,8 +23,8 @@ frdmk64f:
           - templates/uv4/app_frdmk64f/frdmk64f.uvproj
       mdk:
         project-templates:
-          - templates/mdk/app_frdmk64f/frdmk64f.uvprojx
-          #- templates/mdk/app_frdmk64f/frdmk64f.uvproj
+          - templates/mdk/project_mpw.xsd
+          - templates/mdk/project_projx.xsd
       kds:
         project-templates:
           - templates/kds/app_frdmk64f/.cproject

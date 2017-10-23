@@ -4,7 +4,7 @@ demo_project:
     board: demo_board
     project_name: demo_project
     project_root_dir: default_root_dir
-  iar:
+  mdk:
     targets:
       debug:
         cp_defines:
@@ -50,13 +50,9 @@ demo_project:
         cxx_flags: []
         ld_flags: []
         linker_file:
-          path: devices/MK64F12/iar/MK64FN1M0xxx12_flash.icf
+          path: devices/MK64F12/arm/MK64FN1M0xxx12_flash.scf
         outdir: build
-        tool_chain_set_spec:
-          GOutputBinary:
-            state: '1'
-          IlinkOutputFile:
-            state: demo_project.out
+        tool_chain_set_spec: {}
         tool_chain_add_spec: {}
         binary_file: ''
       release:
@@ -104,14 +100,14 @@ demo_project:
         cxx_flags: []
         ld_flags: []
         linker_file:
-          path: devices/MK64F12/iar/MK64FN1M0xxx12_flash.icf
+          path: devices/MK64F12/arm/MK64FN1M0xxx12_flash.scf
         outdir: build
         tool_chain_set_spec: {}
         tool_chain_add_spec: {}
         binary_file: ''
     templates:
-    - templates/iar/general.ewp
-    - templates/iar/general.eww
+    - templates/mdk/k64f120m.uvprojx
+    - templates/mdk/project_mpw.xsd
     type: application
     source:
     - path: hello_world.c

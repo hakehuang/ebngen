@@ -1,0 +1,8 @@
+__common__:
+  mdk:
+    projectset_settings:
+      SchemaVersion: 2.1
+      Header: "enbgen generated projects"
+    project_settings:
+      SchemaVersion: 2.1
+      Header: "enbgen generated projects"

@@ -46,4 +46,12 @@ module UNI_Project
   def get_template(toolchain)
     return @projects_hash[toolchain]['templates']
   end
+
+  def get_default_projectset_settings(toolchain) 
+    return @projects_hash[toolchain]['projectset_settings']
+  end
+
+  def get_default_project_settings(toolchain) 
+    return @projects_hash[toolchain]['project_settings']
+  end
 end

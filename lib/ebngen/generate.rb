@@ -1,6 +1,7 @@
 
 require_relative 'adapter/iar'
 require_relative 'adapter/cmake'
+require_relative 'adapter/mdk'
 require 'logger'
 
 class Generator
@@ -28,7 +29,7 @@ class Generator
     when 'iar'
     	IAR::Project.new(project_data, @generator_variable, @logger).generator(filter, project_data)
     when 'mdk'
-    	@logger.info "mdk TBD"
+    	MDK::Project.new(project_data, @generator_variable, @logger).generator(filter, project_data)
     when 'cmake'
     	CMAKE::Project.new(project_data, @generator_variable, @logger).generator(filter, project_data)
 	end
@@ -39,7 +40,7 @@ class Generator
     when 'iar'
     	 IAR::Project_set.new(project_data, @generator_variable, @logger).generator()
     when 'mdk'
-    	@logger.info "mdk TBD"
+    	MDK::Project_set.new(project_data, @generator_variable, @logger).generator()
     when 'cmake'
     	@logger.info "cmake TBD"
 	end  

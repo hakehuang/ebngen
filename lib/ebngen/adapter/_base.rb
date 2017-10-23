@@ -15,6 +15,7 @@ module Base
       project_data[name].each_key do |key|
         methods = self.class.instance_methods(false)
         if methods.include?(key.to_sym)
+          puts "process #{key}"
           send(key.to_sym)
         else
           puts "#{key} is not processed"
