@@ -219,34 +219,47 @@ module UVPROJX
       if virtual_dir
         if ! groups_existing.include?(virtual_dir)
           groups_existing.insert(-1, virtual_dir)
-          node = Nokogiri::XML::Node.new 'group', doc
+          node = Nokogiri::XML::Node.new 'Group', doc
           node << "<GroupName>#{virtual_dir}</GroupName>"
-          doc.root << node
+          doc << node
         end
         files_hash[virtual_dir] = Array.new if files_hash[virtual_dir].nil?
         files_hash[virtual_dir].insert(-1, {'path' => path, 'rootdir' => rootdir})
       else
-        files_hash["_"] = Array.new if files_hash["_"].nil?
-        files_hash["_"].insert(-1, {'path' => path, 'rootdir' => rootdir})
+        #create a common src group
+        if ! groups_existing.include?("_src")
+          groups_existing.insert(-1, "_src")
+          node = Nokogiri::XML::Node.new 'Group', doc
+          node << "<GroupName>_src</GroupName>"
+          doc << node
+        end
+        files_hash["_src"] = Array.new if files_hash["_src"].nil?
+        files_hash["_src"].insert(-1, {'path' => path, 'rootdir' => rootdir})
       end
     end #end source_hash
-    doc.css("//group").each do |node|
-      files_hash[node.text].each do |file|
-        gfiles = Nokogiri::XML::Node.new('file', node)
-        sfile = Nokogiri::XML::Node.new('name', gfiles)
+    doc.css("Group").each do |node|
+      files_hash[node.at_css("GroupName").text].each do |file|
+        gfiles = Nokogiri::XML::Node.new('Files', node)
+        gfile = Nokogiri::XML::Node.new('File', gfiles)
+        sfile = Nokogiri::XML::Node.new('FileName', gfiles)
+        spfile = Nokogiri::XML::Node.new('FilePath', gfiles)
         if file['rootdir']
           full_path = path_mod.fullpath(file['rootdir'],file['path'])
         else
           full_path = path_mod.fullpath('default_path',file['path'])
         end
-        sfile.content = File.join("$PROJ_DIR$", path_mod.relpath(proj_path, full_path))
-        gfiles << sfile
+        sfile.content = File.basename(file['path'])
+        spfile.content = File.join("$PROJ_DIR$", path_mod.relpath(proj_path, full_path))
+        gfile << sfile
+        gfile << spfile
+        gfiles << gfile
         node << gfiles
       end
     end
-    return if files_hash["_"].nil?
-    files_hash["_"].each do |file|
+    return if files_hash["_src"].nil?
+    files_hash["_src"].each do |file|
       gfiles = Nokogiri::XML::Node.new('File', doc)
+      gfile = Nokogiri::XML::Node.new('File', gfiles)
       sfile = Nokogiri::XML::Node.new('FileName', gfiles)
       spfile = Nokogiri::XML::Node.new('FilePath', gfiles)
       if file['rootdir']
@@ -256,9 +269,10 @@ module UVPROJX
       end
       spfile.content = File.join("$PROJ_DIR$", path_mod.relpath(proj_path, full_path))
       sfile.content = File.basename(file['path'])
-      gfiles << spfile
-      gfiles << sfile
-      doc.root << gfiles
+      gfile << sfile
+      gfile << spfile
+      gfiles << gfile
+      node << gfiles
     end
   end
 end

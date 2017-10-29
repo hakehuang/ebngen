@@ -65,12 +65,14 @@ class Project
 
   	def source()
   		#add sources to target
-  		return if @mdk_project_files['project_projx'].nil?
+=begin  		
+        return if @mdk_project_files['project_projx'].nil?
   		remove_sources(@mdk_project_files['project_projx'])
   		sources = get_src_list(Project::TOOLCHAIN)
   		o_path = get_output_dir(Project::TOOLCHAIN, @paths.rootdir_table)
   		proj_path = File.join(@paths.rootdir_table['output_root'], o_path)
   		add_sources(@mdk_project_files['project_projx'], sources, @paths, proj_path)
+=end
   	end
 
   	def templates()
@@ -118,6 +120,12 @@ class Project
             		@logger.info "#{subkey} is not processed try to use the tool-chain specific"
           		end
 			end
+			#for mdk sources are added pre-target
+			remove_sources(t)
+  			sources = get_src_list(Project::TOOLCHAIN)
+  			o_path = get_output_dir(Project::TOOLCHAIN, @paths.rootdir_table)
+  			proj_path = File.join(@paths.rootdir_table['output_root'], o_path)
+  			add_sources(t.at_xpath("Groups"), sources, @paths, proj_path)
 		end
 		remove_targets(@mdk_project_files['project_projx'], get_target_list(Project::TOOLCHAIN))
 	end

@@ -8,6 +8,7 @@ module UVMWP
         "Header" => "### uVision Project, (C) Keil Software",
         "WorkspaceName" => "WorkSpace"
     }
+    @@data_remove = ["Sle7"]
     def add_node(pnode, hash_data, use_old: false)
         hash_data.each do |key,value|
             if use_old
@@ -50,6 +51,10 @@ module UVMWP
         workspace_node.set_attribute("xsi:noNamespaceSchemaLocation","project_mpw.xsd")
         dummy_project = workspace_node.at_xpath("/ProjectWorkspace/project")
         dummy_project.set_attribute("template","1")
+        @@data_remove.each do |node|
+          nt = workspace_node.at_xpath(node)
+          nt.remove if ! nt.nil?
+        end
     end
 
 
