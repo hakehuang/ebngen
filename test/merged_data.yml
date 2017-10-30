@@ -65,7 +65,8 @@ hello_world:
           release: {}
       mdk:
         project-templates:
-        - templates/mdk/general.uvmpw
+        - templates/mdk/project_mpw.xsd
+        - templates/mdk/project_projx.xsd
         config:
           debug:
             identifier: Debug
@@ -109,7 +110,7 @@ hello_world:
         load_to:
           debug: {}
           release: {}
-      armgcc:
+      cmake:
         config:
           debug:
             identifier: Debug
@@ -313,7 +314,8 @@ mbed_os_fsl:
           release: {}
       mdk:
         project-templates:
-        - templates/mdk/general.uvmpw
+        - templates/mdk/project_mpw.xsd
+        - templates/mdk/project_projx.xsd
         config:
           debug:
             identifier: Debug
@@ -371,7 +373,7 @@ mbed_os_fsl:
         load_to:
           debug: {}
           release: {}
-      armgcc:
+      cmake:
         config:
           debug:
             identifier: Debug
@@ -651,7 +653,8 @@ uart:
           release: {}
       mdk:
         project-templates:
-        - templates/mdk/general.uvmpw
+        - templates/mdk/project_mpw.xsd
+        - templates/mdk/project_projx.xsd
         config:
           debug:
             identifier: Debug
@@ -701,7 +704,7 @@ uart:
         load_to:
           debug: {}
           release: {}
-      armgcc:
+      cmake:
         config:
           debug:
             identifier: Debug
@@ -914,7 +917,8 @@ smc:
           release: {}
       mdk:
         project-templates:
-        - templates/mdk/general.uvmpw
+        - templates/mdk/project_mpw.xsd
+        - templates/mdk/project_projx.xsd
         config:
           debug:
             identifier: Debug
@@ -964,7 +968,7 @@ smc:
         load_to:
           debug: {}
           release: {}
-      armgcc:
+      cmake:
         config:
           debug:
             identifier: Debug
@@ -1178,7 +1182,8 @@ pit:
           release: {}
       mdk:
         project-templates:
-        - templates/mdk/general.uvmpw
+        - templates/mdk/project_mpw.xsd
+        - templates/mdk/project_projx.xsd
         config:
           debug:
             identifier: Debug
@@ -1228,7 +1233,7 @@ pit:
         load_to:
           debug: {}
           release: {}
-      armgcc:
+      cmake:
         config:
           debug:
             identifier: Debug
@@ -1443,7 +1448,8 @@ gpio:
           release: {}
       mdk:
         project-templates:
-        - templates/mdk/general.uvmpw
+        - templates/mdk/project_mpw.xsd
+        - templates/mdk/project_projx.xsd
         config:
           debug:
             identifier: Debug
@@ -1493,7 +1499,7 @@ gpio:
         load_to:
           debug: {}
           release: {}
-      armgcc:
+      cmake:
         config:
           debug:
             identifier: Debug
@@ -1706,7 +1712,8 @@ flash:
           release: {}
       mdk:
         project-templates:
-        - templates/mdk/general.uvmpw
+        - templates/mdk/project_mpw.xsd
+        - templates/mdk/project_projx.xsd
         config:
           debug:
             identifier: Debug
@@ -1756,7 +1763,7 @@ flash:
         load_to:
           debug: {}
           release: {}
-      armgcc:
+      cmake:
         config:
           debug:
             identifier: Debug
@@ -1970,7 +1977,8 @@ enet:
           release: {}
       mdk:
         project-templates:
-        - templates/mdk/general.uvmpw
+        - templates/mdk/project_mpw.xsd
+        - templates/mdk/project_projx.xsd
         config:
           debug:
             identifier: Debug
@@ -2020,7 +2028,7 @@ enet:
         load_to:
           debug: {}
           release: {}
-      armgcc:
+      cmake:
         config:
           debug:
             identifier: Debug
@@ -2234,7 +2242,8 @@ common:
           release: {}
       mdk:
         project-templates:
-        - templates/mdk/general.uvmpw
+        - templates/mdk/project_mpw.xsd
+        - templates/mdk/project_projx.xsd
         config:
           debug:
             identifier: Debug
@@ -2284,7 +2293,7 @@ common:
         load_to:
           debug: {}
           release: {}
-      armgcc:
+      cmake:
         config:
           debug:
             identifier: Debug
@@ -2647,11 +2656,12 @@ MK64FN1M0xxx12:
             linker-file: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F/device/TOOLCHAIN_ARM_STD/MK64FN1M0xxx12.sct
             rootdir: mbed_path
         project-templates:
-        - templates/mdk/general.uvmpw
+        - templates/mdk/project_mpw.xsd
+        - templates/mdk/project_projx.xsd
         load_to:
           debug: {}
           release: {}
-      armgcc:
+      cmake:
         config:
           debug:
             identifier: Debug
@@ -3001,7 +3011,7 @@ MK64FN1M0xxx12:
       - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F/device/TOOLCHAIN_GCC_ARM/startup_MK64F12.S
         virtual-dir: startup
         rootdir: mbed_path
-    armgcc:
+    cmake:
       files:
       - path: targets/TARGET_Freescale/TARGET_KSDK2_MCUS/TARGET_MCU_K64F/device/TOOLCHAIN_GCC_ARM/startup_MK64F12.S
         virtual-dir: startup
@@ -3253,7 +3263,8 @@ mbed_os:
           release: {}
       mdk:
         project-templates:
-        - templates/mdk/general.uvmpw
+        - templates/mdk/project_mpw.xsd
+        - templates/mdk/project_projx.xsd
         config:
           debug:
             identifier: Debug
@@ -3395,7 +3406,7 @@ mbed_os:
         load_to:
           debug: {}
           release: {}
-      armgcc:
+      cmake:
         config:
           debug:
             identifier: Debug
@@ -4389,7 +4400,7 @@ mbed_os:
       - path: rtos/rtx/TARGET_CORTEX_M/TARGET_RTOS_M4_M7/TOOLCHAIN_ARM/SVC_Table.S
         rootdir: mbed_path
         virtual-dir: mbed:portable
-    armgcc:
+    cmake:
       files:
       - path: rtos/rtx/TARGET_CORTEX_M/TARGET_RTOS_M4_M7/TOOLCHAIN_ARM/HAL_CM4.S
         rootdir: mbed_path
@@ -4459,8 +4470,9 @@ frdmk64f:
           release: {}
       mdk:
         project-templates:
-        - templates/mdk/app_frdmk64f/frdmk64f.uvprojx
-        - templates/mdk/general.uvmpw
+        - templates/mdk/project_mpw.xsd
+        - templates/mdk/k64f120m.uvprojx
+        - templates/mdk/project_projx.xsd
         config:
           debug:
             identifier: Debug
@@ -4679,7 +4691,7 @@ frdmk64f:
         load_to:
           debug: {}
           release: {}
-      armgcc:
+      cmake:
         config:
           debug:
             identifier: Debug

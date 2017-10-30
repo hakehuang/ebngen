@@ -24,7 +24,7 @@ frdmk64f:
       mdk:
         project-templates:
           - templates/mdk/project_mpw.xsd
-          - templates/mdk/project_projx.xsd
+          - templates/mdk/k64f120m.uvprojx
       kds:
         project-templates:
           - templates/kds/app_frdmk64f/.cproject

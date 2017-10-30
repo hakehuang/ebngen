@@ -332,6 +332,8 @@ demo_project:
         tool_chain_add_spec: {}
         binary_file: test_release
     templates: 
+    - templates/mdk/project_mpw.xsd
+    - templates/mdk/k64f120m.uvprojx
     type: application
     source:
     - path: hello_world.c
