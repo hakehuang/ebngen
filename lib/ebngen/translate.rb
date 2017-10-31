@@ -235,7 +235,7 @@ class Translator
         @data_out[proj]['type'] = @data_in[proj]['section-type']
       end
       convert_rules(proj,'iar')
-      #convert_rules(proj,'uv4')
+      convert_rules(proj,'mdk')
       convert_rules(proj,'cmake')
       #convert_rules(proj,'armgcc')
       #convert_rules(proj,'kds')

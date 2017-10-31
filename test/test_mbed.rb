@@ -44,5 +44,7 @@ File.write('./unified_data.yml', YAML.dump(translated_data[0]))
 mygenerator = Generator.new(options)
 mygenerator.generate_project_set('iar',translated_data[0]['hello_world'])
 mygenerator.generate_projects('iar', '', translated_data[0]['hello_world'])
+mygenerator.generate_project_set('mdk',translated_data[0]['hello_world'])
+mygenerator.generate_projects('mdk', '', translated_data[0]['hello_world'])
 
-#mygenerator.generate_projects('cmake', '', translated_data[0]['hello_world'])
+mygenerator.generate_projects('cmake', '', translated_data[0]['hello_world'])

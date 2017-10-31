@@ -4,7 +4,6 @@ __load__:
   - component/mbed_m4_component.yml
   - component/nxp/sdk/MK64FN1M0xxx12_sdk2.yml
   - component/nxp/mbed_fsl_component.yml
-  - toolchains/mdk/mdk_settings.yml
 
 __hierarchy__:
   mode: post-process-app
