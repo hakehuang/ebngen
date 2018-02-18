@@ -5,7 +5,7 @@ require 'xsd_populator'
 require 'xsd_reader'
 require 'nokogiri'
 
-reader = XsdPopulator.new(:xsd => 'templates/mdk/project_projx.xsd')
+reader = XsdPopulator.new(:xsd => 'test/templates/mdk/project_projx.xsd')
 
 #reader = XsdPopulator.new(:xsd => 'ddex-ern-v36.xsd')
 #puts reader.populated_xml # => XML-string

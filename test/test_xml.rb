@@ -18,7 +18,7 @@ end
 	end
   end
 
-@doc = Nokogiri::XML(File.open("./templates/iar/general.ewp"))
+@doc = Nokogiri::XML(File.open("test/templates/iar/general.ewp"))
 content = @doc.xpath("/project/configuration")
 puts content.count
 remove_targets(@doc,["debug"])

@@ -7,7 +7,7 @@ require_relative '../lib/ebngen'
 
 options = {
     :config => "debug",
-    :tool_chain => "mdk",
+    :tool_chain => "iar",
     :type => "application",
     :board => "demo_board",
     :project_name => "demo_project",
@@ -45,10 +45,11 @@ myunifmt.linker_file = {
 }
 
 myunifmt.templates = [ 
-#  "templates/iar/general.ewd",
-    "templates/mdk/project_mpw.xsd",
-#    "templates/iar/general.dni",
-    "templates/mdk/project_projx.xsd"]
+  "templates/iar/general.ewp",
+#    "templates/mdk/project_mpw.xsd",
+    "templates/iar/general.eww",
+#    "templates/mdk/project_projx.xsd",
+ ]
 
 =begin
 myunifmt.tool_chain_set_spec = {
@@ -83,7 +84,7 @@ myunifmt.sources = [
 myunifmt.update
 options = {
     :config => "release",
-    :tool_chain => "mdk",
+    :tool_chain => "iar",
     :type => "application",
     :board => "demo_board",
     :project_name => "demo_project"
@@ -132,14 +133,12 @@ File.write('./unified_data.yml', YAML.dump(myunifmt.output_info))
 
 options = {
   "paths" => {
-   "default_path" => Dir.pwd ,
-   "output_root" => Dir.pwd
+   "default_path" => Dir.pwd + '/test',
+   "output_root" => Dir.pwd + '/build'
   },
   "all" => myunifmt.output_info
 }
 
 mygenerator = Generator.new(options)
-#mygenerator.generate_project_set('iar',myunifmt.output_info['demo_project'])
-#mygenerator.generate_projects('iar', '', myunifmt.output_info['demo_project'])
-mygenerator.generate_project_set('mdk',myunifmt.output_info['demo_project'])
-mygenerator.generate_projects('mdk', '', myunifmt.output_info['demo_project'])
+mygenerator.generate_project_set('iar',myunifmt.output_info['demo_project'])
+mygenerator.generate_projects('iar', '', myunifmt.output_info['demo_project'])

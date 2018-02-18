@@ -27,7 +27,7 @@ translated_data = translator_unit.translate()
 
 options = {
   "paths" => {
-   "default_path" => Dir.pwd,
+   "default_path" => Dir.pwd + '/test',
    "output_root" => Dir.pwd + '/build',
    "mbed_path"  => Dir.pwd,
 	#'mqx_path' => @mqx_path,

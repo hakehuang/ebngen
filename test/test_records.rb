@@ -16,8 +16,8 @@ merged_data     = merge_unit.process()
 
 options = {
   "paths" => {
-   "default_path" => Dir.pwd,
-   "output_root" => Dir.pwd
+   "default_path" => Dir.pwd + '/test',
+   "output_root" => Dir.pwd + '/build',
   },
   "all" => merged_data
 }
