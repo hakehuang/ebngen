@@ -7,6 +7,8 @@ install:
   - gem install deep_merge
   - gem install awesome_print
   - gem install nokogiri
+  - gem install xsd-populator
+  - gem install xsd-reader
 
 before_install:
   - gem update --system
