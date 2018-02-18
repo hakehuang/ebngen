@@ -1,1 +1,1 @@
-require_relative 'ebngen\ebngen.rb'
+require_relative 'ebngen/ebngen.rb'
