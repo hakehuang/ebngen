@@ -4,7 +4,7 @@ require 'yaml'
 require 'yml_merger'
 
 require 'awesome_print'
-require 'lib/ebngen'
+require_relative '../lib/ebngen'
 
 
 @entry_yml = "test.yml"

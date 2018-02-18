@@ -3,7 +3,7 @@
 require 'yaml'
 
 require 'awesome_print'
-require 'lib/ebngen'
+require_relative '../lib/ebngen'
 
 options = {
     :config => "debug",
