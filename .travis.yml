@@ -6,6 +6,7 @@ install:
   - gem install yml_merger
   - gem install deep_merge
   - gem install awesome_print
+  - gem install nokogiri
 
 before_install:
   - gem update --system
