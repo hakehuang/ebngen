@@ -10,8 +10,8 @@ require 'yml_merger'
 require 'nokogiri'
 require 'uri'
 require 'open-uri'
-require 'xsd_populator'
-require 'xsd_reader'
+#require 'xsd_populator'
+#require 'xsd_reader'
 
 module MDK
 class Project
