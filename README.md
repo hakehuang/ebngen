@@ -7,4 +7,8 @@ ebngen is a project configuration framework. which can
 3. for IAR projects are generated from and common template
 4. for MDK, user need create a blank project with keil new project wizard, and use the projx file as template
 
+2021_08_05
+
+remove MDK support
+
 This git is for ruby version.
